@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Employee List | Drterrace Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Drterrace Employee Management System" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <!-- DataTables -->
+    <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Bootstrap Css -->
+    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <!-- Responsive & Typography Custom Css -->
+    <link href="assets/css/responsive-custom.css" rel="stylesheet" type="text/css" />
+
+    <style>
+        .avatar-table {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #e2e8f0;
+        }
+
+        .btn-add-emp {
+            background-color: #009ef7;
+            border-color: #009ef7;
+            color: #ffffff;
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 8px 18px;
+        }
+
+        .btn-add-emp:hover {
+            background-color: #0086d4;
+            color: #ffffff;
+        }
+
+        .badge-role {
+            font-size: 12px;
+            padding: 6px 10px;
+            font-weight: 500;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body data-topbar="colored">
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+        <!-- Header Component -->
+        <div id="header"></div>
+
+        <!-- Sidebar Component -->
+        <div id="sidebar"></div>
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-flex align-items-center justify-content-between">
+                                <div class="page-title">
+                                    <h4 class="mb-0 font-size-18">Employee List</h4>
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="employee-list.html">Drterrace</a></li>
+                                        <li class="breadcrumb-item"><a href="employee-list.html">Employee</a></li>
+                                        <li class="breadcrumb-item active">Employee List</li>
+                                    </ol>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end page title -->
+
+                    <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-body">
+
+                                            <h4 class="card-title">Datepicker</h4>
+                                            <p class="card-title-desc">Examples of twitter bootstrap datepicker.</p>
+
+
+                                            <form action="#">
+                                                <div class="row">
+
+                                                    <div class="col-lg-6">
+                                                        
+
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Year View</label>
+                                                            <div class="position-relative" id="datepicker5">
+                                                                <input type="text" class="form-control"
+                                                                    data-provide="datepicker" data-date-container='#datepicker5'
+                                                                    data-date-min-view-mode="2">
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Year View</label>
+                                                            <div class="position-relative" id="datepicker5">
+                                                                <input type="text" class="form-control"
+                                                                    data-provide="datepicker" data-date-container='#datepicker5'
+                                                                    data-date-min-view-mode="2">
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Year View</label>
+                                                            <div class="position-relative" id="datepicker5">
+                                                                <input type="text" class="form-control"
+                                                                    data-provide="datepicker" data-date-container='#datepicker5'
+                                                                    data-date-min-view-mode="2">
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Year View</label>
+                                                            <div class="position-relative" id="datepicker5">
+                                                                <input type="text" class="form-control"
+                                                                    data-provide="datepicker" data-date-container='#datepicker5'
+                                                                    data-date-min-view-mode="2">
+                                                            </div>
+                                                        </div>
+                                                        
+
+                                                        
+                                                    </div>
+                                                    <!-- End Col -->
+                                                </div>
+                                                <!-- End Row -->
+                                            </form>
+                                            <!-- End Form -->
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- End Col -->
+                            </div>
+
+                </div>
+            </div>
+
+            
+
+            <!-- Footer Component -->
+            <div id="footer"></div>
+
+        </div>
+
+    </div>
+
+    <!-- Right bar overlay-->
+    <div class="rightbar-overlay"></div>
+
+    <!-- JAVASCRIPT -->
+    <script src="assets/libs/jquery/jquery.min.js"></script>
+    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="assets/libs/node-waves/waves.min.js"></script>
+    <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
+    <script src="assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Component Loader -->
+    <script src="assets/js/component-loader.js"></script>
+
+    <!-- App js -->
+    <script src="assets/js/app.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#datatable-employees').DataTable({
+                "pageLength": 10,
+                "language": {
+                    "paginate": {
+                        "previous": "<i class='mdi mdi-chevron-left'>",
+                        "next": "<i class='mdi mdi-chevron-right'>"
+                    }
+                }
+            });
+
+            // View Employee Details Modal Handler
+            $(document).on('click', '.btn-view-employee', function(e) {
+                e.preventDefault();
+                const btn = $(this);
+                $('#modalEmpAvatar').attr('src', btn.data('avatar') || 'assets/images/users/avatar-4.jpg');
+                $('#modalEmpName').text(btn.data('name'));
+                $('#modalEmpId').text(btn.data('empid'));
+                $('#modalEmpRole').text(btn.data('role'));
+                $('#modalEmpMobile').text(btn.data('mobile'));
+                $('#modalEmpAadhaar').text(btn.data('aadhaar'));
+                $('#modalEmpLocation').text(btn.data('location'));
+                $('#modalEmpSalary').text(btn.data('salary'));
+                $('#modalEmpAllowance').text(btn.data('allowance'));
+                $('#modalEmpWorkingDays').text(btn.data('workingdays') || '26 Days');
+                
+                // const status = btn.data('status') || 'Active';
+                // $('#modalEmpStatusBadge').text(status)
+                //     .removeClass('bg-success bg-danger bg-warning')
+                //     .addClass(status === 'Active' ? 'bg-success' : 'bg-danger');
+
+                const modal = new bootstrap.Modal(document.getElementById('viewEmployeeModal'));
+                modal.show();
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1382 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+
+    <title>New Appointment | Drterrace Admin Dashboard</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta content="Drterrace Appointment Booking & Management System" name="description" />
+
+    <meta content="Themesbrand" name="author" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <!-- Plugin Css -->
+    <link href="assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Bootstrap Css -->
+    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+
+    <!-- Icons Css -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- App Css -->
+    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive CSS -->
+    <link href="assets/css/responsive-custom.css" rel="stylesheet" type="text/css" />
+
+    <style>
+
+        :root {
+            --dr-primary: #1e4db7;
+            --dr-primary-hover: #163d94;
+            --dr-input-border: #dbe2ea;
+            --dr-text-main: #1e293b;
+            --dr-text-muted: #64748b;
+        }
+
+        /* =========================
+           GENERAL FORM STYLES
+        ========================= */
+
+        .required-star {
+            color: #ef4444;
+            font-weight: bold;
+            margin-left: 2px;
+        }
+
+        .form-label-custom {
+            font-weight: 700;
+            color: var(--dr-text-main);
+            margin-bottom: 8px;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-control-custom {
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 15px;
+            border: 1.5px solid var(--dr-input-border);
+            color: #334155;
+            background-color: #ffffff;
+            transition: all 0.2s ease-in-out;
+            min-height: 48px;
+        }
+
+        .form-control-custom::placeholder {
+            color: #94a3b8;
+            font-weight: 400;
+        }
+
+        .form-control-custom:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+            background-color: #ffffff;
+        }
+
+        /* =========================
+           SECTION TITLE
+        ========================= */
+
+        .section-header-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dr-text-main);
+            margin-bottom: 14px;
+        }
+
+        /* =========================
+           GOOGLE LOCATION ICON
+        ========================= */
+
+        .input-icon-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .input-icon-wrapper .form-control-custom {
+            width: 100%;
+            padding-right: 50px;
+        }
+
+        .input-trailing-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--dr-primary);
+            font-size: 20px;
+            pointer-events: none;
+        }
+
+        /* =========================
+           DATE & TIME
+           Native icons only
+        ========================= */
+
+        input[type="date"],
+        input[type="time"] {
+            width: 100%;
+            padding-right: 16px;
+        }
+
+        /* =========================
+           SEARCHABLE CITY / AREA
+        ========================= */
+
+        .search-select-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-select-wrapper .form-control-custom {
+            padding-right: 45px;
+        }
+
+        .search-select-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+            font-size: 22px;
+            pointer-events: none;
+        }
+
+        .search-suggestions {
+            position: absolute;
+            top: calc(100% + 5px);
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            border: 1.5px solid var(--dr-input-border);
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+            max-height: 220px;
+            overflow-y: auto;
+            z-index: 9999;
+            display: none;
+        }
+
+        .search-suggestion-item {
+            padding: 11px 16px;
+            cursor: pointer;
+            font-size: 15px;
+            color: #334155;
+            transition: background 0.2s ease;
+        }
+
+        .search-suggestion-item:hover {
+            background: #f1f5f9;
+            color: var(--dr-primary);
+        }
+
+        /* =========================
+           WATERPROOF CHECKBOXES
+        ========================= */
+
+        .waterproof-options-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .custom-check-item {
+            display: flex;
+            align-items: center;
+            position: relative;
+            cursor: pointer;
+            user-select: none;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: 500;
+            color: #1e293b;
+            border: 1.5px solid var(--dr-input-border);
+            border-radius: 10px;
+            padding: 10px 12px;
+            transition: all 0.2s ease;
+            background-color: #ffffff;
+        }
+
+        .custom-check-item:hover {
+            border-color: var(--dr-primary);
+        }
+
+        .custom-check-item.is-checked {
+            border-color: var(--dr-primary);
+            background-color: rgba(30, 77, 183, 0.04);
+        }
+
+        .custom-check-item input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            height: 0;
+            width: 0;
+        }
+
+        .custom-checkmark {
+            height: 18px;
+            width: 18px;
+            background-color: #ffffff;
+            border: 2px solid #94a3b8;
+            border-radius: 4px;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .custom-check-item input:checked ~ .custom-checkmark {
+            background-color: var(--dr-primary);
+            border-color: var(--dr-primary);
+        }
+
+        .custom-checkmark::after {
+            content: "";
+            display: none;
+            width: 5px;
+            height: 9px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+            margin-bottom: 2px;
+        }
+
+        .custom-check-item input:checked ~ .custom-checkmark::after {
+            display: block;
+        }
+
+        /* =========================
+           ASSIGN TO
+        ========================= */
+
+        .form-select-custom {
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 15px;
+            border: 1.5px solid var(--dr-input-border);
+            color: #334155;
+            background-color: #ffffff;
+            min-height: 48px;
+        }
+
+        .form-select-custom:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .btn-submit-appointment {
+            background-color: var(--dr-primary);
+            border-color: var(--dr-primary);
+            color: #ffffff;
+            font-weight: 700;
+            padding: 12px 28px;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit-appointment:hover {
+            background-color: var(--dr-primary-hover);
+            border-color: var(--dr-primary-hover);
+            color: #ffffff;
+        }
+
+        .btn-cancel-appointment {
+            background-color: #ffffff;
+            border: 1.5px solid var(--dr-input-border);
+            color: #475569;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 15px;
+        }
+
+        .btn-cancel-appointment:hover {
+            background-color: #f1f5f9;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 767.98px) {
+
+            .waterproof-options-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .btn-submit-appointment,
+            .btn-cancel-appointment {
+                width: 100%;
+            }
+
+        }
+
+        @media (max-width: 420px) {
+
+            .waterproof-options-list {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body data-topbar="colored">
+
+    <div id="layout-wrapper">
+
+        <!-- Header -->
+        <div id="header"></div>
+
+        <!-- Sidebar -->
+        <div id="sidebar"></div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+
+            <div class="page-content">
+
+                <div class="container-fluid">
+
+                    <!-- Page Title -->
+
+                    <div class="row">
+
+                        <div class="col-12">
+
+                            <div class="page-title-box d-flex align-items-center justify-content-between">
+
+                                <div class="page-title">
+
+                                    <h4 class="mb-0 font-size-18">
+                                        New Appointment
+                                    </h4>
+
+                                    <ol class="breadcrumb">
+
+                                        <li class="breadcrumb-item">
+                                            <a href="all-appointments.html">Drterrace</a>
+                                        </li>
+
+                                        <li class="breadcrumb-item">
+                                            <a href="all-appointments.html">
+                                                Appointment
+                                            </a>
+                                        </li>
+
+                                        <li class="breadcrumb-item active">
+                                            New Appointment
+                                        </li>
+
+                                    </ol>
+
+                                </div>
+
+                                <div class="state-information">
+
+                                    <a href="all-appointments.html"
+                                        class="btn btn-outline-primary btn-sm">
+
+                                        <i class="mdi mdi-arrow-left me-1"></i>
+
+                                        View All Appointments
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Appointment Form -->
+
+                    <div class="page-content-wrapper">
+
+                        <div class="row">
+
+                            <div class="col-12">
+
+                                <div class="card shadow-sm border-0"
+                                    style="border-radius: 16px;">
+
+                                    <div class="card-body p-4 p-md-5">
+
+                                        <form id="newAppointmentForm">
+
+                                            <!-- Customer Details -->
+
+                                            <div class="row g-3 mb-4">
+
+                                                <div class="col-12 col-md-6">
+
+                                                    <label class="form-label-custom"
+                                                        for="customerName">
+
+                                                        Customer Name
+
+                                                        <span class="required-star">
+                                                            *
+                                                        </span>
+
+                                                    </label>
+
+                                                    <input type="text"
+                                                        class="form-control form-control-custom"
+                                                        id="customerName"
+                                                        placeholder="Enter Customer Name"
+                                                        required>
+
+                                                </div>
+
+
+                                                <div class="col-12 col-md-6">
+
+                                                    <label class="form-label-custom"
+                                                        for="customerMobile">
+
+                                                        Mobile Number
+
+                                                        <span class="required-star">
+                                                            *
+                                                        </span>
+
+                                                    </label>
+
+                                                    <input type="tel"
+                                                        class="form-control form-control-custom"
+                                                        id="customerMobile"
+                                                        placeholder="Enter Mobile Number"
+                                                        maxlength="10"
+                                                        required>
+
+                                                </div>
+
+                                            </div>
+
+
+                                            <!-- Address -->
+
+                                            <div class="mb-4">
+
+                                                <label class="form-label-custom">
+
+                                                    Address
+
+                                                    <span class="required-star">
+                                                        *
+                                                    </span>
+
+                                                </label>
+
+                                                <div class="row g-3">
+
+                                                    <div class="col-12 col-md-6">
+
+                                                        <input type="text"
+                                                            class="form-control form-control-custom"
+                                                            id="doorFlatNo"
+                                                            placeholder="Door No / Flat No"
+                                                            required>
+
+                                                    </div>
+
+
+                                                    <div class="col-12 col-md-6">
+
+                                                        <input type="text"
+                                                            class="form-control form-control-custom"
+                                                            id="streetRoad"
+                                                            placeholder="Street Name / Road"
+                                                            required>
+
+                                                    </div>
+
+
+                                                    <!-- CITY -->
+
+                                                    <div class="col-12 col-md-6">
+
+                                                        <label class="form-label-custom"
+                                                            for="cityInput">
+
+                                                            City
+
+                                                            <span class="required-star">
+                                                                *
+                                                            </span>
+
+                                                        </label>
+
+                                                        <div class="search-select-wrapper"
+                                                            id="cityWrapper">
+
+                                                            <input type="text"
+                                                                class="form-control form-control-custom"
+                                                                id="cityInput"
+                                                                name="city"
+                                                                placeholder="Select or type City"
+                                                                autocomplete="off"
+                                                                required>
+
+                                                            <i class="mdi mdi-chevron-down search-select-icon"></i>
+
+                                                            <div class="search-suggestions"
+                                                                id="citySuggestions">
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+
+                                                    <!-- AREA -->
+
+                                                    <div class="col-12 col-md-6">
+
+                                                        <label class="form-label-custom"
+                                                            for="areaInput">
+
+                                                            Area
+
+                                                            <span class="required-star">
+                                                                *
+                                                            </span>
+
+                                                        </label>
+
+                                                        <div class="search-select-wrapper"
+                                                            id="areaWrapper">
+
+                                                            <input type="text"
+                                                                class="form-control form-control-custom"
+                                                                id="areaInput"
+                                                                name="area"
+                                                                placeholder="Select or type Area"
+                                                                autocomplete="off"
+                                                                required>
+
+                                                            <i class="mdi mdi-chevron-down search-select-icon"></i>
+
+                                                            <div class="search-suggestions"
+                                                                id="areaSuggestions">
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+
+                                            <!-- Google Location -->
+
+                                            <div class="mb-4">
+
+                                                <label class="form-label-custom"
+                                                    for="googleLocation">
+
+                                                    Google Location
+
+                                                </label>
+
+                                                <div class="input-icon-wrapper">
+
+                                                    <input type="text"
+                                                        class="form-control form-control-custom"
+                                                        id="googleLocation"
+                                                        placeholder="Paste URL here">
+
+                                                    <i class="mdi mdi-map-marker input-trailing-icon"></i>
+
+                                                </div>
+
+                                            </div>
+
+
+                                            <!-- Date & Time -->
+
+                                            <div class="row g-3 mb-4">
+
+                                                <!-- Appointment Date -->
+
+                                                <div class="col-12 col-md-6 col-lg-4">
+
+                                                    <label class="form-label-custom"
+                                                        for="appointmentDate">
+
+                                                        Appointment Date
+
+                                                    </label>
+
+                                                    <input type="date"
+                                                        class="form-control form-control-custom"
+                                                        id="appointmentDate"
+                                                        value="2026-08-20">
+
+                                                </div>
+
+
+                                                <!-- Appointment Fix Date -->
+
+                                                <div class="col-12 col-md-6 col-lg-4">
+
+                                                    <label class="form-label-custom"
+                                                        for="appointmentFixDate">
+
+                                                        Appointment Fix Date
+
+                                                    </label>
+
+                                                    <input type="date"
+                                                        class="form-control form-control-custom"
+                                                        id="appointmentFixDate"
+                                                        value="2026-08-20">
+
+                                                </div>
+
+
+                                                <!-- Appointment Time -->
+
+                                                <div class="col-12 col-md-6 col-lg-4">
+
+                                                    <label class="form-label-custom"
+                                                        for="appointmentTime">
+
+                                                        Appointment Time
+
+                                                    </label>
+
+                                                    <input type="time"
+                                                        class="form-control form-control-custom"
+                                                        id="appointmentTime"
+                                                        value="17:30">
+
+                                                </div>
+
+                                            </div>
+
+
+                                            <!-- Waterproof Services -->
+
+                                            <div class="mb-4">
+
+                                                <div class="section-header-title">
+
+                                                    Where to Waterproof
+
+                                                </div>
+
+                                                <div class="waterproof-options-list">
+
+                                                    <label class="custom-check-item">
+
+                                                        <input type="checkbox"
+                                                            name="waterproof_services"
+                                                            value="Terrace">
+
+                                                        <span class="custom-checkmark"></span>
+
+                                                        Terrace
+
+                                                    </label>
+
+
+                                                    <label class="custom-check-item">
+
+                                                        <input type="checkbox"
+                                                            name="waterproof_services"
+                                                            value="Outer Wall">
+
+                                                        <span class="custom-checkmark"></span>
+
+                                                        Outer Wall
+
+                                                    </label>
+
+
+                                                    <label class="custom-check-item">
+
+                                                        <input type="checkbox"
+                                                            name="waterproof_services"
+                                                            value="Bathroom">
+
+                                                        <span class="custom-checkmark"></span>
+
+                                                        Bathroom
+
+                                                    </label>
+
+
+                                                    <label class="custom-check-item">
+
+                                                        <input type="checkbox"
+                                                            name="waterproof_services"
+                                                            value="Sump">
+
+                                                        <span class="custom-checkmark"></span>
+
+                                                        Sump
+
+                                                    </label>
+
+                                                </div>
+
+                                            </div>
+
+
+                                            <!-- Assign & Buttons -->
+
+                                            <div class="row g-3 align-items-end">
+
+                                                <div class="col-12 col-md-6">
+
+                                                    <label class="form-label-custom" for="assignedTo">
+                                                        Assign to
+                                                    </label>
+
+                                                    <select class="form-select form-select-custom"
+                                                        id="assignedTo"
+                                                        name="assigned_to">
+
+                                                        <option value="Santhosh Kumar" selected>
+                                                            Santhosh Kumar
+                                                        </option>
+
+                                                        <option value="Prem">
+                                                            Prem
+                                                        </option>
+
+                                                        <option value="Alex">
+                                                            Alex
+                                                        </option>
+
+                                                    </select>
+
+                                                </div>
+
+                                                <!-- Buttons -->
+
+                                                <div class="col-12 col-md-6">
+
+                                                    <div class="d-flex flex-column flex-md-row justify-content-md-end gap-2">
+
+                                                        <button type="button"
+                                                            class="btn btn-cancel-appointment">
+
+                                                            Cancel
+
+                                                        </button>
+
+                                                        <button type="submit"
+                                                            class="btn btn-submit-appointment">
+
+                                                            Submit Appointment
+
+                                                        </button>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </form>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Footer -->
+            <div id="footer"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="assets/libs/jquery/jquery.min.js"></script>
+
+    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/libs/metismenu/metisMenu.min.js"></script>
+
+    <script src="assets/libs/simplebar/simplebar.min.js"></script>
+
+    <script src="assets/libs/node-waves/waves.min.js"></script>
+
+    <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
+
+    <script src="assets/js/component-loader.js"></script>
+
+    <script src="assets/js/app.js"></script>
+
+
+    <script>
+
+        $(document).ready(function () {
+
+
+            /* ==========================================
+               CITY AND AREA DATA
+            ========================================== */
+
+            const cityAreas = {
+
+                "Chennai": [
+                    "Ambattur",
+                    "Anna Nagar",
+                    "Adyar",
+                    "Velachery",
+                    "T. Nagar",
+                    "Tambaram",
+                    "Porur",
+                    "Guindy",
+                    "Madhavaram",
+                    "Perambur",
+                    "Koyambedu",
+                    "Nungambakkam",
+                    "Mylapore",
+                    "Thiruvanmiyur",
+                    "Pallavaram",
+                    "Chromepet"
+                ],
+
+                "Coimbatore": [
+                    "Gandhipuram",
+                    "RS Puram",
+                    "Saibaba Colony",
+                    "Peelamedu",
+                    "Singanallur",
+                    "Saravanampatti",
+                    "Race Course",
+                    "Ganapathy",
+                    "Ukkadam",
+                    "Kuniyamuthur",
+                    "Podanur"
+                ],
+
+                "Madurai": [
+                    "Anna Nagar",
+                    "KK Nagar",
+                    "Mattuthavani",
+                    "Tallakulam",
+                    "Goripalayam",
+                    "Thiruparankundram",
+                    "Arasaradi",
+                    "Simmakkal",
+                    "Kalavasal"
+                ],
+
+                "Tiruchirappalli": [
+                    "Srirangam",
+                    "Thillai Nagar",
+                    "Cantonment",
+                    "Woraiyur",
+                    "K.K. Nagar",
+                    "Tennur",
+                    "Thuvakudi",
+                    "BHEL",
+                    "Chatram"
+                ],
+
+                "Salem": [
+                    "Fairlands",
+                    "Hasthampatti",
+                    "Gugai",
+                    "Suramangalam",
+                    "Ammapet",
+                    "Kondalampatti",
+                    "Shevapet",
+                    "Alagapuram"
+                ],
+
+                "Tirunelveli": [
+                    "Palayamkottai",
+                    "Vannarpettai",
+                    "Melapalayam",
+                    "Town",
+                    "KTC Nagar",
+                    "Maharaja Nagar",
+                    "Pettai"
+                ],
+
+                "Erode": [
+                    "Perundurai Road",
+                    "Surampatti",
+                    "Veerappanchatram",
+                    "Moolapalayam",
+                    "Solar",
+                    "Sampath Nagar"
+                ],
+
+                "Bangalore": [
+                    "Whitefield",
+                    "Koramangala",
+                    "Indiranagar",
+                    "HSR Layout",
+                    "Marathahalli",
+                    "Jayanagar",
+                    "Malleshwaram",
+                    "Electronic City",
+                    "Yelahanka",
+                    "Rajajinagar"
+                ]
+
+            };
+
+
+            const cityInput =
+                document.getElementById("cityInput");
+
+            const areaInput =
+                document.getElementById("areaInput");
+
+            const citySuggestions =
+                document.getElementById("citySuggestions");
+
+            const areaSuggestions =
+                document.getElementById("areaSuggestions");
+
+            const cities = Object.keys(cityAreas);
+
+
+            /* ==========================================
+               HELPERS - case & whitespace safe matching
+            ========================================== */
+
+            function normalize(text) {
+                return (text || "").toString().trim().toLowerCase();
+            }
+
+
+            /* ==========================================
+               CITY SUGGESTIONS
+            ========================================== */
+
+            function showCitySuggestions(searchText = "") {
+
+                citySuggestions.innerHTML = "";
+
+                const query = normalize(searchText);
+
+                const filteredCities = cities.filter(function (city) {
+
+                    return normalize(city).includes(query);
+
+                });
+
+
+                filteredCities.forEach(function (city) {
+
+                    const item =
+                        document.createElement("div");
+
+                    item.className =
+                        "search-suggestion-item";
+
+                    item.textContent = city;
+
+
+                    item.addEventListener("click", function () {
+
+                        cityInput.value = city;
+
+                        areaInput.value = "";
+
+                        citySuggestions.style.display = "none";
+
+                        areaInput.focus();
+
+                        showAreaSuggestions("");
+
+                    });
+
+
+                    citySuggestions.appendChild(item);
+
+                });
+
+
+                if (filteredCities.length > 0) {
+
+                    citySuggestions.style.display = "block";
+
+                } else {
+
+                    citySuggestions.style.display = "none";
+
+                }
+
+            }
+
+
+            /* ==========================================
+               AREA SUGGESTIONS
+            ========================================== */
+
+            function showAreaSuggestions(searchText = "") {
+
+                areaSuggestions.innerHTML = "";
+
+                const selectedCity =
+                    normalize(cityInput.value);
+
+
+                const matchedCity =
+                    cities.find(function (city) {
+
+                        return normalize(city) === selectedCity;
+
+                    });
+
+
+                /* If custom city is typed,
+                   user can still manually type area */
+
+                if (!matchedCity) {
+
+                    areaSuggestions.style.display = "none";
+
+                    return;
+
+                }
+
+
+                const areas =
+                    cityAreas[matchedCity];
+
+
+                const query = normalize(searchText);
+
+                const filteredAreas =
+                    areas.filter(function (area) {
+
+                        return normalize(area).includes(query);
+
+                    });
+
+
+                filteredAreas.forEach(function (area) {
+
+                    const item =
+                        document.createElement("div");
+
+                    item.className =
+                        "search-suggestion-item";
+
+                    item.textContent = area;
+
+
+                    item.addEventListener("click", function () {
+
+                        areaInput.value = area;
+
+                        areaSuggestions.style.display = "none";
+
+                    });
+
+
+                    areaSuggestions.appendChild(item);
+
+                });
+
+
+                if (filteredAreas.length > 0) {
+
+                    areaSuggestions.style.display = "block";
+
+                } else {
+
+                    areaSuggestions.style.display = "none";
+
+                }
+
+            }
+
+
+            /* ==========================================
+               CITY EVENTS
+               (click AND focus both open the list so it
+               reliably reopens even if the field already
+               has focus; typing keeps filtering live)
+            ========================================== */
+
+            cityInput.addEventListener("focus", function () {
+
+                showCitySuggestions(this.value);
+
+            });
+
+            cityInput.addEventListener("click", function (e) {
+
+                e.stopPropagation();
+
+                showCitySuggestions(this.value);
+
+            });
+
+
+            cityInput.addEventListener("input", function () {
+
+                const typedCity =
+                    this.value;
+
+                showCitySuggestions(typedCity);
+
+                areaInput.value = "";
+
+            });
+
+
+            /* ==========================================
+               AREA EVENTS
+            ========================================== */
+
+            areaInput.addEventListener("focus", function () {
+
+                showAreaSuggestions(this.value);
+
+            });
+
+            areaInput.addEventListener("click", function (e) {
+
+                e.stopPropagation();
+
+                showAreaSuggestions(this.value);
+
+            });
+
+
+            areaInput.addEventListener("input", function () {
+
+                const typedArea =
+                    this.value;
+
+                showAreaSuggestions(typedArea);
+
+            });
+
+
+            /* ==========================================
+               CLOSE CITY / AREA DROPDOWN
+            ========================================== */
+
+            document.addEventListener("click", function (event) {
+
+                if (!event.target.closest("#cityWrapper")) {
+
+                    citySuggestions.style.display = "none";
+
+                }
+
+
+                if (!event.target.closest("#areaWrapper")) {
+
+                    areaSuggestions.style.display = "none";
+
+                }
+
+            });
+
+
+            /* ==========================================
+               MOBILE NUMBER
+            ========================================== */
+
+            $("#customerMobile").on("input", function () {
+
+                let value =
+                    $(this)
+                        .val()
+                        .replace(/\D/g, "");
+
+                if (value.length > 10) {
+
+                    value =
+                        value.substring(0, 10);
+
+                }
+
+                $(this).val(value);
+
+            });
+
+
+            /* ==========================================
+               WATERPROOF CHECKBOX
+            ========================================== */
+
+            $('input[name="waterproof_services"]').on(
+                "change",
+                function () {
+
+                    $(this)
+                        .closest(".custom-check-item")
+                        .toggleClass(
+                            "is-checked",
+                            this.checked
+                        );
+
+                }
+            );
+
+
+            /* ==========================================
+               FORM SUBMIT
+            ========================================== */
+
+            $("#newAppointmentForm").on(
+                "submit",
+                function (e) {
+
+                    e.preventDefault();
+
+
+                    const customerName =
+                        $("#customerName").val();
+
+                    const mobile =
+                        $("#customerMobile").val();
+
+                    const assigned =
+                        $("#assignedTo").val();
+
+                    const date =
+                        $("#appointmentDate").val();
+
+                    const time =
+                        $("#appointmentTime").val();
+
+
+                    if (mobile.length !== 10) {
+
+                        Swal.fire({
+
+                            icon: "warning",
+
+                            title: "Invalid Mobile Number",
+
+                            text: "Please enter a valid 10-digit mobile number.",
+
+                            confirmButtonColor: "#1e4db7"
+
+                        });
+
+                        return;
+
+                    }
+
+
+                    Swal.fire({
+
+                        icon: "success",
+
+                        title: "Appointment Booked Successfully!",
+
+                        html:
+                            "Appointment for <b>" +
+                            customerName +
+                            "</b> has been scheduled for <b>" +
+                            date +
+                            " at " +
+                            time +
+                            "</b><br><small class='text-muted'>Assigned to: " +
+                            assigned +
+                            "</small>",
+
+                        confirmButtonColor: "#1e4db7",
+
+                        confirmButtonText:
+                            "View All Appointments",
+
+                        showCancelButton: true,
+
+                        cancelButtonText:
+                            "Book Another"
+
+                    }).then(function (result) {
+
+                        if (result.isConfirmed) {
+
+                            window.location.href =
+                                "all-appointments.html";
+
+                        } else {
+
+                            $("#newAppointmentForm")[0].reset();
+
+                            $(".custom-check-item")
+                                .removeClass("is-checked");
+
+                        }
+
+                    });
+
+                }
+            );
+
+
+            /* ==========================================
+               CANCEL BUTTON
+            ========================================== */
+
+            $(".btn-cancel-appointment").on(
+                "click",
+                function () {
+
+                    $("#newAppointmentForm")[0].reset();
+
+                    $(".custom-check-item")
+                        .removeClass("is-checked");
+
+
+                    cityInput.value = "";
+
+                    areaInput.value = "";
+
+                }
+            );
+
+        });
+
+    </script>
+
+</body>
+
+</html>

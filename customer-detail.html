@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Customer Details | Drterrace Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Drterrace Customer Management System" name="description" />
+    <meta content="Drterrace" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <!-- Bootstrap Css -->
+    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <!-- Responsive & Typography Custom Css -->
+    <link href="assets/css/responsive-custom.css" rel="stylesheet" type="text/css" />
+
+    <style>
+        .form-section-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--dr-primary, #1e4db7);
+            margin-bottom: 18px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #eef2f6;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-control[readonly],
+        .form-select[disabled] {
+            background-color: #f8fafc;
+            border-color: #e2e8f0;
+            color: #1e293b;
+            font-weight: 500;
+            cursor: default;
+        }
+
+        .form-control:focus {
+            border-color: var(--dr-primary, #1e4db7);
+            box-shadow: 0 0 0 3px rgba(30, 77, 183, 0.15);
+        }
+
+        .card-custom-detail {
+            border-radius: 14px;
+            border: none;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            background: #ffffff;
+        }
+
+        .status-badge-pill {
+            font-size: 0.88rem;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body data-topbar="colored">
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+        <!-- Header Component -->
+        <div id="header"></div>
+
+        <!-- Sidebar Component -->
+        <div id="sidebar"></div>
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <!-- Start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-flex align-items-center justify-content-between">
+                                <div class="page-title">
+                                    <h4 class="mb-0 font-size-18">Customer Details</h4>
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="customer-list.html">Drterrace</a></li>
+                                        <li class="breadcrumb-item"><a href="customer-list.html">Customer</a></li>
+                                        <li class="breadcrumb-item active">Customer Details</li>
+                                    </ol>
+                                </div>
+
+                                <div class="state-information d-flex gap-2">
+                                    <a href="customer-list.html" class="btn btn-outline-light shadow-sm">
+                                        <i class="mdi mdi-arrow-left me-1"></i> Back to Customer List
+                                    </a>
+                                    <a href="new-appointment.html" class="btn btn-primary shadow-sm">
+                                        <i class="mdi mdi-calendar-plus me-1"></i> New Appointment
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End page title -->
+
+                    <!-- Start Page Content Wrapper -->
+                    <div class="page-content-wrapper">
+                        <div class="row justify-content-center">
+                            <div class="col-xl-11 col-lg-12 col-12">
+                                <div class="card card-custom-detail">
+                                    <div class="card-body p-4 p-md-5">
+
+                                        <!-- Top Info Bar -->
+                                        <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4 pb-3 border-bottom">
+                                            <div>
+                                                <h4 class="text-dark fw-bold mb-1" id="displayCustomerTitle">Kavitha Narayanan</h4>
+                                                <div class="text-muted font-size-13">
+                                                    <span>Customer ID: <strong class="text-primary" id="displayCustomerId">CUST-1001</strong></span>
+                                                    <span class="mx-2">•</span>
+                                                    <span>Registered City: <strong class="text-dark" id="displayCustomerCity">Chennai</strong></span>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center gap-2">
+                                                <span class="text-muted font-size-13 me-1">Status:</span>
+                                                <span class="badge bg-warning status-badge-pill" id="displayCustomerStatus">Scheduled</span>
+                                            </div>
+                                        </div>
+
+                                        <form id="customerDetailForm">
+
+                                            <!-- SECTION 1: Personal & Contact Information -->
+                                            <div class="form-section-title">
+                                                <i class="mdi mdi-account-outline font-size-20"></i>
+                                                <span>Personal & Contact Information</span>
+                                            </div>
+
+                                            <div class="row g-3 mb-4">
+                                                <div class="col-12 col-md-4">
+                                                    <label class="form-label" for="customerId">Customer ID</label>
+                                                    <input type="text" class="form-control" id="customerId" name="customer_id" value="CUST-1001" readonly>
+                                                </div>
+
+                                                <div class="col-12 col-md-4">
+                                                    <label class="form-label" for="customerName">Customer Name</label>
+                                                    <input type="text" class="form-control" id="customerName" name="customer_name" value="Kavitha Narayanan" readonly>
+                                                </div>
+
+                                                <div class="col-12 col-md-4">
+                                                    <label class="form-label" for="mobileNumber">Primary Mobile Number</label>
+                                                    <input type="text" class="form-control" id="mobileNumber" name="mobile_number" value="+91 98401 23456" readonly>
+                                                </div>
+
+                                                
+                                            </div>
+
+
+                                            <!-- SECTION 2: Location & Address Information -->
+                                            <div class="form-section-title">
+                                                <i class="mdi mdi-map-marker-outline font-size-20"></i>
+                                                <span>Location & Address Information</span>
+                                            </div>
+
+                                            <div class="row g-3 mb-4">
+                                                <div class="col-12 col-md-4">
+                                                    <label class="form-label" for="doorFlatNo">Door No / Flat No</label>
+                                                    <input type="text" class="form-control" id="doorFlatNo" name="door_flat_no" value="Flat 3A" readonly>
+                                                </div>
+
+                                                <div class="col-12 col-md-4">
+                                                    <label class="form-label" for="buildingName">Apartment / Building Name</label>
+                                                    <input type="text" class="form-control" id="buildingName" name="building_name" value="Green Valley Apartments" readonly>
+                                                </div>
+
+                                                <div class="col-12 col-md-4">
+                                                    <label class="form-label" for="streetRoad">Street Name / Road</label>
+                                                    <input type="text" class="form-control" id="streetRoad" name="street_road" value="MTH Road" readonly>
+                                                </div>
+
+                                                <div class="col-12 col-md-4">
+                                                    <label class="form-label" for="areaLocality">Area / Locality</label>
+                                                    <input type="text" class="form-control" id="areaLocality" name="area_locality" value="Ambattur" readonly>
+                                                </div>
+
+                                                <div class="col-12 col-md-4">
+                                                    <label class="form-label" for="city">City</label>
+                                                    <input type="text" class="form-control" id="city" name="city" value="Chennai" readonly>
+                                                </div>
+
+                                                <div class="col-12 col-md-4">
+                                                    <label class="form-label" for="pincode">Pincode</label>
+                                                    <input type="text" class="form-control" id="pincode" name="pincode" value="600053" readonly>
+                                                </div>
+
+                                                
+                                            </div>
+
+
+                                            <!-- SECTION 3: Service & Appointment Assignment -->
+                                            <div class="form-section-title">
+                                                <i class="mdi mdi-wrench-outline font-size-20"></i>
+                                                <span>Service & Assignment Information</span>
+                                            </div>
+
+                                            <div class="row g-3 mb-4">
+                                                <div class="col-12 col-md-6">
+                                                    <label class="form-label" for="serviceRequired">Service(s) Requested</label>
+                                                    <input type="text" class="form-control" id="serviceRequired" name="service_required" value="Outer Wall Proofing, Terrace Waterproofing" readonly>
+                                                </div>
+
+                                                <div class="col-12 col-md-6">
+                                                    <label class="form-label" for="assignedTo">Assigned Specialist / Employee</label>
+                                                    <input type="text" class="form-control" id="assignedTo" name="assigned_to" value="Santhosh Kumar (Field Specialist)" readonly>
+                                                </div>
+
+                                                <div class="col-12 col-md-4">
+                                                    <label class="form-label" for="appointmentDate">Appointment Date</label>
+                                                    <input type="text" class="form-control" id="appointmentDate" name="appointment_date" value="19-08-2026" readonly>
+                                                </div>
+
+                                                <div class="col-12 col-md-4">
+                                                    <label class="form-label" for="appointmentTime">Appointment Time</label>
+                                                    <input type="text" class="form-control" id="appointmentTime" name="appointment_time" value="05:30 PM" readonly>
+                                                </div>
+
+                                                <div class="col-12 col-md-4">
+                                                    <label class="form-label" for="propertyType">Property / Structure Type</label>
+                                                    <input type="text" class="form-control" id="propertyType" name="property_type" value="Residential Apartment Building" readonly>
+                                                </div>
+
+                                                <div class="col-12 col-md-4">
+                                                    <label class="form-label" for="estimatedArea">Estimated Area (Sq. Ft.)</label>
+                                                    <input type="text" class="form-control" id="estimatedArea" name="estimated_area" value="1,450 Sq. Ft." readonly>
+                                                </div>
+
+                                                <div class="col-12 col-md-4">
+                                                    <label class="form-label" for="quotationStatus">Quotation Status</label>
+                                                    <input type="text" class="form-control" id="quotationStatus" name="quotation_status" value="Inspection Pending" readonly>
+                                                </div>
+
+                                                <div class="col-12 col-md-4">
+                                                    <label class="form-label" for="currentStatus">Current Status</label>
+                                                    <input type="text" class="form-control" id="currentStatus" name="current_status" value="Scheduled" readonly>
+                                                </div>
+                                            </div>
+
+
+                                            <!-- SECTION 4: Problem Description & Notes -->
+                                             <h1>! more detail need to be updated</h1>
+                                           
+
+                                          
+                                            <!-- Bottom Action Buttons -->
+                                            <div class="d-flex align-items-center justify-content-end gap-2 pt-3 border-top">
+                                                <a href="customer-list.html" class="btn btn-secondary px-4">
+                                                    <i class="mdi mdi-arrow-left me-1"></i> Back to List
+                                                </a>
+                                                <a href="new-appointment.html" class="btn btn-primary px-4">
+                                                    <i class="mdi mdi-calendar-edit me-1"></i> Book / Reschedule
+                                                </a>
+                                            </div>
+
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Page Content Wrapper -->
+
+                </div>
+            </div>
+
+            <!-- Footer Component -->
+            <div id="footer"></div>
+
+        </div>
+
+    </div>
+
+    <!-- Right bar overlay-->
+    <div class="rightbar-overlay"></div>
+
+    <!-- JAVASCRIPT -->
+    <script src="assets/libs/jquery/jquery.min.js"></script>
+    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="assets/libs/node-waves/waves.min.js"></script>
+    <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
+
+    <!-- Component Loader -->
+    <script src="assets/js/component-loader.js"></script>
+
+    <!-- App js -->
+    <script src="assets/js/app.js"></script>
+
+    <script>
+        // Sample Customer Database for Dynamic URL Parameter Loading
+        const customersDB = {
+            "CUST-1001": {
+                id: "CUST-1001",
+                name: "Kavitha Narayanan",
+                mobile: "+91 98401 23456",
+                altMobile: "+91 94440 12890",
+                email: "kavitha.narayanan@gmail.com",
+                type: "Individual Homeowner",
+                doorNo: "Flat 3A",
+                building: "Green Valley Apartments",
+                street: "MTH Road",
+                area: "Ambattur",
+                city: "Chennai",
+                pincode: "600053",
+                landmark: "Near Ambattur OT Bus Terminus, Opposite Canara Bank",
+                services: "Outer Wall Proofing, Terrace Waterproofing",
+                assigned: "Santhosh Kumar (Field Specialist)",
+                date: "19-08-2026",
+                time: "05:30 PM",
+                propertyType: "Residential Apartment Building",
+                estimatedArea: "1,450 Sq. Ft.",
+                quoteStatus: "Inspection Pending",
+                status: "Scheduled",
+                notes: "Severe terrace leakage observed near the overhead water tank area during heavy rains. Also external wall dampness and paint peeling on the 2nd-floor northern wall.",
+                specialistNotes: "Initial visit scheduled. Need moisture meter inspection for parapet wall joints and elastomeric coating quotation preparation."
+            },
+            "CUST-1002": {
+                id: "CUST-1002",
+                name: "Murugan Selvam",
+                mobile: "+91 97892 34567",
+                altMobile: "+91 98840 55432",
+                email: "murugan.selvam@yahoo.com",
+                type: "Residential Owner",
+                doorNo: "No 45",
+                building: "Selvam Illam",
+                street: "2nd Main Road",
+                area: "Anna Nagar",
+                city: "Chennai",
+                pincode: "600040",
+                landmark: "Near Tower Park, Opposite Roundtana",
+                services: "Bathroom Proofing, Sump Proofing",
+                assigned: "Alex (Site Engineer)",
+                date: "20-08-2026",
+                time: "10:00 AM",
+                propertyType: "Independent Villa",
+                estimatedArea: "850 Sq. Ft.",
+                quoteStatus: "Quotation Generated (₹38,000)",
+                status: "In Progress",
+                notes: "Underground water sump leakage and seepage into neighboring foundation. Master bathroom tile joints damaged causing water stains on ceiling below.",
+                specialistNotes: "Sump pressure grouting in progress. Bathroom floor epoxy coating to commence on Saturday."
+            },
+            "CUST-1003": {
+                id: "CUST-1003",
+                name: "Rajesh Varma",
+                mobile: "+91 99403 45678",
+                altMobile: "+91 99400 11223",
+                email: "rajesh.varma@varmagroup.in",
+                type: "Commercial Property",
+                doorNo: "Plot 12",
+                building: "Varma Tech Plaza",
+                street: "GST Road, Industrial Estate",
+                area: "Guindy",
+                city: "Chennai",
+                pincode: "600032",
+                landmark: "Near Guindy Metro Station, Opp Olympia Tech Park",
+                services: "Outer Wall Proofing",
+                assigned: "Donald Johnson (Field Lead)",
+                date: "18-08-2026",
+                time: "02:15 PM",
+                propertyType: "Commercial Complex (G+4)",
+                estimatedArea: "6,200 Sq. Ft.",
+                quoteStatus: "Completed (₹1,45,000)",
+                status: "Completed",
+                notes: "External glass and concrete facade silicone seal restoration and 3-coat waterproof exterior painting.",
+                specialistNotes: "Job completed with 5-year warranty card issued to facility management."
+            },
+            "CUST-1004": {
+                id: "CUST-1004",
+                name: "Ananya Srinivasan",
+                mobile: "+91 98415 67890",
+                altMobile: "+91 98410 99887",
+                email: "ananya.srinivasan@outlook.com",
+                type: "Individual Homeowner",
+                doorNo: "7B",
+                building: "Srinivasa Nilayam",
+                street: "North Usman Road",
+                area: "T. Nagar",
+                city: "Chennai",
+                pincode: "600017",
+                landmark: "Near Panagal Park, Behind GRT Jewellers",
+                services: "Terrace Waterproofing, Sump Proofing",
+                assigned: "Ravi Kumar (Site Engineer)",
+                date: "21-08-2026",
+                time: "11:30 AM",
+                propertyType: "Residential Independent House",
+                estimatedArea: "1,800 Sq. Ft.",
+                quoteStatus: "Pending Approval",
+                status: "Scheduled",
+                notes: "Old building flat roof waterproofing with heat insulation and sump inner waterproof plastering.",
+                specialistNotes: "Roof surface preparation checklist submitted. Awaiting client quote confirmation."
+            }
+        };
+
+        $(document).ready(function() {
+            // Read query params from URL e.g. ?id=CUST-1002
+            const urlParams = new URLSearchParams(window.location.search);
+            const customerIdParam = urlParams.get('id') || "CUST-1001";
+
+            const data = customersDB[customerIdParam] || customersDB["CUST-1001"];
+
+            // Populate all label & input fields
+            $('#displayCustomerTitle').text(data.name);
+            $('#displayCustomerId').text(data.id);
+            $('#displayCustomerCity').text(data.city);
+
+            const statusBadge = $('#displayCustomerStatus');
+            statusBadge.text(data.status);
+            statusBadge.removeClass('bg-success bg-info bg-warning bg-secondary');
+            if (data.status === 'Completed') {
+                statusBadge.addClass('bg-success');
+            } else if (data.status === 'In Progress') {
+                statusBadge.addClass('bg-info');
+            } else {
+                statusBadge.addClass('bg-warning');
+            }
+
+            $('#customerId').val(data.id);
+            $('#customerName').val(data.name);
+            $('#mobileNumber').val(data.mobile);
+            $('#altMobileNumber').val(data.altMobile);
+            $('#emailAddress').val(data.email);
+            $('#customerType').val(data.type);
+
+            $('#doorFlatNo').val(data.doorNo);
+            $('#buildingName').val(data.building);
+            $('#streetRoad').val(data.street);
+            $('#areaLocality').val(data.area);
+            $('#city').val(data.city);
+            $('#pincode').val(data.pincode);
+            $('#landmark').val(data.landmark);
+
+            $('#serviceRequired').val(data.services);
+            $('#assignedTo').val(data.assigned);
+            $('#appointmentDate').val(data.date);
+            $('#appointmentTime').val(data.time);
+            $('#propertyType').val(data.propertyType);
+            $('#estimatedArea').val(data.estimatedArea);
+            $('#quotationStatus').val(data.quoteStatus);
+            $('#currentStatus').val(data.status);
+
+            $('#customerNotes').val(data.notes);
+            $('#siteEngineerNotes').val(data.specialistNotes);
+        });
+    </script>
+</body>
+
+</html>
