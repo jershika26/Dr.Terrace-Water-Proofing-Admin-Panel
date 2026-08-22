@@ -7,19 +7,13 @@ const HeaderTemplate = `
             <div class="navbar-brand-box">
                 <a href="dashboard.html" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="assets/images/logo-sm-dark.png" alt="" height="22">
+                        <img src="assets/images/favicon.png" alt="Dr. Terrace" height="30">
                     </span>
                     <span class="logo-lg">
-                        <img src="assets/images/logo-dark.png" alt="" height="24">
-                    </span>
-                </a>
-
-                <a href="dashboard.html" class="logo logo-light">
-                    <span class="logo-sm">
-                        <img src="assets/images/logo-sm-light.png" alt="" height="22">
-                    </span>
-                    <span class="logo-lg">
-                        <img src="assets/images/logo-light.png" alt="" height="24">
+                        <div class="d-flex align-items-center justify-content-between w-100 h-100 px-3">
+                            <span class="font-size-14 text-dark text-nowrap me-2" style="font-weight: 500;">Welcome Dr.Terrace</span>
+                            <img src="assets/images/favicon.png" alt="Dr. Terrace" height="38" style="max-height: 42px; object-fit: contain;">
+                        </div>
                     </span>
                 </a>
             </div>
