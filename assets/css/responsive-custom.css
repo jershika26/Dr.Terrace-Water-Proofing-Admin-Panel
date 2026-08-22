@@ -722,7 +722,7 @@ small, .small, .font-size-12 {
 }
 
 /* ==========================================================================
-   7. TABLE & SERIAL NUMBER (SI NO) STYLING
+   7. TABLE & SERIAL NUMBER (SI NO) STYLING (matching tables-datatable.html)
    ========================================================================== */
 
 .table-responsive {
@@ -733,40 +733,95 @@ small, .small, .font-size-12 {
 }
 
 .table {
-    font-size: 0.98rem !important; /* ~15.2px */
-    color: #334155;
+    font-size: 0.95rem;
+    color: #495057;
     vertical-align: middle;
     width: 100%;
 }
 
 .table th {
-    font-size: 0.92rem !important; /* ~14.3px */
-    font-weight: 700 !important;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: #475569;
-    background-color: #f8fafc;
-    padding: 12px 16px !important;
-    border-bottom: 2px solid #e2e8f0;
-    white-space: nowrap;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #343a40;
+    text-transform: none; /* Natural title casing as in screenshot */
+    letter-spacing: normal;
+    background-color: #ffffff;
+    padding: 12px 16px;
+    border-bottom: 1px solid #eff2f7;
+    vertical-align: middle;
 }
 
 .table td {
-    padding: 13px 16px !important;
-    font-size: 0.98rem !important;
-    border-color: #f1f5f9;
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    color: #495057;
+    border-color: #eff2f7;
+    vertical-align: middle;
+    font-weight: 400;
 }
 
 .table tbody tr:hover {
-    background-color: #f8fafc;
+    background-color: #f8f9fa;
 }
 
-/* Serial number badge column */
+/* DataTables specific styling matching tables-datatable.html */
+table.dataTable {
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+    width: 100% !important;
+}
+
+table.dataTable thead th,
+table.dataTable thead td {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #343a40;
+    text-transform: none;
+    background-color: #ffffff;
+    vertical-align: middle;
+    border-bottom: 1px solid #eff2f7;
+}
+
+table.dataTable tbody td {
+    font-weight: 400;
+}
+
+table.dataTable thead > tr > th.sorting,
+table.dataTable thead > tr > th.sorting_asc,
+table.dataTable thead > tr > th.sorting_desc {
+    padding-right: 30px !important;
+    cursor: pointer;
+    position: relative;
+}
+
+table.dataTable.table-bordered {
+    border: 1px solid #eff2f7 !important;
+}
+
+table.dataTable.table-bordered th,
+table.dataTable.table-bordered td {
+    border: 1px solid #eff2f7 !important;
+}
+
+/* Serial number column */
 .sl-no-col {
-    width: 60px;
+    width: 80px;
     text-align: center;
-    font-weight: 700;
-    color: #64748b;
+    font-weight: 400;
+    color: #495057;
+}
+
+/* Disable responsive plus icon expander controls */
+table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control::before,
+table.dataTable.dtr-inline.collapsed > tbody > tr > th.dtr-control::before,
+table.dataTable > tbody > tr > td.dtr-control::before,
+table.dataTable > tbody > tr > th.dtr-control::before {
+    display: none !important;
+}
+
+table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control,
+table.dataTable.dtr-inline.collapsed > tbody > tr > th.dtr-control {
+    padding-left: 16px !important;
 }
 
 /* Table badges */
@@ -994,4 +1049,16 @@ small, .small, .font-size-12 {
     body.sidebar-enable .sidebar-backdrop {
         display: block;
     }
+}
+
+/* Hide DataTables info, pagination, search, and length controls globally */
+.dataTables_length,
+.dataTables_filter,
+.dataTables_info,
+.dataTables_paginate,
+div.dataTables_wrapper div.dataTables_filter,
+div.dataTables_wrapper div.dataTables_length,
+div.dataTables_wrapper div.dataTables_info,
+div.dataTables_wrapper div.dataTables_paginate {
+    display: none !important;
 }

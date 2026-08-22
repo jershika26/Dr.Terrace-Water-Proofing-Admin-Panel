@@ -3,18 +3,12 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Employee List | Drterrace Admin Dashboard</title>
+    <title>Employee Details | Drterrace Admin Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Drterrace Employee Management System" name="description" />
-    <meta content="Themesbrand" name="author" />
+    <meta content="Drterrace" name="author" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico">
-
-    <!-- DataTables -->
-    <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 
     <!-- Bootstrap Css -->
     <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
@@ -26,33 +20,44 @@
     <link href="assets/css/responsive-custom.css" rel="stylesheet" type="text/css" />
 
     <style>
-        .avatar-table {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #e2e8f0;
+        .form-section-title {
+            font-size: 1.05rem;
+           
+            color: var(--dr-primary, #030303);
+            margin-bottom: 18px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #eef2f6;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .btn-add-emp {
-            background-color: #009ef7;
-            border-color: #009ef7;
-            color: #ffffff;
+        .form-control[readonly],
+        .form-select[disabled] {
+            background-color: #f8fafc;
+            border-color: #e2e8f0;
+            color: #1e293b;
+           
+            cursor: default;
+        }
+
+        .form-control:focus {
+            border-color: var(--dr-primary, #1e4db7);
+            box-shadow: 0 0 0 3px rgba(30, 77, 183, 0.15);
+        }
+
+        .card-custom-detail {
+            border-radius: 14px;
+            border: none;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            background: #ffffff;
+        }
+
+        .status-badge-pill {
+            font-size: 0.88rem;
             font-weight: 600;
-            border-radius: 8px;
-            padding: 8px 18px;
-        }
-
-        .btn-add-emp:hover {
-            background-color: #0086d4;
-            color: #ffffff;
-        }
-
-        .badge-role {
-            font-size: 12px;
-            padding: 6px 10px;
-            font-weight: 500;
-            border-radius: 6px;
+            padding: 6px 14px;
+            border-radius: 20px;
         }
     </style>
 </head>
@@ -75,92 +80,140 @@
             <div class="page-content">
                 <div class="container-fluid">
 
-                    <!-- start page title -->
+                    <!-- Start page title -->
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-flex align-items-center justify-content-between">
                                 <div class="page-title">
-                                    <h4 class="mb-0 font-size-18">Employee List</h4>
+                                    <h4 class="mb-0 font-size-18" id="pageTitle">Employee Details</h4>
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="employee-list.html">Drterrace</a></li>
                                         <li class="breadcrumb-item"><a href="employee-list.html">Employee</a></li>
-                                        <li class="breadcrumb-item active">Employee List</li>
+                                        <li class="breadcrumb-item active" id="breadcrumbActive">Employee Details</li>
                                     </ol>
                                 </div>
 
-                                
+                                <div class="state-information d-flex gap-2">
+                                    <a href="employee-list.html" class="btn btn-outline-light shadow-sm" id="backToListTopBtn">
+                                        <i class="mdi mdi-arrow-left me-1"></i> Back to Employee List
+                                    </a>
+                                    
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!-- end page title -->
+                    <!-- End page title -->
 
-                    <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="card">
-                                        <div class="card-body">
+                    <!-- Start Page Content Wrapper -->
+                    <div class="page-content-wrapper">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card card-custom-detail">
+                                    <div class="card-body p-4 p-md-5">
 
-                                            <h4 class="card-title">Datepicker</h4>
-                                            <p class="card-title-desc">Examples of twitter bootstrap datepicker.</p>
+                        
+                                      
 
+                                        <form id="employeeDetailForm">
 
-                                            <form action="#">
-                                                <div class="row">
+                                            <!-- SECTION 1: Personal & Contact Information -->
+                                            <div class="form-section-title">
+                                                <i class="mdi mdi-account-outline font-size-20"></i>
+                                                <span>Personal & Contact Information</span>
+                                            </div>
 
-                                                    <div class="col-lg-6">
-                                                        
-
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Year View</label>
-                                                            <div class="position-relative" id="datepicker5">
-                                                                <input type="text" class="form-control"
-                                                                    data-provide="datepicker" data-date-container='#datepicker5'
-                                                                    data-date-min-view-mode="2">
-                                                            </div>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Year View</label>
-                                                            <div class="position-relative" id="datepicker5">
-                                                                <input type="text" class="form-control"
-                                                                    data-provide="datepicker" data-date-container='#datepicker5'
-                                                                    data-date-min-view-mode="2">
-                                                            </div>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Year View</label>
-                                                            <div class="position-relative" id="datepicker5">
-                                                                <input type="text" class="form-control"
-                                                                    data-provide="datepicker" data-date-container='#datepicker5'
-                                                                    data-date-min-view-mode="2">
-                                                            </div>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Year View</label>
-                                                            <div class="position-relative" id="datepicker5">
-                                                                <input type="text" class="form-control"
-                                                                    data-provide="datepicker" data-date-container='#datepicker5'
-                                                                    data-date-min-view-mode="2">
-                                                            </div>
-                                                        </div>
-                                                        
-
-                                                        
-                                                    </div>
-                                                    <!-- End Col -->
+                                            <div class="row g-3 mb-4">
+                                                <div class="col-12 col-md-4">
+                                                    <label  for="employeeId">Employee ID</label>
+                                                    <input type="text" class="form-control" id="employeeId" name="employee_id" value="EMP-001" readonly>
                                                 </div>
-                                                <!-- End Row -->
-                                            </form>
-                                            <!-- End Form -->
-                                        </div>
-                                    </div>
 
+                                                <div class="col-12 col-md-4">
+                                                    <label  for="employeeName">Employee Name</label>
+                                                    <input type="text" class="form-control" id="employeeName" name="employee_name" value="Donald Johnson" readonly>
+                                                </div>
+
+                                                <div class="col-12 col-md-4">
+                                                    <label  for="mobileNumber"> Mobile Number</label>
+                                                    <input type="text" class="form-control" id="mobileNumber" name="mobile_number" value="+91 98765 43210" readonly>
+                                                </div>
+
+                                                <div class="col-12 col-md-4">
+                                                    <label  for="employeeRole">Role / Designation</label>
+                                                    <input type="text" class="form-control" id="employeeRole" name="employee_role" value="Field Employee" readonly>
+                                                </div>
+
+                                                <div class="col-12 col-md-4">
+                                                    <label for="aadhaarNumber">Aadhaar Number</label>
+                                                    <input type="text" class="form-control" id="aadhaarNumber" name="aadhaar_number" value="9678 8765 4589" readonly>
+                                                </div>
+                                            </div>
+
+
+                                            <!-- SECTION 2: Location Information -->
+                                            <div class="form-section-title">
+                                                <i class="mdi mdi-map-marker-outline font-size-20"></i>
+                                                <span>Location Information</span>
+                                            </div>
+
+                                            <div class="row g-3 mb-4">
+                                                <div class="col-12 col-md-6">
+                                                    <label  for="areaLocality">Area / Locality</label>
+                                                    <input type="text" class="form-control" id="areaLocality" name="area_locality" value="Ambattur" readonly>
+                                                </div>
+
+                                                <div class="col-12 col-md-6">
+                                                    <label  for="city">City</label>
+                                                    <input type="text" class="form-control" id="city" name="city" value="Chennai" readonly>
+                                                </div>
+                                            </div>
+
+
+                                            <!-- SECTION 3: Salary & Work Details -->
+                                            <div class="form-section-title">
+                                                <i class="mdi mdi-cash-multiple font-size-20"></i>
+                                                <span>Salary & Work Details</span>
+                                            </div>
+
+                                            <div class="row g-3 mb-4">
+                                                <div class="col-12 col-md-4">
+                                                    <label  for="baseSalary">Base Salary</label>
+                                                    <input type="text" class="form-control" id="baseSalary" name="base_salary" value="₹25,000" readonly>
+                                                </div>
+
+                                                <div class="col-12 col-md-4">
+                                                    <label  for="siteAllowance">Site Allowance</label>
+                                                    <input type="text" class="form-control" id="siteAllowance" name="site_allowance" value="₹2,000" readonly>
+                                                </div>
+
+                                                <div class="col-12 col-md-4">
+                                                    <label  for="workingDays">Monthly Working Days</label>
+                                                    <input type="text" class="form-control" id="workingDays" name="working_days" value="26 Days" readonly>
+                                                </div>
+                                            </div>
+
+                                            <!-- Bottom Action Buttons -->
+                                            <div class="d-flex align-items-center justify-content-end gap-2 pt-3 border-top">
+                                                <a href="employee-list.html" class="btn btn-secondary px-4" id="backToListBtn">
+                                                    <i class="mdi mdi-arrow-left me-1"></i> Back to List
+                                                </a>
+
+                                                <button type="submit" class="btn btn-success px-4 d-none" id="saveChangesBtn">
+                                                    <i class="mdi mdi-content-save-outline me-1"></i> Save Changes
+                                                </button>
+                                            </div>
+
+                                        </form>
+
+                                    </div>
                                 </div>
-                                <!-- End Col -->
                             </div>
+                        </div>
+                    </div>
+                    <!-- End Page Content Wrapper -->
 
                 </div>
             </div>
-
-            
 
             <!-- Footer Component -->
             <div id="footer"></div>
@@ -179,8 +232,6 @@
     <script src="assets/libs/simplebar/simplebar.min.js"></script>
     <script src="assets/libs/node-waves/waves.min.js"></script>
     <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
-    <script src="assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
 
     <!-- Component Loader -->
     <script src="assets/js/component-loader.js"></script>
@@ -189,39 +240,131 @@
     <script src="assets/js/app.js"></script>
 
     <script>
+        // Employee Database - matches the rows in employee-list.html
+        const employeesDB = {
+            "EMP-001": {
+                id: "EMP-001",
+                name: "Donald Johnson",
+                role: "Field Employee",
+                mobile: "+91 98765 43210",
+                aadhaar: "9678 8765 4589",
+                area: "Ambattur",
+                city: "Chennai",
+                salary: "₹25,000",
+                allowance: "₹2,000",
+                workingDays: "26 Days"
+            },
+            "EMP-002": {
+                id: "EMP-002",
+                name: "Ravi Kumar",
+                role: "Site Engineer",
+                mobile: "+91 98410 12345",
+                aadhaar: "8123 4567 9021",
+                area: "Anna Nagar",
+                city: "Chennai",
+                salary: "₹32,000",
+                allowance: "₹3,500",
+                workingDays: "26 Days"
+            },
+            "EMP-003": {
+                id: "EMP-003",
+                name: "Priya Sundaram",
+                role: "Office Employee",
+                mobile: "+91 97890 56789",
+                aadhaar: "7345 2198 6034",
+                area: "Guindy",
+                city: "Chennai",
+                salary: "₹22,000",
+                allowance: "₹1,500",
+                workingDays: "24 Days"
+            },
+            "EMP-004": {
+                id: "EMP-004",
+                name: "Santhosh Kumar",
+                role: "Field Employee",
+                mobile: "+91 98401 23456",
+                aadhaar: "6289 4471 3305",
+                area: "Velachery",
+                city: "Chennai",
+                salary: "₹25,000",
+                allowance: "₹2,000",
+                workingDays: "26 Days"
+            }
+        };
+
         $(document).ready(function() {
-            $('#datatable-employees').DataTable({
-                "pageLength": 10,
-                "language": {
-                    "paginate": {
-                        "previous": "<i class='mdi mdi-chevron-left'>",
-                        "next": "<i class='mdi mdi-chevron-right'>"
-                    }
-                }
-            });
+            // Read query param from URL e.g. ?id=EMP-002
+            const urlParams = new URLSearchParams(window.location.search);
+            const empIdParam = urlParams.get('id') || "EMP-001";
 
-            // View Employee Details Modal Handler
-            $(document).on('click', '.btn-view-employee', function(e) {
+            const data = employeesDB[empIdParam] || employeesDB["EMP-001"];
+
+            // Section 1: Personal & Contact Information
+            $('#employeeId').val(data.id);
+            $('#employeeName').val(data.name);
+            $('#mobileNumber').val(data.mobile);
+            $('#employeeRole').val(data.role);
+            $('#aadhaarNumber').val(data.aadhaar);
+
+            // Section 2: Location Information
+            $('#areaLocality').val(data.area);
+            $('#city').val(data.city);
+
+            // Section 3: Salary & Work Details
+            $('#baseSalary').val(data.salary);
+            $('#siteAllowance').val(data.allowance);
+            $('#workingDays').val(data.workingDays);
+
+            // =========================
+            // VIEW / EDIT MODE
+            // =========================
+            const isEditMode = urlParams.get('mode') === 'edit';
+
+            if (isEditMode) {
+
+                // Unlock every field except the ID, which stays a fixed identifier
+                $('#employeeDetailForm')
+                    .find('.form-control, .form-select')
+                    .not('#employeeId')
+                    .prop('readonly', false)
+                    .prop('disabled', false);
+
+                // Page title & breadcrumb
+                $('#pageTitle').text('Edit Employee Details');
+                $('#breadcrumbActive').text('Edit Employee');
+
+                // Top & bottom action bars
+                $('#backToListTopBtn')
+                    .html('<i class="mdi mdi-close me-1"></i> Cancel')
+                    .attr('href', 'employee-detail.html?id=' + empIdParam);
+
+                $('#backToListBtn')
+                    .html('<i class="mdi mdi-close me-1"></i> Cancel')
+                    .attr('href', 'employee-detail.html?id=' + empIdParam);
+
+                $('#saveChangesBtn').removeClass('d-none');
+            }
+
+            // =========================
+            // SAVE CHANGES (EDIT MODE)
+            // =========================
+            $('#employeeDetailForm').on('submit', function(e) {
                 e.preventDefault();
-                const btn = $(this);
-                $('#modalEmpAvatar').attr('src', btn.data('avatar') || 'assets/images/users/avatar-4.jpg');
-                $('#modalEmpName').text(btn.data('name'));
-                $('#modalEmpId').text(btn.data('empid'));
-                $('#modalEmpRole').text(btn.data('role'));
-                $('#modalEmpMobile').text(btn.data('mobile'));
-                $('#modalEmpAadhaar').text(btn.data('aadhaar'));
-                $('#modalEmpLocation').text(btn.data('location'));
-                $('#modalEmpSalary').text(btn.data('salary'));
-                $('#modalEmpAllowance').text(btn.data('allowance'));
-                $('#modalEmpWorkingDays').text(btn.data('workingdays') || '26 Days');
-                
-                // const status = btn.data('status') || 'Active';
-                // $('#modalEmpStatusBadge').text(status)
-                //     .removeClass('bg-success bg-danger bg-warning')
-                //     .addClass(status === 'Active' ? 'bg-success' : 'bg-danger');
 
-                const modal = new bootstrap.Modal(document.getElementById('viewEmployeeModal'));
-                modal.show();
+                if (!isEditMode) {
+                    return;
+                }
+
+                // TODO: wire this up to your backend / API to persist the changes.
+                Swal.fire({
+                    title: 'Saved!',
+                    text: 'Employee details have been updated successfully.',
+                    icon: 'success',
+                    timer: 1800,
+                    showConfirmButton: false
+                }).then(function() {
+                    window.location.href = 'employee-detail.html?id=' + empIdParam;
+                });
             });
         });
     </script>

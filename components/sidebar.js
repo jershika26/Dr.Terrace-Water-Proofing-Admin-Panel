@@ -1,5 +1,6 @@
+// Sidebar Component JS
+const SidebarTemplate = `
 <div class="vertical-menu">
-
     <div data-simplebar class="h-100">
         <div class="user-details">
             <div class="d-flex">
@@ -16,8 +17,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="javascript:void(0)" class="dropdown-item"><i
                                         class="mdi mdi-account-circle text-muted me-2"></i>
-                                    Profile<div class="ripple-wrapper me-2"></div>
-                                </a></li>
+                                    Profile</a></li>
                             <li><a href="javascript:void(0)" class="dropdown-item"><i
                                         class="mdi mdi-cog text-muted me-2"></i>
                                     Settings</a></li>
@@ -29,7 +29,6 @@
                                     Logout</a></li>
                         </ul>
                     </div>
-
                     <p class="text-white-50 m-0">Administrator</p>
                 </div>
             </div>
@@ -40,6 +39,13 @@
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title">Main Menu</li>
+
+                <li>
+                    <a href="dashboard.html" class="waves-effect">
+                        <i class="mdi mdi-view-dashboard"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -81,11 +87,34 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="master-appointment.html">Appointment</a></li>
                         <li><a href="master-quote.html">Quote</a></li>
+                        <li><a href="master-service.html">Service</a></li>
+                        <li><a href="master-packages.html">Packages</a></li>
                     </ul>
                 </li>    
+
+              
+                <li>
+                    <a href="terms-and-conditions.html" class="waves-effect">
+                        <i class="mdi mdi-book-open-outline"></i>
+                        <span>Terms & Conditions</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="privacy-policy.html" class="waves-effect">
+                        <i class="mdi mdi-shield-account-outline"></i>
+                        <span>Privacy Policy</span>
+                    </a>
+                </li>
                
             </ul>
         </div>
         <!-- Sidebar -->
     </div>
 </div>
+`;
+
+function renderSidebar(containerId = "sidebar") {
+    const el = document.getElementById(containerId);
+    if (el) el.innerHTML = SidebarTemplate;
+}

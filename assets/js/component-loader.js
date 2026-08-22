@@ -1,32 +1,230 @@
 /**
  * Component Loader for Drterrace Admin Dashboard
- * Dynamically loads header, sidebar, and footer components
- * and ensures proper initialization of navigation and responsive UI interactions.
+ * Renders Header, Sidebar, and Footer directly via JavaScript (no HTML fetches)
+ * Ensures 100% compatibility with local file:// protocol and web servers.
  */
 
-function loadComponent(id, file) {
-    return fetch(file)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Failed to load " + file + " (Status: " + response.status + ")");
-            }
-            return response.text();
-        })
-        .then(data => {
-            const container = document.getElementById(id);
-            if (container) {
-                container.innerHTML = data;
-            }
-            return data;
-        })
-        .catch(error => {
-            console.error("Component loading error for [" + id + "]:", error);
-        });
+const HeaderComponent = `
+<header id="page-topbar">
+    <div class="navbar-header">
+        <div class="d-flex">
+            <!-- LOGO -->
+            <div class="navbar-brand-box">
+                <a href="dashboard.html" class="logo logo-dark">
+                    <span class="logo-sm">
+                        <img src="assets/images/logo-sm-dark.png" alt="" height="22">
+                    </span>
+                    <span class="logo-lg">
+                        <img src="assets/images/logo-dark.png" alt="" height="24">
+                    </span>
+                </a>
+
+                <a href="dashboard.html" class="logo logo-light">
+                    <span class="logo-sm">
+                        <img src="assets/images/logo-sm-light.png" alt="" height="22">
+                    </span>
+                    <span class="logo-lg">
+                        <img src="assets/images/logo-light.png" alt="" height="24">
+                    </span>
+                </a>
+            </div>
+
+            <!-- Menu Icon -->
+            <button type="button" class="btn px-3 font-size-24 header-item waves-effect" id="vertical-menu-btn">
+                <i class="mdi mdi-menu"></i>
+            </button>
+        </div>
+
+        <div class="d-flex align-items-center">
+            <!-- Mobile Search Dropdown -->
+            <div class="dropdown d-inline-block d-lg-none ms-2">
+                <button type="button" class="btn header-item noti-icon waves-effect"
+                    id="page-header-search-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <i class="mdi mdi-magnify"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                    aria-labelledby="page-header-search-dropdown">
+                    <form class="p-3">
+                        <div class="form-group m-0">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search ..."
+                                    aria-label="Recipient's username">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit"><i
+                                            class="mdi mdi-magnify"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- User Dropdown -->
+            <div class="dropdown d-inline-block">
+                <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
+                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-4.jpg"
+                        alt="Header Avatar">
+                </button>
+
+                <div class="dropdown-menu dropdown-menu-end">
+                    <a class="dropdown-item" href="javascript:void(0)"><i
+                            class="mdi mdi-account-circle font-size-16 align-middle me-2"></i>
+                        <span>Profile</span></a>
+                    <a class="dropdown-item" href="javascript:void(0)"><i
+                            class="mdi mdi-cog font-size-16 align-middle me-2"></i>
+                        <span>Settings</span></a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item text-primary" href="login.html"><i
+                            class="mdi mdi-power font-size-16 align-middle me-2 text-primary"></i>
+                        <span>Logout</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+`;
+
+const SidebarComponent = `
+<div class="vertical-menu">
+    <div data-simplebar class="h-100">
+        <div class="user-details">
+            <div class="d-flex">
+                <div class="me-2">
+                    <img src="assets/images/users/avatar-4.jpg" alt="" class="avatar-md rounded-circle">
+                </div>
+                <div class="user-info w-100">
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            Donald Johnson
+                            <i class="mdi mdi-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="javascript:void(0)" class="dropdown-item"><i
+                                        class="mdi mdi-account-circle text-muted me-2"></i>
+                                    Profile</a></li>
+                            <li><a href="javascript:void(0)" class="dropdown-item"><i
+                                        class="mdi mdi-cog text-muted me-2"></i>
+                                    Settings</a></li>
+                            <li><a href="javascript:void(0)" class="dropdown-item"><i
+                                        class="mdi mdi-lock-open-outline text-muted me-2"></i>
+                                    Lock screen</a></li>
+                            <li><a href="login.html" class="dropdown-item"><i
+                                        class="mdi mdi-power text-muted me-2"></i>
+                                    Logout</a></li>
+                        </ul>
+                    </div>
+                    <p class="text-white-50 m-0">Administrator</p>
+                </div>
+            </div>
+        </div>
+
+        <!--- Sidemenu -->
+        <div id="sidebar-menu">
+            <!-- Left Menu Start -->
+            <ul class="metismenu list-unstyled" id="side-menu">
+                <li class="menu-title">Main Menu</li>
+
+                <li>
+                    <a href="dashboard.html" class="waves-effect">
+                        <i class="mdi mdi-view-dashboard"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="mdi mdi-account-group"></i>
+                        <span>Employee</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="employee-list.html">Employee List</a></li>
+                        <li><a href="add-employee.html">Add Employee</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="mdi mdi-account-multiple-outline"></i>
+                        <span>Customer</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="customer-list.html">Customer List</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="mdi mdi-calendar-clock"></i>
+                        <span>Appointment</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="all-appointments.html">All Appointments</a></li>
+                        <li><a href="new-appointment.html">New Appointment</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="mdi mdi-database-cog-outline"></i>
+                        <span>Master</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="master-appointment.html">Appointment</a></li>
+                        <li><a href="master-quote.html">Quote</a></li>
+                        <li><a href="master-service.html">Service</a></li>
+                        <li><a href="master-packages.html">Packages</a></li>
+                    </ul>
+                </li>    
+
+                <li>
+                    <a href="terms-and-conditions.html" class="waves-effect">
+                        <i class="mdi mdi-book-open-outline"></i>
+                        <span>Terms & Conditions</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="privacy-policy.html" class="waves-effect">
+                        <i class="mdi mdi-shield-account-outline"></i>
+                        <span>Privacy Policy</span>
+                    </a>
+                </li>
+               
+            </ul>
+        </div>
+        <!-- Sidebar -->
+    </div>
+</div>
+`;
+
+const FooterComponent = `
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                ${new Date().getFullYear()} © Drterrace <span class="d-none d-sm-inline-block">- Crafted with <i class="mdi mdi-heart text-primary"></i></span>
+            </div>
+        </div>
+    </div>
+</footer>
+`;
+
+/**
+ * Injects a component string into a container element by ID
+ */
+function renderComponent(id, htmlString) {
+    const container = document.getElementById(id);
+    if (container) {
+        container.innerHTML = htmlString;
+    }
 }
 
 /**
  * Initializes all sidebar, header, and layout interactions
- * after dynamic HTML components are injected into the DOM.
+ * after JavaScript components are rendered into the DOM.
  */
 function initLoadedComponents() {
     if (typeof jQuery === "undefined") {
@@ -70,13 +268,13 @@ function initLoadedComponents() {
 
     // 3. Highlight Current Active Menu Item & Expand Parent Submenus
     var currentPath = window.location.pathname.split("/").pop() || "employee-list.html";
-    if (currentPath === "" || currentPath === "index.html" || currentPath === "dashboard.html") {
-        currentPath = "employee-list.html";
+    if (currentPath === "" || currentPath === "index.html") {
+        currentPath = "dashboard.html";
     }
 
     $("#sidebar-menu a").each(function() {
         var href = $(this).attr("href");
-        if (href === currentPath) {
+        if (href === currentPath || (currentPath.indexOf("master-viewservice") !== -1 && href === "master-service.html")) {
             $(this).addClass("active");
             $(this).parent().addClass("mm-active");
             $(this).parent().parent().addClass("mm-show");
@@ -119,16 +317,18 @@ function initLoadedComponents() {
     document.dispatchEvent(new CustomEvent("componentsLoaded"));
 }
 
-// Automatically load components on DOMContentLoaded
-document.addEventListener("DOMContentLoaded", function() {
-    // Determine relative components path
-    var basePath = "components/";
+/**
+ * Automatically render components on DOMContentLoaded or immediately if DOM is already ready
+ */
+function loadAllComponents() {
+    renderComponent("header", HeaderComponent);
+    renderComponent("sidebar", SidebarComponent);
+    renderComponent("footer", FooterComponent);
+    initLoadedComponents();
+}
 
-    Promise.all([
-        loadComponent("header", basePath + "header.html"),
-        loadComponent("sidebar", basePath + "sidebar.html"),
-        loadComponent("footer", basePath + "footer.html")
-    ]).then(function() {
-        initLoadedComponents();
-    });
-});
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", loadAllComponents);
+} else {
+    loadAllComponents();
+}

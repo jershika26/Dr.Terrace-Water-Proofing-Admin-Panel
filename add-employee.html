@@ -2,186 +2,792 @@
 <html lang="en">
 
 <head>
+
     <meta charset="utf-8" />
-    <title>Employee Add | Drterrace Admin Dashboard</title>
+    <title>Add Employee | Drterrace Admin Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Drterrace Employee Management System" name="description" />
     <meta content="Themesbrand" name="author" />
+
     <!-- App favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico">
 
-    <!-- Plugin Css -->
-    <link href="assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+    <!-- Plugins CSS -->
+    <link href="assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
 
-    <!-- Bootstrap Css -->
-    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
-    <!-- Icons Css -->
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-    <!-- App Css-->
-    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
-    <!-- Responsive & Typography Custom Css -->
-    <link href="assets/css/responsive-custom.css" rel="stylesheet" type="text/css" />
+    <!-- Bootstrap CSS -->
+    <link href="assets/css/bootstrap.min.css"
+          id="bootstrap-style"
+          rel="stylesheet"
+          type="text/css" />
+
+    <!-- Icons CSS -->
+    <link href="assets/css/icons.min.css"
+          rel="stylesheet"
+          type="text/css" />
+
+    <!-- App CSS -->
+    <link href="assets/css/app.min.css"
+          id="app-style"
+          rel="stylesheet"
+          type="text/css" />
+
+    <!-- Custom Responsive CSS -->
+    <link href="assets/css/responsive-custom.css"
+          rel="stylesheet"
+          type="text/css" />
 
     <style>
-        .required-star {
-            color: #f46a6a;
-            font-weight: bold;
-            margin-left: 2px;
+
+        /* Remove bold font from this page */
+        .main-content,
+        .main-content h1,
+        .main-content h2,
+        .main-content h3,
+        .main-content h4,
+        .main-content h5,
+        .main-content h6,
+        .main-content label,
+        .main-content button,
+        .main-content .btn,
+        .main-content .form-control,
+        .main-content .form-select,
+        .main-content .form-section-title {
+            font-weight: 400;
         }
 
-        .form-label {
-            font-weight: 600;
-            color: #212529;
-            margin-bottom: 6px;
-            font-size: 14px;
-        }
-
-        .form-control, .form-select {
-            border-radius: 8px;
-            padding: 10px 14px;
-            font-size: 14px;
-            border: 1px solid #ced4da;
-            transition: all 0.2s ease-in-out;
-        }
-
-        .form-control:focus, .form-select:focus {
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-        }
-
-        .salary-card {
-            background-color: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 24px;
-        }
-
-        .salary-card-header {
-            font-weight: 700;
-            font-size: 16px;
-            color: #1e293b;
-            margin-bottom: 16px;
+        /* Form Section Title */
+        .form-section-title {
+            font-size: 1.05rem;
+            font-weight: 400;
+            
+            margin-bottom: 18px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #eef2f6;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .image-upload-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 14px;
-            margin-top: 8px;
+        /* Main Card */
+        .card-custom-detail {
+            border-radius: 14px;
+            border: none;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            background: #ffffff;
         }
 
-        .upload-circle-btn {
-            width: 70px;
-            height: 70px;
-            border: 1px solid #ced4da;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: #6c757d;
-            background-color: #f8f9fa;
-            text-align: center;
-            padding: 4px;
-        }
-
-        .upload-circle-btn:hover {
-            border-color: #3b82f6;
-            color: #3b82f6;
-        }
-
-        .upload-circle-btn i {
-            font-size: 20px;
-            line-height: 1;
-        }
-
-        .upload-circle-btn span {
-            font-size: 10px;
-            margin-top: 2px;
-        }
-
-        .avatar-preview-container {
-            position: relative;
-            width: 70px;
-            height: 70px;
-        }
-
-        .avatar-preview-img {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 1px solid #ced4da;
-        }
-
-        .avatar-badge-check {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 20px;
-            height: 20px;
-            background-color: #0284c7;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            border: 2px solid #ffffff;
-        }
-
-        @media (max-width: 575.98px) {
-            .image-upload-wrapper {
-                justify-content: flex-start;
-            }
-        }
-
-        .btn-save-custom {
+        /* Add Employee Button */
+        .btn-add-emp {
             background-color: #009ef7;
             border-color: #009ef7;
             color: #ffffff;
-            font-weight: 600;
-            padding: 12px 24px;
-            border-radius: 28px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0, 158, 247, 0.25);
+            font-weight: 400;
+            border-radius: 8px;
+            padding: 8px 18px;
         }
 
-        .btn-save-custom:hover {
+        .btn-add-emp:hover {
             background-color: #0086d4;
             border-color: #0086d4;
             color: #ffffff;
-            box-shadow: 0 6px 16px rgba(0, 158, 247, 0.35);
-            transform: translateY(-1px);
         }
 
-        .password-toggle-btn {
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: #64748b;
-            cursor: pointer;
-            padding: 0;
-            font-size: 18px;
+        /* Dropzone */
+        .dropzone .dz-message {
+            margin: 1.5rem 0;
         }
 
-        .password-toggle-btn:hover {
-            color: #0f172a;
+        /* Form Controls */
+        .form-control,
+        .form-select {
+            min-height: 42px;
+            border-radius: 7px;
+            font-weight: 400;
         }
+
+        /* Labels */
+        .form-label {
+            font-weight: 400;
+            margin-bottom: 7px;
+        }
+
+        /* Page Title */
+        .page-title h4 {
+            font-weight: 400;
+        }
+
+        /* Dropzone text */
+        .dropzone .dz-message h4 {
+            font-weight: 400;
+        }
+
+        /* Buttons */
+        .btn {
+            font-weight: 400;
+        }
+
+        /* Responsive */
+        @media (max-width: 767.98px) {
+
+            .card-body {
+                padding: 20px !important;
+            }
+
+            .page-title-box {
+                flex-direction: column;
+                align-items: flex-start !important;
+                gap: 15px;
+            }
+
+            .state-information {
+                width: 100%;
+            }
+
+            .state-information .btn {
+                width: 100%;
+            }
+
+            .bottom-actions {
+                flex-direction: column-reverse !important;
+            }
+
+            .bottom-actions .btn {
+                width: 100%;
+            }
+
+        }
+
     </style>
+
 </head>
 
-<body><h1> This page is not updated</h1></body>
+<body data-topbar="colored">
+
+    <!-- Begin Page -->
+    <div id="layout-wrapper">
+
+        <!-- Header -->
+        <div id="header"></div>
+
+        <!-- Sidebar -->
+        <div id="sidebar"></div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+
+            <div class="page-content">
+
+                <div class="container-fluid">
+
+                    <!-- Page Title -->
+                    <div class="row">
+
+                        <div class="col-12">
+
+                            <div class="page-title-box d-flex align-items-center justify-content-between">
+
+                                <div class="page-title">
+
+                                    <h4 class="mb-0 font-size-18">
+                                        Add Employee
+                                    </h4>
+
+                                    <ol class="breadcrumb">
+
+                                        <li class="breadcrumb-item">
+                                            <a href="employee-list.html">
+                                                Drterrace
+                                            </a>
+                                        </li>
+
+                                        <li class="breadcrumb-item">
+                                            <a href="employee-list.html">
+                                                Employee
+                                            </a>
+                                        </li>
+
+                                        <li class="breadcrumb-item active">
+                                            Add Employee
+                                        </li>
+
+                                    </ol>
+
+                                </div>
+
+                                <div class="state-information">
+
+                                    <a href="employee-list.html"
+                                       class="btn btn-outline-light shadow-sm">
+
+                                        <i class="mdi mdi-arrow-left me-1"></i>
+
+                                        Back to Employee List
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Page Content -->
+                    <div class="page-content-wrapper">
+
+                        <div class="row">
+
+                            <div class="col-12">
+
+                                <div class="card card-custom-detail">
+
+                                    <div class="card-body p-4 p-md-5">
+
+                                        <!-- Main Form -->
+                                        <form id="addEmployeeForm">
+                                            <div class="form-section-title">
+                                                <span>Personal Information</span>
+                                            </div>
+
+                                            <div class="row g-3 mb-4">
+
+                                                 <div class="col-12 col-md-4">
+
+                                                    <label 
+                                                           for="employeeName">
+
+                                                        Employee Id
+
+                                                    </label>
+
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           id="employeeName"
+                                                           name="employee_name"
+                                                           placeholder="Enter employee id"
+                                                           required>
+
+                                                </div>
+
+                                                <div class="col-12 col-md-4">
+
+                                                    <label 
+                                                           for="employeeName">
+
+                                                        Employee Name
+
+                                                    </label>
+
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           id="employeeName"
+                                                           name="employee_name"
+                                                           placeholder="Enter employee name"
+                                                           required>
+
+                                                </div>
+
+
+                                                <div class="col-12 col-md-4">
+
+                                                    <label 
+                                                           for="mobileNumber">
+
+                                                        Mobile Number
+
+                                                    </label>
+
+                                                    <input type="tel"
+                                                           class="form-control"
+                                                           id="mobileNumber"
+                                                           name="mobile_number"
+                                                           placeholder="Enter mobile number"
+                                                           maxlength="10"
+                                                           required>
+
+                                                </div>
+
+
+                                                <div class="col-12 col-md-4">
+
+                                                    <label 
+                                                           for="employeePassword">
+
+                                                        Employee Password
+
+                                                    </label>
+
+                                                    <input type="password"
+                                                           class="form-control"
+                                                           id="employeePassword"
+                                                           name="employee_password"
+                                                           placeholder="Set login password"
+                                                           required>
+
+                                                </div>
+
+
+                                                <div class="col-12 col-md-4">
+
+                                                    <label 
+                                                           for="aadhaarNumber">
+
+                                                        Aadhaar Number
+
+                                                    </label>
+
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           id="aadhaarNumber"
+                                                           name="aadhaar_number"
+                                                           placeholder="Enter Aadhaar number"
+                                                           maxlength="14">
+
+                                                </div>
+
+                                            </div>
+
+
+                                            <!-- Address Information -->
+                                            <div class="form-section-title">
+
+                                                
+
+                                                <span>
+                                                    Address Information
+                                                <span>
+
+                                            </div>
+
+
+                                            <div class="row g-3 mb-4">
+
+                                                <div class="col-12 col-md-6">
+
+                                                    <label 
+                                                           for="doorFlatNo">
+
+                                                        Door No / Flat No
+
+                                                    </label>
+
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           id="doorFlatNo"
+                                                           name="door_flat_no"
+                                                           placeholder="Enter door / flat no">
+
+                                                </div>
+
+
+                                                <div class="col-12 col-md-6">
+
+                                                    <label 
+                                                           for="streetRoad">
+
+                                                        Street Name / Road
+
+                                                    </label>
+
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           id="streetRoad"
+                                                           name="street_road"
+                                                           placeholder="Enter street name / road">
+
+                                                </div>
+
+
+                                                <div class="col-12 col-md-6">
+
+                                                    <label 
+                                                           for="areaLocality">
+
+                                                        Area
+
+                                                    </label>
+
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           id="areaLocality"
+                                                           name="area_locality"
+                                                           placeholder="Enter area">
+
+                                                </div>
+
+
+                                                <div class="col-12 col-md-6">
+
+                                                    <label 
+                                                           for="city">
+
+                                                        City
+
+                                                    </label>
+
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           id="city"
+                                                           name="city"
+                                                           placeholder="Enter city">
+
+                                                </div>
+
+                                            </div>
+
+
+                                            <!-- Salary Information -->
+                                            <div class="form-section-title">
+
+                                             
+
+                                                <span>
+                                                    Salary & Pay Details
+                                                </span>
+
+                                            </div>
+
+
+                                            <div class="row g-3 mb-4">
+
+                                                <div class="col-12 col-md-4">
+
+                                                    <label 
+                                                           for="baseSalary">
+
+                                                        Monthly Base Salary
+
+                                                    </label>
+
+                                                    <div class="input-group">
+
+                                                        <span class="input-group-text">
+                                                            ₹
+                                                        </span>
+
+                                                        <input type="number"
+                                                               class="form-control"
+                                                               id="baseSalary"
+                                                               name="base_salary"
+                                                               placeholder="Enter base salary">
+
+                                                    </div>
+
+                                                </div>
+
+
+                                                <div class="col-12 col-md-4">
+
+                                                    <label 
+                                                           for="siteAllowance">
+
+                                                        Site / Conveyance Allowance
+
+                                                    </label>
+
+                                                    <div class="input-group">
+
+                                                        <span class="input-group-text">
+                                                            ₹
+                                                        </span>
+
+                                                        <input type="number"
+                                                               class="form-control"
+                                                               id="siteAllowance"
+                                                               name="site_allowance"
+                                                               placeholder="Enter allowance">
+
+                                                    </div>
+
+                                                </div>
+
+
+                                                <div class="col-12 col-md-4">
+
+                                                    <label 
+                                                           for="workingDays">
+
+                                                        Monthly Working Days
+
+                                                    </label>
+
+                                                    <input type="number"
+                                                           class="form-control"
+                                                           id="workingDays"
+                                                           name="working_days"
+                                                           value="26"
+                                                           min="1"
+                                                           max="31">
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row g-3 mb-4 align-items-end">
+
+                                                <!-- Employee Type -->
+                                                <div class="col-12 col-md-4">
+                                                    <label for="employeeType">
+                                                        Select Employee Type
+                                                    </label>
+                                                    <select class="form-select"
+                                                            id="employeeType"
+                                                            name="employee_type"
+                                                            required>
+                                                        <option value="" selected disabled>
+                                                            Choose employee type
+                                                        </option>
+                                                        <option value="Field Employee">
+                                                            Field Employee
+                                                        </option>
+                                                        <option value="Office Employee">
+                                                            Office Employee
+                                                        </option>
+                                                    </select>
+                                                </div>
+
+                                                <!-- Employee Image -->
+                                                <div class="col-12 col-md-4">
+                                                    <label for="employeeImage">
+                                                        Choose Employee Image
+                                                    </label>
+                                                    <input type="file"
+                                                           class="form-control"
+                                                           id="employeeImage"
+                                                           name="employee_image"
+                                                           accept="image/*">
+                                                </div>
+
+                                            </div>
+
+                                            <!-- Action Buttons -->
+                                            <div class="d-flex align-items-center justify-content-end gap-2 pt-4 mt-4 border-top">
+
+                                                <a href="employee-list.html"
+                                                   class="btn btn-secondary px-4">
+                                                    <i class="mdi mdi-close me-1"></i>
+                                                    Cancel
+                                                </a>
+
+                                                <button type="submit"
+                                                        class="btn btn-primary px-4">
+                                                    <i class="mdi mdi-content-save-outline me-1"></i>
+                                                    Save
+                                                </button>
+
+                                            </div>
+
+                                        </form>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Footer Component -->
+            <div id="footer"></div>
+
+        </div>
+
+        <!-- End Main Content -->
+
+    </div>
+
+    <!-- End Layout Wrapper -->
+
+
+    <!-- Right Sidebar -->
+    <div class="right-bar">
+
+        <div data-simplebar class="h-100">
+
+            <div class="rightbar-title px-3 py-4">
+
+                <a href="javascript:void(0);"
+                   class="right-bar-toggle float-end">
+
+                    <i class="mdi mdi-close noti-icon"></i>
+
+                </a>
+
+                <h5 class="m-0">
+                    Settings
+                </h5>
+
+            </div>
+
+            <hr>
+
+            <h6 class="text-center mb-0">
+                Choose Layouts
+            </h6>
+
+        </div>
+
+    </div>
+
+
+    <!-- Right Bar Overlay -->
+    <div class="rightbar-overlay"></div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <!-- jQuery -->
+    <script src="assets/libs/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugins -->
+    <script src="assets/libs/metismenu/metisMenu.min.js"></script>
+
+    <script src="assets/libs/simplebar/simplebar.min.js"></script>
+
+    <script src="assets/libs/node-waves/waves.min.js"></script>
+
+    <!-- Dropzone -->
+    <script src="assets/libs/dropzone/min/dropzone.min.js"></script>
+
+    <!-- IMPORTANT: Header and Sidebar Loader -->
+    <script src="assets/js/component-loader.js"></script>
+
+    <!-- App JS -->
+    <script src="assets/js/app.js"></script>
+
+
+    <script>
+
+        $(document).ready(function () {
+
+            /* Mobile Number - Allow only 10 digits */
+
+            $("#mobileNumber").on("input", function () {
+
+                let value = $(this)
+                    .val()
+                    .replace(/\D/g, "")
+                    .substring(0, 10);
+
+                $(this).val(value);
+
+            });
+
+
+            /* Aadhaar Number - Allow only digits */
+
+            $("#aadhaarNumber").on("input", function () {
+
+                let value = $(this)
+                    .val()
+                    .replace(/\D/g, "")
+                    .substring(0, 12);
+
+                $(this).val(value);
+
+            });
+
+
+            /* Dropzone Configuration */
+
+            if (typeof Dropzone !== "undefined") {
+
+                Dropzone.autoDiscover = false;
+
+                new Dropzone("#employeeImageDropzone", {
+
+                    url: "#",
+
+                    autoProcessQueue: false,
+
+                    maxFiles: 1,
+
+                    acceptedFiles: "image/*",
+
+                    addRemoveLinks: true
+
+                });
+
+            }
+
+
+            /* Form Submit */
+
+            $("#addEmployeeForm").on("submit", function (e) {
+
+                e.preventDefault();
+
+
+                const mobile = $("#mobileNumber").val();
+
+
+                if (mobile.length !== 10) {
+
+                    alert("Please enter a valid 10-digit mobile number.");
+
+                    $("#mobileNumber").focus();
+
+                    return;
+
+                }
+
+
+                const employee = {
+
+                    name: $("#employeeName").val(),
+
+                    mobile: mobile,
+
+                    password: $("#employeePassword").val(),
+
+                    aadhaar: $("#aadhaarNumber").val(),
+
+                    doorNo: $("#doorFlatNo").val(),
+
+                    street: $("#streetRoad").val(),
+
+                    area: $("#areaLocality").val(),
+
+                    city: $("#city").val(),
+
+                    baseSalary: $("#baseSalary").val(),
+
+                    siteAllowance: $("#siteAllowance").val(),
+
+                    workingDays: $("#workingDays").val(),
+
+                    employeeType: $("#employeeType").val()
+
+                };
+
+
+                console.log(
+                    "New employee submitted:",
+                    employee
+                );
+
+
+                window.location.href =
+                    "employee-list.html";
+
+            });
+
+        });
+
+    </script>
+
+</body>
 
 </html>

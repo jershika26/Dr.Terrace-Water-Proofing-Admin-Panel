@@ -2,537 +2,1179 @@
 <html lang="en">
 
 <head>
+
     <meta charset="utf-8" />
+
     <title>Customer List | Drterrace Admin Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Drterrace Customer Management System" name="description" />
-    <meta content="Drterrace" name="author" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta content="Drterrace Customer Management System"
+          name="description" />
+
+    <meta content="Drterrace"
+          name="author" />
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon"
+          href="assets/images/favicon.ico">
 
     <!-- DataTables -->
-    <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet"
-        type="text/css" />
-    <link href="assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet"
-        type="text/css" />
-    <link href="assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet"
-        type="text/css" />
+    <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css"
+          rel="stylesheet"
+          type="text/css" />
+
+    <link href="assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css"
+          rel="stylesheet"
+          type="text/css" />
+
+    <link href="assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css"
+          rel="stylesheet"
+          type="text/css" />
 
     <!-- SweetAlert -->
-    <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/libs/sweetalert2/sweetalert2.min.css"
+          rel="stylesheet"
+          type="text/css" />
 
     <!-- Bootstrap Css -->
-    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <link href="assets/css/bootstrap.min.css"
+          id="bootstrap-style"
+          rel="stylesheet"
+          type="text/css" />
 
     <!-- Icons Css -->
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/icons.min.css"
+          rel="stylesheet"
+          type="text/css" />
 
     <!-- App Css -->
-    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="assets/css/app.min.css"
+          id="app-style"
+          rel="stylesheet"
+          type="text/css" />
 
     <!-- Responsive Custom Css -->
-    <link href="assets/css/responsive-custom.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/responsive-custom.css"
+          rel="stylesheet"
+          type="text/css" />
+
 
     <style>
-        .customer-detail-box {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 10px;
-            padding: 16px;
-            margin-bottom: 16px;
+
+        /* =========================================
+           CUSTOMER TABLE
+        ========================================= */
+
+        .customer-table-wrapper {
+            width: 100%;
+            overflow-x: hidden;
         }
 
-        .customer-detail-row {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 15px;
-            padding: 9px 0;
-            border-bottom: 1px dashed #f1f5f9;
-            font-size: 0.96rem;
+
+        .customer-table {
+            width: 100% !important;
+            table-layout: auto;
         }
 
-        .customer-detail-row:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
 
-        .customer-detail-label {
-            color: #64748b;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            white-space: nowrap;
-        }
-
-        .customer-detail-value {
-            color: #1e293b;
-            font-weight: 600;
-            text-align: right;
+        .customer-table th,
+        .customer-table td {
+            white-space: normal !important;
+            vertical-align: middle;
             word-break: break-word;
         }
 
-        @media (max-width: 576px) {
-            .customer-detail-row {
-                flex-direction: column;
-                gap: 4px;
+
+        /* Keep action buttons in same line */
+
+        .customer-table th:last-child,
+        .customer-table td:last-child {
+            white-space: nowrap !important;
+        }
+
+
+        /* =========================================
+           COLUMN WIDTHS
+        ========================================= */
+
+        .customer-table th:nth-child(1),
+        .customer-table td:nth-child(1) {
+            width: 70px;
+        }
+
+
+        .customer-table th:nth-child(2),
+        .customer-table td:nth-child(2) {
+            min-width: 150px;
+        }
+
+
+        .customer-table th:nth-child(3),
+        .customer-table td:nth-child(3) {
+            min-width: 140px;
+        }
+
+
+        .customer-table th:nth-child(4),
+        .customer-table td:nth-child(4) {
+            min-width: 170px;
+        }
+
+
+        .customer-table th:nth-child(5),
+        .customer-table td:nth-child(5) {
+            min-width: 130px;
+        }
+
+
+        .customer-table th:nth-child(6),
+        .customer-table td:nth-child(6) {
+            width: 125px;
+        }
+
+
+        /* =========================================
+           ACTION BUTTONS
+        ========================================= */
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+
+        .action-buttons .btn {
+            width: 32px;
+            height: 32px;
+            padding: 0;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 768px) {
+
+            .customer-table {
+                font-size: 13px;
             }
 
-            .customer-detail-value {
-                text-align: left;
+
+            .customer-table th,
+            .customer-table td {
+                padding: 10px 6px !important;
             }
+
+
+            .action-buttons {
+                gap: 3px;
+            }
+
+
+            .action-buttons .btn {
+                width: 29px;
+                height: 29px;
+            }
+
         }
+
     </style>
+
 </head>
+
 
 <body data-topbar="colored">
 
+
     <!-- Begin page -->
+
     <div id="layout-wrapper">
 
+
         <!-- Header Component -->
+
         <div id="header"></div>
 
+
         <!-- Sidebar Component -->
+
         <div id="sidebar"></div>
 
+
         <!-- Main Content -->
+
         <div class="main-content">
 
+
             <div class="page-content">
+
+
                 <div class="container-fluid">
 
+
                     <!-- Page Title -->
+
                     <div class="row">
+
                         <div class="col-12">
+
                             <div class="page-title-box d-flex align-items-center justify-content-between">
 
+
                                 <div class="page-title">
-                                    <h4 class="mb-0 font-size-18">Customer List</h4>
+
+                                    <h4 class="mb-0 font-size-18">
+                                        Customer List
+                                    </h4>
+
 
                                     <ol class="breadcrumb">
+
                                         <li class="breadcrumb-item">
-                                            <a href="customer-list.html">Drterrace</a>
+
+                                            <a href="customer-list.html">
+                                                Drterrace
+                                            </a>
+
                                         </li>
+
+
                                         <li class="breadcrumb-item">
-                                            <a href="customer-list.html">Customer</a>
+
+                                            <a href="customer-list.html">
+                                                Customer
+                                            </a>
+
                                         </li>
+
+
                                         <li class="breadcrumb-item active">
                                             Customer List
                                         </li>
+
                                     </ol>
+
                                 </div>
+
 
                                 <div class="state-information">
+
                                     <a href="new-appointment.html"
-                                        class="btn btn-primary shadow-sm">
+                                       class="btn btn-primary shadow-sm">
 
                                         <i class="mdi mdi-plus me-1 font-size-16 align-middle"></i>
+
                                         New Appointment
+
                                     </a>
+
                                 </div>
 
+
                             </div>
+
                         </div>
+
                     </div>
+
+
                     <!-- End Page Title -->
 
 
                     <div class="page-content-wrapper">
 
+
                         <div class="row">
+
                             <div class="col-12">
 
+
                                 <div class="card shadow-sm border-0"
-                                    style="border-radius: 12px;">
+                                     style="border-radius: 12px;">
+
 
                                     <div class="card-body p-4">
 
-                                        <div class="table-responsive">
+
+                                        <!-- TABLE WRAPPER -->
+
+                                        <div class="customer-table-wrapper">
+
 
                                             <table id="datatable-customers"
-                                                class="table table-hover table-centered align-middle table-nowrap mb-0">
+                                                   class="table table-bordered dt-responsive nowrap customer-table"
+                                                   style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 
-                                                <thead class="table-light">
+
+                                                <thead>
 
                                                     <tr>
-                                                        <th class="sl-no-col"
-                                                            style="width: 70px;">
+
+                                                        <th class="sl-no-col">
                                                             Sl. No.
                                                         </th>
 
-                                                        <th>Name</th>
 
-                                                        <th>Mobile Number</th>
+                                                        <th>
+                                                            Name
+                                                        </th>
 
-                                                       
 
-                                                        
+                                                        <th>
+                                                            Mobile Number
+                                                        </th>
 
-                                                        <th>Service</th>
 
-                                                        <th>Assigned To</th>
+                                                        <th>
+                                                            Service
+                                                        </th>
 
-                                                        <th class="text-center"
-                                                            style="width: 90px;">
+
+                                                        <th>
+                                                            Assigned To
+                                                        </th>
+
+
+                                                        <th class="text-center">
                                                             Action
                                                         </th>
+
                                                     </tr>
 
                                                 </thead>
 
+
                                                 <tbody>
 
+
                                                     <!-- CUSTOMER 1 -->
+
                                                     <tr>
 
-                                                        <td class="sl-no-col">1</td>
+                                                        <td class="sl-no-col">
+                                                            1
+                                                        </td>
+
 
                                                         <td>
+
                                                             <div>
-                                                                <h5 class="font-size-14 mb-0 text-dark fw-bold">
+
+                                                                <p >
+
                                                                     Kavitha Narayanan
-                                                                </h5>
 
-                                                                <span class="text-muted font-size-12">
+                                                                </p>
+
+
+                                                                <span class="text-muted font-size-12 customer-id">
+
                                                                     CUST-1001
+
                                                                 </span>
+
                                                             </div>
+
                                                         </td>
 
+
                                                         <td>
+
                                                             <span class="text-dark">
+
                                                                 <i class="mdi mdi-phone-outline text-muted me-1"></i>
-                                                                +91 98401 23456
+
+                                                                98401 23456
+
                                                             </span>
+
                                                         </td>
 
-                                                       
-
-                                                        <td>
-                                                            Outer Wall Proofing,
-                                                            Terrace Waterproofing
-                                                        </td>
-
-                                                        <td>
-                                                            <span class="fw-semibold text-dark">
-                                                                Santhosh Kumar
-                                                            </span>
-                                                        </td>
-
-                                                        
-
-                                                           <td class="text-center"><a href="customer-detail.html?id=CUST-1001"class="btn btn-sm btn-soft-primary"title="View Customer Details">
-                                                            <i class="mdi mdi-eye font-size-16"></i></a></td>
-
-                                                    </tr>
-
-
-                                                    <!-- CUSTOMER 2 -->
-                                                    <tr>
-
-                                                        <td class="sl-no-col">2</td>
-
-                                                        <td>
-                                                            <div>
-                                                                <h5 class="font-size-14 mb-0 text-dark fw-bold">
-                                                                    Murugan Selvam
-                                                                </h5>
-
-                                                                <span class="text-muted font-size-12">
-                                                                    CUST-1002
-                                                                </span>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <span class="text-dark">
-                                                                <i class="mdi mdi-phone-outline text-muted me-1"></i>
-                                                                +91 97892 34567
-                                                            </span>
-                                                        </td>
-
-                                                        
-
-                                                        <td>
-                                                            Bathroom Proofing,
-                                                            Sump Proofing
-                                                        </td>
-
-                                                        <td>
-                                                            <span class="fw-semibold text-dark">
-                                                                Alex
-                                                            </span>
-                                                        </td>
-
-                                                        <td class="text-center"><a href="customer-detail.html?id=CUST-1002"class="btn btn-sm btn-soft-primary"title="View Customer Details">
-                                                            <i class="mdi mdi-eye font-size-16"></i></a></td>
-
-                                                    </tr>
-
-
-                                                    <!-- CUSTOMER 3 -->
-                                                    <tr>
-
-                                                        <td class="sl-no-col">3</td>
-
-                                                        <td>
-                                                            <div>
-                                                                <h5 class="font-size-14 mb-0 text-dark fw-bold">
-                                                                    Rajesh Varma
-                                                                </h5>
-
-                                                                <span class="text-muted font-size-12">
-                                                                    CUST-1003
-                                                                </span>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <span class="text-dark">
-                                                                <i class="mdi mdi-phone-outline text-muted me-1"></i>
-                                                                +91 99403 45678
-                                                            </span>
-                                                        </td>
-
-                                                       
 
                                                         <td>
                                                             Outer Wall Proofing
                                                         </td>
 
+
                                                         <td>
-                                                            <span class="fw-semibold text-dark">
-                                                                Donald Johnson
+
+                                                            <span >
+
+                                                                Santhosh Kumar
+
                                                             </span>
+
                                                         </td>
 
-                                                        <td class="text-center"><a href="customer-detail.html?id=CUST-1003"class="btn btn-sm btn-soft-primary"title="View Customer Details">
-                                                            <i class="mdi mdi-eye font-size-16"></i></a></td>
+
+                                                        <td class="text-center">
+
+                                                            <div class="action-buttons">
+
+
+                                                                <!-- VIEW -->
+
+                                                                <a href="customer-detail.html?id=CUST-1001"
+                                                                   class="btn btn-outline-secondary btn-sm"
+                                                                   title="View Customer Details">
+
+                                                                    <i class="mdi mdi-eye font-size-16"></i>
+
+                                                                </a>
+
+
+                                                                <!-- EDIT -->
+
+                                                                <button type="button"
+                                                                        class="btn btn-outline-secondary btn-sm btn-edit-customer"
+                                                                        title="Edit Customer">
+
+                                                                    <i class="fas fa-pencil-alt"></i>
+
+                                                                </button>
+
+
+                                                                <!-- DELETE -->
+
+                                                                <button type="button"
+                                                                        class="btn btn-outline-secondary btn-sm btn-delete-customer"
+                                                                        title="Delete Customer">
+
+                                                                    <i class="fas fa-trash"></i>
+
+                                                                </button>
+
+
+                                                            </div>
+
+                                                        </td>
+
+                                                    </tr>
+
+
+                                                    <!-- CUSTOMER 2 -->
+
+                                                    <tr>
+
+                                                        <td class="sl-no-col">
+                                                            2
+                                                        </td>
+
+
+                                                        <td>
+
+                                                            <div>
+
+                                                                <p>
+
+                                                                    Murugan Selvam
+
+                                                                </p>
+
+
+                                                                <span class="text-muted font-size-12 customer-id">
+
+                                                                    CUST-1002
+
+                                                                </span>
+
+                                                            </div>
+
+                                                        </td>
+
+
+                                                        <td>
+
+                                                            <span class="text-dark">
+
+                                                                <i class="mdi mdi-phone-outline text-muted me-1"></i>
+
+                                                                97892 34567
+
+                                                            </span>
+
+                                                        </td>
+
+
+                                                        <td>
+
+                                                            Bathroom Proofing,
+                                                            Sump Proofing
+
+                                                        </td>
+
+
+                                                        <td>
+
+                                                            <span >
+
+                                                                Alex
+
+                                                            </span>
+
+                                                        </td>
+
+
+                                                        <td class="text-center">
+
+                                                            <div class="action-buttons">
+
+
+                                                                <a href="customer-detail.html?id=CUST-1002"
+                                                                   class="btn btn-outline-secondary btn-sm"
+                                                                   title="View Customer Details">
+
+                                                                    <i class="mdi mdi-eye font-size-16"></i>
+
+                                                                </a>
+
+
+                                                                <button type="button"
+                                                                        class="btn btn-outline-secondary btn-sm btn-edit-customer"
+                                                                        title="Edit Customer">
+
+                                                                    <i class="fas fa-pencil-alt"></i>
+
+                                                                </button>
+
+
+                                                                <button type="button"
+                                                                        class="btn btn-outline-secondary btn-sm btn-delete-customer"
+                                                                        title="Delete Customer">
+
+                                                                    <i class="fas fa-trash"></i>
+
+                                                                </button>
+
+
+                                                            </div>
+
+                                                        </td>
+
+                                                    </tr>
+
+
+                                                    <!-- CUSTOMER 3 -->
+
+                                                    <tr>
+
+                                                        <td class="sl-no-col">
+                                                            3
+                                                        </td>
+
+
+                                                        <td>
+
+                                                            <div>
+
+                                                                <p>
+
+                                                                    Rajesh Varma
+
+                                                                </p>
+
+
+                                                                <span class="text-muted font-size-12 customer-id">
+
+                                                                    CUST-1003
+
+                                                                </span>
+
+                                                            </div>
+
+                                                        </td>
+
+
+                                                        <td>
+
+                                                            <span class="text-dark">
+
+                                                                <i class="mdi mdi-phone-outline text-muted me-1"></i>
+
+                                                            99403 45678
+
+                                                            </span>
+
+                                                        </td>
+
+
+                                                        <td>
+                                                            Outer Wall Proofing
+                                                        </td>
+
+
+                                                        <td>
+
+                                                            <span >
+
+                                                                Donald Johnson
+
+                                                            </span>
+
+                                                        </td>
+
+
+                                                        <td class="text-center">
+
+                                                            <div class="action-buttons">
+
+
+                                                                <a href="customer-detail.html?id=CUST-1003"
+                                                                   class="btn btn-outline-secondary btn-sm"
+                                                                   title="View Customer Details">
+
+                                                                    <i class="mdi mdi-eye font-size-16"></i>
+
+                                                                </a>
+
+
+                                                                <button type="button"
+                                                                        class="btn btn-outline-secondary btn-sm btn-edit-customer"
+                                                                        title="Edit Customer">
+
+                                                                    <i class="fas fa-pencil-alt"></i>
+
+                                                                </button>
+
+
+                                                                <button type="button"
+                                                                        class="btn btn-outline-secondary btn-sm btn-delete-customer"
+                                                                        title="Delete Customer">
+
+                                                                    <i class="fas fa-trash"></i>
+
+                                                                </button>
+
+
+                                                            </div>
+
+                                                        </td>
 
                                                     </tr>
 
 
                                                     <!-- CUSTOMER 4 -->
+
                                                     <tr>
 
-                                                        <td class="sl-no-col">4</td>
+                                                        <td class="sl-no-col">
+                                                            4
+                                                        </td>
+
 
                                                         <td>
+
                                                             <div>
-                                                                <h5 class="font-size-14 mb-0 text-dark fw-bold">
+
+                                                                <p>
+
                                                                     Ananya Srinivasan
-                                                                </h5>
 
-                                                                <span class="text-muted font-size-12">
+                                                                <p>
+
+
+                                                                <span class="text-muted font-size-12 customer-id">
+
                                                                     CUST-1004
+
                                                                 </span>
+
                                                             </div>
+
                                                         </td>
 
+
                                                         <td>
+
                                                             <span class="text-dark">
+
                                                                 <i class="mdi mdi-phone-outline text-muted me-1"></i>
-                                                                +91 98415 67890
+
+                                                                98415 67890
+
                                                             </span>
+
                                                         </td>
 
-                                                        
 
                                                         <td>
+
                                                             Terrace Waterproofing,
                                                             Sump Proofing
+
                                                         </td>
+
 
                                                         <td>
-                                                            <span class="fw-semibold text-dark">
+
+                                                            <span >
+
                                                                 Ravi Kumar
+
                                                             </span>
+
                                                         </td>
 
-                                                        <td class="text-center"><a href="customer-detail.html?id=CUST-1004"class="btn btn-sm btn-soft-primary"title="View Customer Details">
-                                                            <i class="mdi mdi-eye font-size-16"></i></a></td>
+
+                                                        <td class="text-center">
+
+                                                            <div class="action-buttons">
+
+
+                                                                <a href="customer-detail.html?id=CUST-1004"
+                                                                   class="btn btn-outline-secondary btn-sm"
+                                                                   title="View Customer Details">
+
+                                                                    <i class="mdi mdi-eye font-size-16"></i>
+
+                                                                </a>
+
+
+                                                                <button type="button"
+                                                                        class="btn btn-outline-secondary btn-sm btn-edit-customer"
+                                                                        title="Edit Customer">
+
+                                                                    <i class="fas fa-pencil-alt"></i>
+
+                                                                </button>
+
+
+                                                                <button type="button"
+                                                                        class="btn btn-outline-secondary btn-sm btn-delete-customer"
+                                                                        title="Delete Customer">
+
+                                                                    <i class="fas fa-trash"></i>
+
+                                                                </button>
+
+
+                                                            </div>
+
+                                                        </td>
 
                                                     </tr>
 
 
                                                     <!-- CUSTOMER 5 -->
+
                                                     <tr>
 
-                                                        <td class="sl-no-col">5</td>
+                                                        <td class="sl-no-col">
+                                                            5
+                                                        </td>
+
 
                                                         <td>
+
                                                             <div>
-                                                                <h5 class="font-size-14 mb-0 text-dark fw-bold">
+
+                                                                <p>
+
                                                                     Sundaramurthy K
-                                                                </h5>
 
-                                                                <span class="text-muted font-size-12">
+                                                                </p>
+
+
+                                                                <span class="text-muted font-size-12 customer-id">
+
                                                                     CUST-1005
+
                                                                 </span>
+
                                                             </div>
+
                                                         </td>
 
+
                                                         <td>
+
                                                             <span class="text-dark">
+
                                                                 <i class="mdi mdi-phone-outline text-muted me-1"></i>
-                                                                +91 94440 12890
+
+                                                                94440 12890
+
                                                             </span>
+
                                                         </td>
 
-                                                      
 
                                                         <td>
+
                                                             Crack Filling,
                                                             Terrace Waterproofing
+
                                                         </td>
+
 
                                                         <td>
-                                                            <span class="fw-semibold text-dark">
+
+                                                            <span >
+
                                                                 Priya Sundaram
+
                                                             </span>
+
                                                         </td>
 
-                                                         <td class="text-center"><a href="customer-detail.html?id=CUST-1005"class="btn btn-sm btn-soft-primary"title="View Customer Details">
-                                                            <i class="mdi mdi-eye font-size-16"></i></a></td>
+
+                                                        <td class="text-center">
+
+                                                            <div class="action-buttons">
+
+
+                                                                <a href="customer-detail.html?id=CUST-1005"
+                                                                   class="btn btn-outline-secondary btn-sm"
+                                                                   title="View Customer Details">
+
+                                                                    <i class="mdi mdi-eye font-size-16"></i>
+
+                                                                </a>
+
+
+                                                                <button type="button"
+                                                                        class="btn btn-outline-secondary btn-sm btn-edit-customer"
+                                                                        title="Edit Customer">
+
+                                                                    <i class="fas fa-pencil-alt"></i>
+
+                                                                </button>
+
+
+                                                                <button type="button"
+                                                                        class="btn btn-outline-secondary btn-sm btn-delete-customer"
+                                                                        title="Delete Customer">
+
+                                                                    <i class="fas fa-trash"></i>
+
+                                                                </button>
+
+
+                                                            </div>
+
+                                                        </td>
 
                                                     </tr>
 
 
                                                     <!-- CUSTOMER 6 -->
+
                                                     <tr>
 
-                                                        <td class="sl-no-col">6</td>
+                                                        <td class="sl-no-col">
+                                                            6
+                                                        </td>
+
 
                                                         <td>
+
                                                             <div>
-                                                                <h5 class="font-size-14 mb-0 text-dark fw-bold">
+
+                                                                <p>
+
                                                                     Deepa Venkatesh
-                                                                </h5>
 
-                                                                <span class="text-muted font-size-12">
+                                                                </p>
+
+
+                                                                <span class="text-muted font-size-12 customer-id">
+
                                                                     CUST-1006
+
                                                                 </span>
+
                                                             </div>
+
                                                         </td>
 
+
                                                         <td>
+
                                                             <span class="text-dark">
+
                                                                 <i class="mdi mdi-phone-outline text-muted me-1"></i>
-                                                                +91 98842 56781
+
+                                                                 98842 56781
+
                                                             </span>
+
                                                         </td>
 
-                                                        
 
                                                         <td>
+
                                                             Basement Proofing,
                                                             Bathroom Proofing
+
                                                         </td>
+
 
                                                         <td>
-                                                            <span class="fw-semibold text-dark">
+
+                                                            <span >
+
                                                                 Donald Johnson
+
                                                             </span>
+
                                                         </td>
 
-                                                         <td class="text-center"><a href="customer-detail.html"class="btn btn-sm btn-soft-primary"title="View Customer Details">
-                                                            <i class="mdi mdi-eye font-size-16"></i></a></td>
+
+                                                        <td class="text-center">
+
+                                                            <div class="action-buttons">
+
+
+                                                                <a href="customer-detail.html?id=CUST-1006"
+                                                                   class="btn btn-outline-secondary btn-sm"
+                                                                   title="View Customer Details">
+
+                                                                    <i class="mdi mdi-eye font-size-16"></i>
+
+                                                                </a>
+
+
+                                                                <button type="button"
+                                                                        class="btn btn-outline-secondary btn-sm btn-edit-customer"
+                                                                        title="Edit Customer">
+
+                                                                    <i class="fas fa-pencil-alt"></i>
+
+                                                                </button>
+
+
+                                                                <button type="button"
+                                                                        class="btn btn-outline-secondary btn-sm btn-delete-customer"
+                                                                        title="Delete Customer">
+
+                                                                    <i class="fas fa-trash"></i>
+
+                                                                </button>
+
+
+                                                            </div>
+
+                                                        </td>
 
                                                     </tr>
 
 
                                                     <!-- CUSTOMER 7 -->
+
                                                     <tr>
 
-                                                        <td class="sl-no-col">7</td>
+                                                        <td class="sl-no-col">
+                                                            7
+                                                        </td>
+
 
                                                         <td>
+
                                                             <div>
-                                                                <h5 class="font-size-14 mb-0 text-dark fw-bold">
+
+                                                                <p>
+
                                                                     Balaji Raghavan
-                                                                </h5>
 
-                                                                <span class="text-muted font-size-12">
+                                                                </p>
+
+
+                                                                <span class="text-muted font-size-12 customer-id">
+
                                                                     CUST-1007
+
                                                                 </span>
+
                                                             </div>
+
                                                         </td>
 
+
                                                         <td>
+
                                                             <span class="text-dark">
+
                                                                 <i class="mdi mdi-phone-outline text-muted me-1"></i>
-                                                                +91 97910 88234
+
+                                                                97910 88234
+
                                                             </span>
+
                                                         </td>
 
-                                                        
 
                                                         <td>
+
                                                             Outer Wall Proofing,
                                                             Sump Proofing
+
                                                         </td>
+
 
                                                         <td>
-                                                            <span class="fw-semibold text-dark">
+
+                                                            <span>
+
                                                                 Santhosh Kumar
+
                                                             </span>
+
                                                         </td>
 
-                                                       <td class="text-center"><a href="customer-detail.html"class="btn btn-sm btn-soft-primary"title="View Customer Details">
-                                                            <i class="mdi mdi-eye font-size-16"></i></a></td>
+
+                                                        <td class="text-center">
+
+                                                            <div class="action-buttons">
+
+
+                                                                <a href="customer-detail.html?id=CUST-1007"
+                                                                   class="btn btn-outline-secondary btn-sm"
+                                                                   title="View Customer Details">
+
+                                                                    <i class="mdi mdi-eye font-size-16"></i>
+
+                                                                </a>
+
+
+                                                                <button type="button"
+                                                                        class="btn btn-outline-secondary btn-sm btn-edit-customer"
+                                                                        title="Edit Customer">
+
+                                                                    <i class="fas fa-pencil-alt"></i>
+
+                                                                </button>
+
+
+                                                                <button type="button"
+                                                                        class="btn btn-outline-secondary btn-sm btn-delete-customer"
+                                                                        title="Delete Customer">
+
+                                                                    <i class="fas fa-trash"></i>
+
+                                                                </button>
+
+
+                                                            </div>
+
+                                                        </td>
 
                                                     </tr>
 
 
                                                     <!-- CUSTOMER 8 -->
+
                                                     <tr>
 
-                                                        <td class="sl-no-col">8</td>
+                                                        <td class="sl-no-col">
+                                                            8
+                                                        </td>
+
 
                                                         <td>
+
                                                             <div>
-                                                                <h5 class="font-size-14 mb-0 text-dark fw-bold">
-                                                                    Meenakshi Sundaram
-                                                                </h5>
 
-                                                                <span class="text-muted font-size-12">
+                                                                <p>
+
+                                                                    Meenakshi Sundaram
+
+                                                                <p>
+
+
+                                                                <span class="text-muted font-size-12 customer-id">
+
                                                                     CUST-1008
+
                                                                 </span>
+
                                                             </div>
+
                                                         </td>
+
 
                                                         <td>
+
                                                             <span class="text-dark">
+
                                                                 <i class="mdi mdi-phone-outline text-muted me-1"></i>
-                                                                +91 98408 99123
+
+                                                            98408 99123
+
                                                             </span>
+
                                                         </td>
 
-                                                        
 
                                                         <td>
                                                             Terrace Waterproofing
                                                         </td>
 
+
                                                         <td>
-                                                            <span class="fw-semibold text-dark">
+
+                                                            <span >
+
                                                                 Alex
+
                                                             </span>
+
                                                         </td>
 
-                                                         <td class="text-center"><a href="customer-detail.html"class="btn btn-sm btn-soft-primary"title="View Customer Details">
-                                                            <i class="mdi mdi-eye font-size-16"></i></a></td>
+
+                                                        <td class="text-center">
+
+                                                            <div class="action-buttons">
+
+
+                                                                <a href="customer-detail.html?id=CUST-1008"
+                                                                   class="btn btn-outline-secondary btn-sm"
+                                                                   title="View Customer Details">
+
+                                                                    <i class="mdi mdi-eye font-size-16"></i>
+
+                                                                </a>
+
+
+                                                                <button type="button"
+                                                                        class="btn btn-outline-secondary btn-sm btn-edit-customer"
+                                                                        title="Edit Customer">
+
+                                                                    <i class="fas fa-pencil-alt"></i>
+
+                                                                </button>
+
+
+                                                                <button type="button"
+                                                                        class="btn btn-outline-secondary btn-sm btn-delete-customer"
+                                                                        title="Delete Customer">
+
+                                                                    <i class="fas fa-trash"></i>
+
+                                                                </button>
+
+
+                                                            </div>
+
+                                                        </td>
 
                                                     </tr>
+
 
                                                 </tbody>
 
                                             </table>
 
+
                                         </div>
+
 
                                     </div>
 
@@ -544,16 +1186,16 @@
 
                     </div>
 
+
                 </div>
+
             </div>
 
 
-           
-            
-
-
             <!-- Footer Component -->
+
             <div id="footer"></div>
+
 
         </div>
 
@@ -561,6 +1203,7 @@
 
 
     <!-- Right bar overlay -->
+
     <div class="rightbar-overlay"></div>
 
 
@@ -576,36 +1219,244 @@
 
     <script src="assets/libs/node-waves/waves.min.js"></script>
 
+    <!-- SweetAlert -->
+
     <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
+
+    <!-- DataTables -->
 
     <script src="assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
 
     <script src="assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
 
+    <!-- Responsive examples -->
+    <script src="assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
 
     <!-- Component Loader -->
+
     <script src="assets/js/component-loader.js"></script>
 
 
     <!-- App JS -->
+
     <script src="assets/js/app.js"></script>
 
 
     <script>
-    $(document).ready(function () {
 
-        $('#datatable-customers').DataTable({
-            pageLength: 10,
-            language: {
-                paginate: {
-                    previous: "<i class='mdi mdi-chevron-left'></i>",
-                    next: "<i class='mdi mdi-chevron-right'></i>"
-                }
+        $(document).ready(function () {
+
+
+            /* =========================================
+               INITIALIZE DATATABLE
+            ========================================= */
+
+            const dataTable = $('#datatable-customers').DataTable({
+
+                paging: false,
+                searching: false,
+                info: false,
+                lengthChange: false,
+
+                autoWidth: false,
+
+                order: [],
+
+                columnDefs: [
+
+                    {
+                        orderable: false,
+                        targets: 5
+                    }
+
+                ]
+
+            });
+
+
+
+            /* =========================================
+               REFRESH SERIAL NUMBERS
+            ========================================= */
+
+            function refreshSerialNumbers() {
+
+                dataTable.rows({
+
+                    search: 'applied',
+                    order: 'applied'
+
+                }).every(function (rowIndex) {
+
+                    const row = this.node();
+
+                    $(row)
+                        .find('.sl-no-col')
+                        .text(rowIndex + 1);
+
+                });
+
             }
+
+
+
+            /* =========================================
+               EDIT CUSTOMER
+            ========================================= */
+
+            $(document).on(
+                'click',
+                '.btn-edit-customer',
+                function () {
+
+                    const row =
+                        $(this).closest('tr');
+
+
+                    const customerId =
+                        row
+                            .find('.customer-id')
+                            .text()
+                            .trim();
+
+
+                    /*
+                    Redirect to the customer detail page
+                    in editable mode.
+                    */
+
+                    window.location.href =
+                        'customer-detail.html?id=' +
+                        encodeURIComponent(customerId) +
+                        '&mode=edit';
+
+                }
+            );
+
+
+
+            /* =========================================
+               DELETE CUSTOMER
+            ========================================= */
+
+            $(document).on(
+                'click',
+                '.btn-delete-customer',
+                function () {
+
+                    const row =
+                        $(this).closest('tr');
+
+
+                    const customerName =
+                        row
+                            .find('h5')
+                            .text()
+                            .trim();
+
+
+                    const customerId =
+                        row
+                            .find('.customer-id')
+                            .text()
+                            .trim();
+
+
+                    Swal.fire({
+
+                        title:
+                            'Are you sure?',
+
+                        text:
+                            `Do you want to delete "${customerName}" (${customerId})?`,
+
+                        icon:
+                            'warning',
+
+                        showCancelButton:
+                            true,
+
+                        confirmButtonColor:
+                            '#dc2626',
+
+                        cancelButtonColor:
+                            '#64748b',
+
+                        confirmButtonText:
+                            'Yes, delete it!',
+
+                        cancelButtonText:
+                            'Cancel'
+
+                    }).then(function (result) {
+
+
+                        if (result.isConfirmed) {
+
+
+                            dataTable
+                                .row(row)
+                                .remove()
+                                .draw(false);
+
+
+                            refreshSerialNumbers();
+
+
+                            Swal.fire({
+
+                                title:
+                                    'Deleted!',
+
+                                text:
+                                    `"${customerName}" has been deleted successfully.`,
+
+                                icon:
+                                    'success',
+
+                                timer:
+                                    1800,
+
+                                showConfirmButton:
+                                    false
+
+                            });
+
+                        }
+
+
+                    });
+
+                }
+            );
+
+
+
+            /*
+               REFRESH SERIAL NUMBERS
+               AFTER SEARCH / SORT / PAGINATION
+             */
+
+            dataTable.on(
+                'draw',
+                function () {
+
+                    refreshSerialNumbers();
+
+                }
+            );
+
+
+            refreshSerialNumbers();
+
+
         });
 
-    });
-</script>
+    </script>
+
+
 </body>
 
 </html>
