@@ -49,13 +49,6 @@ const SidebarTemplate = `
                 <li class="menu-title">Main Menu</li>
 
                 <li>
-                    <a href="dashboard.html" class="waves-effect">
-                        <i class="mdi mdi-view-dashboard"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-
-                <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="mdi mdi-account-group"></i>
                         <span>Employee</span>
@@ -82,6 +75,7 @@ const SidebarTemplate = `
                         <span>Appointment</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="all-appointments.html">All Appointment</a></li>
                         <li><a href="new-appointment.html">New Appointment</a></li>
                     </ul>
                 </li>

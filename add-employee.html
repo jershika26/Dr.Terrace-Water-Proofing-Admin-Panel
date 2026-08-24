@@ -362,16 +362,17 @@
 
                                                 <div class="col-12 col-md-4">
                                                     <label for="aadhaarNumber">
-                                                        Aadhaar Number
+                                                        Aadhaar Number <span class="required-star">*</span>
                                                     </label>
                                                     <input type="text"
                                                            class="form-control"
                                                            id="aadhaarNumber"
                                                            name="aadhaar_number"
                                                            placeholder="12-digit Aadhaar number"
-                                                           maxlength="14">
+                                                           maxlength="14"
+                                                           required>
                                                     <div class="invalid-feedback" id="aadhaarNumberFeedback">
-                                                        Aadhaar number must be exactly 12 digits.
+                                                        Please enter a valid 12-digit Aadhaar number.
                                                     </div>
                                                 </div>
 
@@ -399,10 +400,10 @@
                                                     </div>
                                                 </div>
 
-                                                <!-- Employee Image -->
+                                                <!-- Employee Image (Optional) -->
                                                 <div class="col-12 col-md-4">
                                                     <label for="employeeImage">
-                                                        Choose Employee Image
+                                                        Choose Employee Image <span class="text-muted font-size-12">(Optional)</span>
                                                     </label>
                                                     <input type="file"
                                                            class="form-control"
@@ -427,49 +428,65 @@
 
                                                 <div class="col-12 col-md-6">
                                                     <label for="doorFlatNo">
-                                                        Door No / Flat No
+                                                        Door No / Flat No <span class="required-star">*</span>
                                                     </label>
                                                     <input type="text"
                                                            class="form-control"
                                                            id="doorFlatNo"
                                                            name="door_flat_no"
-                                                           placeholder="Enter door / flat no">
+                                                           placeholder="Enter door / flat no"
+                                                           required>
+                                                    <div class="invalid-feedback" id="doorFlatNoFeedback">
+                                                        Please enter Door / Flat No.
+                                                    </div>
                                                 </div>
 
 
                                                 <div class="col-12 col-md-6">
                                                     <label for="streetRoad">
-                                                        Street Name / Road
+                                                        Street Name / Road <span class="required-star">*</span>
                                                     </label>
                                                     <input type="text"
                                                            class="form-control"
                                                            id="streetRoad"
                                                            name="street_road"
-                                                           placeholder="Enter street name / road">
+                                                           placeholder="Enter street name / road"
+                                                           required>
+                                                    <div class="invalid-feedback" id="streetRoadFeedback">
+                                                        Please enter Street Name / Road.
+                                                    </div>
                                                 </div>
 
 
                                                 <div class="col-12 col-md-6">
                                                     <label for="areaLocality">
-                                                        Area
+                                                        Area <span class="required-star">*</span>
                                                     </label>
                                                     <input type="text"
                                                            class="form-control"
                                                            id="areaLocality"
                                                            name="area_locality"
-                                                           placeholder="Enter area">
+                                                           placeholder="Enter area"
+                                                           required>
+                                                    <div class="invalid-feedback" id="areaLocalityFeedback">
+                                                        Please enter Area.
+                                                    </div>
                                                 </div>
 
 
                                                 <div class="col-12 col-md-6">
                                                     <label for="city">
-                                                        City
+                                                        City <span class="required-star">*</span>
                                                     </label>
                                                     <input type="text"
                                                            class="form-control"
                                                            id="city"
                                                            name="city"
-                                                           placeholder="Enter city">
+                                                           placeholder="Enter city"
+                                                           required>
+                                                    <div class="invalid-feedback" id="cityFeedback">
+                                                        Please enter City.
+                                                    </div>
                                                 </div>
 
                                             </div>
@@ -485,7 +502,7 @@
 
                                                 <div class="col-12 col-md-4">
                                                     <label for="baseSalary">
-                                                        Monthly Base Salary
+                                                        Monthly Base Salary <span class="required-star">*</span>
                                                     </label>
                                                     <div class="input-group">
                                                         <span class="input-group-text">
@@ -496,9 +513,10 @@
                                                                id="baseSalary"
                                                                name="base_salary"
                                                                min="0"
-                                                               placeholder="Enter base salary">
+                                                               placeholder="Enter base salary"
+                                                               required>
                                                         <div class="invalid-feedback" id="baseSalaryFeedback">
-                                                            Salary cannot be negative.
+                                                            Please enter a valid monthly base salary.
                                                         </div>
                                                     </div>
                                                 </div>
@@ -506,7 +524,7 @@
 
                                                 <div class="col-12 col-md-4">
                                                     <label for="siteAllowance">
-                                                        Site / Conveyance Allowance
+                                                        Site / Conveyance Allowance <span class="required-star">*</span>
                                                     </label>
                                                     <div class="input-group">
                                                         <span class="input-group-text">
@@ -517,9 +535,10 @@
                                                                id="siteAllowance"
                                                                name="site_allowance"
                                                                min="0"
-                                                               placeholder="Enter allowance">
+                                                               placeholder="Enter allowance"
+                                                               required>
                                                         <div class="invalid-feedback" id="siteAllowanceFeedback">
-                                                            Allowance cannot be negative.
+                                                            Please enter site / conveyance allowance (0 or higher).
                                                         </div>
                                                     </div>
                                                 </div>
@@ -527,7 +546,7 @@
 
                                                 <div class="col-12 col-md-4">
                                                     <label for="workingDays">
-                                                        Monthly Working Days
+                                                        Monthly Working Days <span class="required-star">*</span>
                                                     </label>
                                                     <input type="number"
                                                            class="form-control"
@@ -535,7 +554,8 @@
                                                            name="working_days"
                                                            value="26"
                                                            min="1"
-                                                           max="31">
+                                                           max="31"
+                                                           required>
                                                     <div class="invalid-feedback" id="workingDaysFeedback">
                                                         Working days must be between 1 and 31.
                                                     </div>
@@ -709,7 +729,12 @@
                 validateField('employeeType');
             });
 
-            // Image File
+            // Address Fields
+            $('#doorFlatNo, #streetRoad, #areaLocality, #city').on('input', function () {
+                validateField($(this).attr('id'));
+            });
+
+            // Image File (Optional)
             $('#employeeImage').on('change', function () {
                 validateField('employeeImage');
             });
@@ -833,15 +858,110 @@
                     case 'aadhaarNumber': {
                         const $el = $('#aadhaarNumber');
                         const raw = $el.val().replace(/\s/g, '');
-                        if (raw.length > 0) {
-                            if (raw.length !== 12 || !/^\d{12}$/.test(raw)) {
-                                setFieldInvalid($el, 'Aadhaar number must be exactly 12 digits.');
-                                isValid = false;
-                            } else {
-                                setFieldValid($el);
-                            }
+                        if (!raw) {
+                            setFieldInvalid($el, 'Aadhaar Number is required.');
+                            isValid = false;
+                        } else if (raw.length !== 12 || !/^\d{12}$/.test(raw)) {
+                            setFieldInvalid($el, 'Aadhaar number must be exactly 12 digits.');
+                            isValid = false;
                         } else {
-                            clearFieldStatus($el);
+                            setFieldValid($el);
+                        }
+                        break;
+                    }
+
+                    case 'doorFlatNo': {
+                        const $el = $('#doorFlatNo');
+                        const val = $el.val().trim();
+                        if (!val) {
+                            setFieldInvalid($el, 'Door No / Flat No is required.');
+                            isValid = false;
+                        } else {
+                            setFieldValid($el);
+                        }
+                        break;
+                    }
+
+                    case 'streetRoad': {
+                        const $el = $('#streetRoad');
+                        const val = $el.val().trim();
+                        if (!val) {
+                            setFieldInvalid($el, 'Street Name / Road is required.');
+                            isValid = false;
+                        } else {
+                            setFieldValid($el);
+                        }
+                        break;
+                    }
+
+                    case 'areaLocality': {
+                        const $el = $('#areaLocality');
+                        const val = $el.val().trim();
+                        if (!val) {
+                            setFieldInvalid($el, 'Area is required.');
+                            isValid = false;
+                        } else {
+                            setFieldValid($el);
+                        }
+                        break;
+                    }
+
+                    case 'city': {
+                        const $el = $('#city');
+                        const val = $el.val().trim();
+                        if (!val) {
+                            setFieldInvalid($el, 'City is required.');
+                            isValid = false;
+                        } else {
+                            setFieldValid($el);
+                        }
+                        break;
+                    }
+
+                    case 'baseSalary': {
+                        const $el = $('#baseSalary');
+                        const valStr = $el.val().trim();
+                        const val = parseFloat(valStr);
+                        if (valStr === '') {
+                            setFieldInvalid($el, 'Monthly Base Salary is required.');
+                            isValid = false;
+                        } else if (isNaN(val) || val < 0) {
+                            setFieldInvalid($el, 'Salary cannot be negative.');
+                            isValid = false;
+                        } else {
+                            setFieldValid($el);
+                        }
+                        break;
+                    }
+
+                    case 'siteAllowance': {
+                        const $el = $('#siteAllowance');
+                        const valStr = $el.val().trim();
+                        const val = parseFloat(valStr);
+                        if (valStr === '') {
+                            setFieldInvalid($el, 'Site / Conveyance Allowance is required.');
+                            isValid = false;
+                        } else if (isNaN(val) || val < 0) {
+                            setFieldInvalid($el, 'Allowance cannot be negative.');
+                            isValid = false;
+                        } else {
+                            setFieldValid($el);
+                        }
+                        break;
+                    }
+
+                    case 'workingDays': {
+                        const $el = $('#workingDays');
+                        const valStr = $el.val().trim();
+                        const val = parseInt(valStr, 10);
+                        if (valStr === '') {
+                            setFieldInvalid($el, 'Monthly Working Days is required.');
+                            isValid = false;
+                        } else if (isNaN(val) || val < 1 || val > 31) {
+                            setFieldInvalid($el, 'Working days must be between 1 and 31.');
+                            isValid = false;
+                        } else {
+                            setFieldValid($el);
                         }
                         break;
                     }
@@ -866,48 +986,6 @@
                         }
                         break;
                     }
-
-                    case 'workingDays': {
-                        const $el = $('#workingDays');
-                        const val = parseInt($el.val(), 10);
-                        if ($el.val() !== '' && (isNaN(val) || val < 1 || val > 31)) {
-                            setFieldInvalid($el, 'Working days must be between 1 and 31.');
-                            isValid = false;
-                        } else if ($el.val() !== '') {
-                            setFieldValid($el);
-                        } else {
-                            clearFieldStatus($el);
-                        }
-                        break;
-                    }
-
-                    case 'baseSalary': {
-                        const $el = $('#baseSalary');
-                        const val = parseFloat($el.val());
-                        if ($el.val() !== '' && (isNaN(val) || val < 0)) {
-                            setFieldInvalid($el, 'Salary cannot be negative.');
-                            isValid = false;
-                        } else if ($el.val() !== '') {
-                            setFieldValid($el);
-                        } else {
-                            clearFieldStatus($el);
-                        }
-                        break;
-                    }
-
-                    case 'siteAllowance': {
-                        const $el = $('#siteAllowance');
-                        const val = parseFloat($el.val());
-                        if ($el.val() !== '' && (isNaN(val) || val < 0)) {
-                            setFieldInvalid($el, 'Allowance cannot be negative.');
-                            isValid = false;
-                        } else if ($el.val() !== '') {
-                            setFieldValid($el);
-                        } else {
-                            clearFieldStatus($el);
-                        }
-                        break;
-                    }
                 }
 
                 return isValid;
@@ -919,15 +997,19 @@
                     'employeeName',
                     'mobileNumber',
                     'employeePassword',
-                    'employeeType'
+                    'aadhaarNumber',
+                    'employeeType',
+                    'doorFlatNo',
+                    'streetRoad',
+                    'areaLocality',
+                    'city',
+                    'baseSalary',
+                    'siteAllowance',
+                    'workingDays'
                 ];
 
                 const optionalFields = [
-                    'aadhaarNumber',
-                    'employeeImage',
-                    'workingDays',
-                    'baseSalary',
-                    'siteAllowance'
+                    'employeeImage'
                 ];
 
                 let allValid = true;

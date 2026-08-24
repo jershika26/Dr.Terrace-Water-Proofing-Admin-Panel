@@ -4,8 +4,7 @@ const FooterTemplate = `
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12 text-center">
-                ${new Date().getFullYear()} © Drterrace <span class="d-none d-sm-inline-block">- Crafted with <i class="mdi mdi-heart text-primary"></i></span>
-            </div>
+                ${new Date().getFullYear()} © Drterrace 
         </div>
     </div>
 </footer>

@@ -6,7 +6,7 @@ const HeaderComponent = `
         <div class="d-flex">
             <!-- LOGO -->
             <div class="navbar-brand-box">
-                <a href="dashboard.html" class="logo logo-dark">
+                <a href="index.html" class="logo logo-dark">
                     <span class="logo-sm">
                         <img src="assets/images/favicon.png" alt="Dr. Terrace" height="30">
                     </span>
@@ -126,13 +126,6 @@ const SidebarComponent = `
                 <li class="menu-title">Main Menu</li>
 
                 <li>
-                    <a href="dashboard.html" class="waves-effect">
-                        <i class="mdi mdi-view-dashboard"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-
-                <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="mdi mdi-account-group"></i>
                         <span>Employee</span>
@@ -159,6 +152,7 @@ const SidebarComponent = `
                         <span>Appointment</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="all-appointments.html">All Appointment</a></li>
                         <li><a href="new-appointment.html">New Appointment</a></li>
                     </ul>
                 </li>
@@ -209,8 +203,7 @@ const FooterComponent = `
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12 text-center">
-                ${new Date().getFullYear()} © Drterrace <span class="d-none d-sm-inline-block">- Crafted with <i class="mdi mdi-heart text-primary"></i></span>
-            </div>
+                ${new Date().getFullYear()} © Drterrace
         </div>
     </div>
 </footer>
@@ -271,9 +264,9 @@ function initLoadedComponents() {
     });
 
     // 3. Highlight Current Active Menu Item & Expand Parent Submenus
-    var currentPath = window.location.pathname.split("/").pop() || "employee-list.html";
+    var currentPath = window.location.pathname.split("/").pop() || "all-appointments.html";
     if (currentPath === "" || currentPath === "index.html") {
-        currentPath = "dashboard.html";
+        currentPath = "all-appointments.html";
     }
 
     $("#sidebar-menu a").each(function() {

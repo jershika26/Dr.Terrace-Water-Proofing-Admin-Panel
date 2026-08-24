@@ -417,7 +417,7 @@
                                     <ol class="breadcrumb">
 
                                         <li class="breadcrumb-item">
-                                            <a href="dashboard.html">Drterrace</a>
+                                            <a href="index.html">Drterrace</a>
                                         </li>
 
                                         <li class="breadcrumb-item">
@@ -436,7 +436,7 @@
 
                                 <div class="state-information">
 
-                                    <a href="dashboard.html"
+                                    <a href="index.html"
                                         class="btn btn-outline-primary btn-sm">
 
                                         <i class="mdi mdi-arrow-left me-1"></i>
@@ -471,21 +471,20 @@
                                             <!-- Customer Details -->
                                             <div class="row g-3 mb-4">
                                                 <div class="col-12 col-md-4">
-                                                    <label for="customerId">
-                                                        Customer ID
+                                                    <label for="customerId" class="form-label-custom">
+                                                        Customer ID <span class="required-star">*</span>
                                                     </label>
                                                     <input type="text"
                                                         class="form-control form-control-custom"
                                                         id="customerId"
                                                         name="customer_id"
                                                         placeholder="Enter Customer ID"
-                                                       
                                                         required>
                                                 </div>
 
                                                 <div class="col-12 col-md-4">
-                                                    <label for="customerName">
-                                                        Customer Name
+                                                    <label for="customerName" class="form-label-custom">
+                                                        Customer Name <span class="required-star">*</span>
                                                     </label>
                                                     <input type="text"
                                                         class="form-control form-control-custom"
@@ -496,14 +495,14 @@
                                                 </div>
 
                                                 <div class="col-12 col-md-4">
-                                                    <label for="customerMobile">
-                                                        Mobile Number
+                                                    <label for="customerMobile" class="form-label-custom">
+                                                        Mobile Number <span class="required-star">*</span>
                                                     </label>
                                                     <input type="tel"
                                                         class="form-control form-control-custom"
                                                         id="customerMobile"
                                                         name="customer_mobile"
-                                                        placeholder="Enter Mobile Number"
+                                                        placeholder="10-digit Mobile Number"
                                                         maxlength="10"
                                                         required>
                                                 </div>
@@ -512,12 +511,15 @@
 
                                             <!-- Address -->
                                             <div class="mb-4">
-                                                <label>
-                                                    Address
+                                                <label class="form-label-custom">
+                                                    Address Information <span class="required-star">*</span>
                                                 </label>
 
                                                 <div class="row g-3">
                                                     <div class="col-12 col-md-4">
+                                                        <label for="doorFlatNo" class="form-label-custom font-size-13 mb-1">
+                                                            Door No / Flat No <span class="required-star">*</span>
+                                                        </label>
                                                         <input type="text"
                                                             class="form-control form-control-custom"
                                                             id="doorFlatNo"
@@ -527,6 +529,9 @@
                                                     </div>
 
                                                     <div class="col-12 col-md-4">
+                                                        <label for="streetRoad" class="form-label-custom font-size-13 mb-1">
+                                                            Street Name / Road <span class="required-star">*</span>
+                                                        </label>
                                                         <input type="text"
                                                             class="form-control form-control-custom"
                                                             id="streetRoad"
@@ -536,19 +541,22 @@
                                                     </div>
 
                                                     <div class="col-12 col-md-4">
+                                                        <label for="pincode" class="form-label-custom font-size-13 mb-1">
+                                                            Pincode <span class="required-star">*</span>
+                                                        </label>
                                                         <input type="text"
                                                             class="form-control form-control-custom"
                                                             id="pincode"
                                                             name="pincode"
-                                                            placeholder="Pincode (e.g. 600034)"
+                                                            placeholder="6-digit Pincode"
                                                             maxlength="6"
                                                             required>
                                                     </div>
 
                                                     <!-- CITY -->
                                                     <div class="col-12 col-md-6">
-                                                        <label for="cityInput">
-                                                            City
+                                                        <label for="cityInput" class="form-label-custom">
+                                                            City <span class="required-star">*</span>
                                                         </label>
                                                         <div class="search-select-wrapper" id="cityWrapper">
                                                             <input type="text"
@@ -565,8 +573,8 @@
 
                                                     <!-- AREA -->
                                                     <div class="col-12 col-md-6">
-                                                        <label for="areaInput">
-                                                            Area
+                                                        <label for="areaInput" class="form-label-custom">
+                                                            Area <span class="required-star">*</span>
                                                         </label>
                                                         <div class="search-select-wrapper" id="areaWrapper">
                                                             <input type="text"
@@ -586,14 +594,16 @@
 
                                             <!-- Google Location -->
                                             <div class="mb-4">
-                                                <label for="googleLocation">
-                                                    Google Location
+                                                <label for="googleLocation" class="form-label-custom">
+                                                    Google Location <span class="required-star">*</span>
                                                 </label>
                                                 <div class="input-icon-wrapper">
                                                     <input type="text"
                                                         class="form-control form-control-custom"
                                                         id="googleLocation"
-                                                        placeholder="Paste URL here">
+                                                        name="google_location"
+                                                        placeholder="Paste Google Maps URL or Location here"
+                                                        required>
                                                     <i class="mdi mdi-map-marker input-trailing-icon"></i>
                                                 </div>
                                             </div>
@@ -603,35 +613,38 @@
                                             <div class="row g-3 mb-4">
                                                 <!-- Appointment Date -->
                                                 <div class="col-12 col-md-6 col-lg-4">
-                                                    <label for="appointmentDate">
-                                                        Appointment Date
+                                                    <label for="appointmentDate" class="form-label-custom">
+                                                        Appointment Date <span class="required-star">*</span>
                                                     </label>
                                                     <input type="date"
                                                         class="form-control form-control-custom"
                                                         id="appointmentDate"
-                                                        value="2026-08-20">
+                                                        name="appointment_date"
+                                                        required>
                                                 </div>
 
                                                 <!-- Appointment Fix Date -->
                                                 <div class="col-12 col-md-6 col-lg-4">
-                                                    <label for="appointmentFixDate">
-                                                        Appointment Fix Date
+                                                    <label for="appointmentFixDate" class="form-label-custom">
+                                                        Appointment Fix Date <span class="required-star">*</span>
                                                     </label>
                                                     <input type="date"
                                                         class="form-control form-control-custom"
                                                         id="appointmentFixDate"
-                                                        value="2026-08-20">
+                                                        name="appointment_fix_date"
+                                                        required>
                                                 </div>
 
                                                 <!-- Appointment Time -->
                                                 <div class="col-12 col-md-6 col-lg-4">
-                                                    <label for="appointmentTime">
-                                                        Appointment Time
+                                                    <label for="appointmentTime" class="form-label-custom">
+                                                        Appointment Time <span class="required-star">*</span>
                                                     </label>
                                                     <input type="time"
                                                         class="form-control form-control-custom"
                                                         id="appointmentTime"
-                                                        value="17:30">
+                                                        name="appointment_time"
+                                                        required>
                                                 </div>
                                             </div>
 
@@ -640,8 +653,8 @@
                                             <div class="row g-3 mb-4">
                                                 <!-- Where to Waterproof Dropdown Checklist -->
                                                 <div class="col-12 col-md-4">
-                                                    <label for="whereToWaterproofBtn">
-                                                        Where to Waterproof
+                                                    <label for="whereToWaterproofBtn" class="form-label-custom">
+                                                        Where to Waterproof <span class="required-star">*</span>
                                                     </label>
                                                     <div class="dropdown custom-dropdown-checklist w-100" id="waterproofDropdownWrapper">
                                                         <button class="form-select form-select-custom text-start d-flex justify-content-between align-items-center w-100"
@@ -666,8 +679,8 @@
 
                                                 <!-- Property / Structure Type -->
                                                 <div class="col-12 col-md-4">
-                                                    <label for="propertyStructureType">
-                                                        Property Type / Structure Type
+                                                    <label for="propertyStructureType" class="form-label-custom">
+                                                        Property Type / Structure Type <span class="required-star">*</span>
                                                     </label>
                                                     <select class="form-select form-select-custom"
                                                         id="propertyStructureType"
@@ -679,14 +692,15 @@
 
                                                 <!-- Estimated Area -->
                                                 <div class="col-12 col-md-4">
-                                                    <label for="estimatedArea">
-                                                        Estimated Area
+                                                    <label for="estimatedArea" class="form-label-custom">
+                                                        Estimated Area <span class="required-star">*</span>
                                                     </label>
                                                     <input type="text"
                                                         class="form-control form-control-custom"
                                                         id="estimatedArea"
                                                         name="estimated_area"
-                                                        placeholder="e.g. 1,500 Sq. Ft.">
+                                                        placeholder="e.g. 1,500 Sq. Ft."
+                                                        required>
                                                 </div>
                                             </div>
 
@@ -697,14 +711,16 @@
 
                                                 <div class="col-12 col-md-6">
 
-                                                    <label  for="assignedTo">
-                                                        Assign to
+                                                    <label for="assignedTo" class="form-label-custom">
+                                                        Assign to <span class="required-star">*</span>
                                                     </label>
 
                                                     <select class="form-select form-select-custom"
                                                         id="assignedTo"
-                                                        name="assigned_to">
+                                                        name="assigned_to"
+                                                        required>
 
+                                                        <option value="" disabled>Choose field executive</option>
                                                         <option value="Santhosh Kumar" selected>
                                                             Santhosh Kumar
                                                         </option>
@@ -1275,7 +1291,7 @@
 
 
             /* ==========================================
-               FORM SUBMIT
+               FORM SUBMIT (ALL FIELDS REQUIRED)
             ========================================== */
 
             $("#newAppointmentForm").on(
@@ -1284,27 +1300,97 @@
 
                     e.preventDefault();
 
-                    const customerId = $("#customerId").val();
-                    const customerName = $("#customerName").val();
-                    const mobile = $("#customerMobile").val();
-                    const assigned = $("#assignedTo").val();
-                    const date = $("#appointmentDate").val();
-                    const time = $("#appointmentTime").val();
+                    const customerId = $("#customerId").val().trim();
+                    const customerName = $("#customerName").val().trim();
+                    const mobile = $("#customerMobile").val().trim();
+                    const doorFlatNo = $("#doorFlatNo").val().trim();
+                    const streetRoad = $("#streetRoad").val().trim();
+                    const pincode = $("#pincode").val().trim();
+                    const city = $("#cityInput").val().trim();
+                    const area = $("#areaInput").val().trim();
+                    const googleLocation = $("#googleLocation").val().trim();
+                    const appointmentDate = $("#appointmentDate").val().trim();
+                    const appointmentFixDate = $("#appointmentFixDate").val().trim();
+                    const appointmentTime = $("#appointmentTime").val().trim();
                     const propertyType = $("#propertyStructureType").val();
-                    const estimatedArea = $("#estimatedArea").val();
+                    const estimatedArea = $("#estimatedArea").val().trim();
+                    const assigned = $("#assignedTo").val();
 
                     const selectedWaterproof = [];
                     $('.waterproof-checkbox:checked').each(function () {
                         selectedWaterproof.push($(this).val());
                     });
 
-                    if (mobile.length !== 10) {
-                        Swal.fire({
-                            icon: "warning",
-                            title: "Invalid Mobile Number",
-                            text: "Please enter a valid 10-digit mobile number.",
-                            confirmButtonColor: "#1e4db7"
-                        });
+                    // Field Validations
+                    if (!customerId) {
+                        Swal.fire({ icon: "warning", title: "Customer ID Required", text: "Please enter a Customer ID.", confirmButtonColor: "#1e4db7" });
+                        $("#customerId").focus();
+                        return;
+                    }
+
+                    if (!customerName) {
+                        Swal.fire({ icon: "warning", title: "Customer Name Required", text: "Please enter Customer Name.", confirmButtonColor: "#1e4db7" });
+                        $("#customerName").focus();
+                        return;
+                    }
+
+                    if (!mobile || mobile.length !== 10 || !/^[6-9]\d{9}$/.test(mobile)) {
+                        Swal.fire({ icon: "warning", title: "Invalid Mobile Number", text: "Please enter a valid 10-digit Indian mobile number (starts with 6-9).", confirmButtonColor: "#1e4db7" });
+                        $("#customerMobile").focus();
+                        return;
+                    }
+
+                    if (!doorFlatNo) {
+                        Swal.fire({ icon: "warning", title: "Door / Flat No Required", text: "Please enter Door No / Flat No.", confirmButtonColor: "#1e4db7" });
+                        $("#doorFlatNo").focus();
+                        return;
+                    }
+
+                    if (!streetRoad) {
+                        Swal.fire({ icon: "warning", title: "Street Name / Road Required", text: "Please enter Street Name / Road.", confirmButtonColor: "#1e4db7" });
+                        $("#streetRoad").focus();
+                        return;
+                    }
+
+                    if (!pincode || !/^\d{6}$/.test(pincode)) {
+                        Swal.fire({ icon: "warning", title: "Invalid Pincode", text: "Please enter a valid 6-digit postal pincode.", confirmButtonColor: "#1e4db7" });
+                        $("#pincode").focus();
+                        return;
+                    }
+
+                    if (!city) {
+                        Swal.fire({ icon: "warning", title: "City Required", text: "Please select or enter a City.", confirmButtonColor: "#1e4db7" });
+                        $("#cityInput").focus();
+                        return;
+                    }
+
+                    if (!area) {
+                        Swal.fire({ icon: "warning", title: "Area Required", text: "Please select or enter an Area.", confirmButtonColor: "#1e4db7" });
+                        $("#areaInput").focus();
+                        return;
+                    }
+
+                    if (!googleLocation) {
+                        Swal.fire({ icon: "warning", title: "Google Location Required", text: "Please paste the Google Location URL.", confirmButtonColor: "#1e4db7" });
+                        $("#googleLocation").focus();
+                        return;
+                    }
+
+                    if (!appointmentDate) {
+                        Swal.fire({ icon: "warning", title: "Appointment Date Required", text: "Please select an Appointment Date.", confirmButtonColor: "#1e4db7" });
+                        $("#appointmentDate").focus();
+                        return;
+                    }
+
+                    if (!appointmentFixDate) {
+                        Swal.fire({ icon: "warning", title: "Appointment Fix Date Required", text: "Please select an Appointment Fix Date.", confirmButtonColor: "#1e4db7" });
+                        $("#appointmentFixDate").focus();
+                        return;
+                    }
+
+                    if (!appointmentTime) {
+                        Swal.fire({ icon: "warning", title: "Appointment Time Required", text: "Please select Appointment Time.", confirmButtonColor: "#1e4db7" });
+                        $("#appointmentTime").focus();
                         return;
                     }
 
@@ -1315,6 +1401,25 @@
                             text: "Please choose at least one option under 'Where to Waterproof'.",
                             confirmButtonColor: "#1e4db7"
                         });
+                        $("#whereToWaterproofBtn").focus();
+                        return;
+                    }
+
+                    if (!propertyType) {
+                        Swal.fire({ icon: "warning", title: "Property Type Required", text: "Please select Property Type / Structure Type.", confirmButtonColor: "#1e4db7" });
+                        $("#propertyStructureType").focus();
+                        return;
+                    }
+
+                    if (!estimatedArea) {
+                        Swal.fire({ icon: "warning", title: "Estimated Area Required", text: "Please enter the Estimated Area (e.g. 1,500 Sq. Ft.).", confirmButtonColor: "#1e4db7" });
+                        $("#estimatedArea").focus();
+                        return;
+                    }
+
+                    if (!assigned) {
+                        Swal.fire({ icon: "warning", title: "Assign to Required", text: "Please choose a field executive.", confirmButtonColor: "#1e4db7" });
+                        $("#assignedTo").focus();
                         return;
                     }
 
@@ -1327,13 +1432,13 @@
                             "Appointment for <b>" +
                             customerName + " (" + customerId + ")" +
                             "</b> has been scheduled for <b>" +
-                            date +
+                            appointmentDate +
                             " at " +
-                            time +
+                            appointmentTime +
                             "</b><br><small class='text-muted'>Where to Waterproof: <b>" +
                             waterproofText +
-                            "</b><br>Property Type: <b>" + (propertyType || 'N/A') + "</b>" +
-                            (estimatedArea ? "<br>Estimated Area: <b>" + estimatedArea + "</b>" : "") +
+                            "</b><br>Property Type: <b>" + propertyType + "</b>" +
+                            "<br>Estimated Area: <b>" + estimatedArea + "</b>" +
                             "<br>Assigned to: <b>" +
                             assigned +
                             "</b></small>",
@@ -1346,7 +1451,7 @@
                     }).then(function (result) {
                         if (result.isConfirmed) {
                             window.location.href =
-                                "dashboard.html";
+                                "index.html";
                         } else {
                             $("#newAppointmentForm")[0].reset();
                             loadWaterproofTypesDropdown();

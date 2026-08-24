@@ -5,7 +5,7 @@ const HeaderTemplate = `
         <div class="d-flex">
             <!-- LOGO -->
             <div class="navbar-brand-box">
-                <a href="dashboard.html" class="logo logo-dark">
+                <a href="index.html" class="logo logo-dark">
                     <span class="logo-sm">
                         <img src="assets/images/favicon.png" alt="Dr. Terrace" height="30">
                     </span>

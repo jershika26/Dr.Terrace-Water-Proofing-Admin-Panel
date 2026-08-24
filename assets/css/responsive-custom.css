@@ -261,28 +261,32 @@ small, .small, .font-size-12 {
 .page-title-box {
     background: url(../images/bg.jpg) center center !important;
     background-size: cover !important;
-    margin: 0 -20px 23px -20px !important;
-    padding: 24px 28px 96px 28px !important;
+    margin: 0 -20px 24px -20px !important;
+    padding: 24px 28px 75px 28px !important;
     color: #ffffff !important;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 12px;
+    position: relative;
+    z-index: 1;
 }
 
 .page-content-wrapper {
-    margin-top: -75px;
+    position: relative !important;
+    z-index: 5 !important;
+    margin-top: -50px !important;
 }
 
-.page-content-wrapper > .row {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-}
-
-.page-content-wrapper > .row > [class*="col-"] {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+@media (max-width: 767.98px) {
+    .page-title-box {
+        padding: 20px 20px 20px 20px !important;
+        margin: 0 -15px 20px -15px !important;
+    }
+    .page-content-wrapper {
+        margin-top: 0 !important;
+    }
 }
 
 /* Footer */
@@ -358,9 +362,21 @@ small, .small, .font-size-12 {
     }
 }
 
-/* ==========================================================================
-   3. RESPONSIVE GRID LAYOUT (Desktop: 3 cols, Tablet: 2 cols, Mobile: 1 col)
-   ========================================================================== */
+/* Contact Info Cards Grid */
+.contact-info-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 24px !important;
+    margin-bottom: 28px !important;
+    width: 100% !important;
+}
+
+@media (max-width: 991.98px) {
+    .contact-info-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+}
 
 .row-cards-3-2-1 {
     display: flex;
