@@ -16,6 +16,9 @@
     <!-- Plugins CSS -->
     <link href="assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
 
+    <!-- SweetAlert2 -->
+    <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+
     <!-- Bootstrap CSS -->
     <link href="assets/css/bootstrap.min.css"
           id="bootstrap-style"
@@ -39,6 +42,43 @@
           type="text/css" />
 
     <style>
+
+        .required-star {
+            color: #dc2626;
+            font-weight: 600;
+            margin-left: 2px;
+        }
+
+        .invalid-feedback {
+            font-size: 12.5px;
+            font-weight: 500;
+            margin-top: 5px;
+        }
+
+        .password-toggle-btn {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: none;
+            color: #64748b;
+            cursor: pointer;
+            z-index: 10;
+            padding: 0;
+        }
+
+        .password-toggle-btn:hover {
+            color: #1e293b;
+        }
+
+        .input-group-password {
+            position: relative;
+        }
+
+        .input-group-password .form-control {
+            padding-right: 40px;
+        }
 
         /* Remove bold font from this page */
         .main-content,
@@ -247,291 +287,98 @@
                                     <div class="card-body p-4 p-md-5">
 
                                         <!-- Main Form -->
-                                        <form id="addEmployeeForm">
+                                        <form id="addEmployeeForm" novalidate>
                                             <div class="form-section-title">
-                                                <span>Personal Information</span>
+                                                <span>Employee Information</span>
                                             </div>
 
                                             <div class="row g-3 mb-4">
 
-                                                 <div class="col-12 col-md-4">
-
-                                                    <label 
-                                                           for="employeeName">
-
-                                                        Employee Id
-
+                                                <div class="col-12 col-md-4">
+                                                    <label for="employeeId">
+                                                        Employee Id <span class="required-star">*</span>
                                                     </label>
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           id="employeeId"
+                                                           name="employee_id"
+                                                           placeholder="e.g. EMP-005"
+                                                           required>
+                                                    <div class="invalid-feedback" id="employeeIdFeedback">
+                                                        Please enter an Employee ID (e.g. EMP-005).
+                                                    </div>
+                                                </div>
 
+                                                <div class="col-12 col-md-4">
+                                                    <label for="employeeName">
+                                                        Employee Name <span class="required-star">*</span>
+                                                    </label>
                                                     <input type="text"
                                                            class="form-control"
                                                            id="employeeName"
                                                            name="employee_name"
-                                                           placeholder="Enter employee id"
+                                                           placeholder="Enter full name"
                                                            required>
-
+                                                    <div class="invalid-feedback" id="employeeNameFeedback">
+                                                        Please enter a valid employee name (at least 3 characters).
+                                                    </div>
                                                 </div>
 
                                                 <div class="col-12 col-md-4">
-
-                                                    <label 
-                                                           for="employeeName">
-
-                                                        Employee Name
-
+                                                    <label for="mobileNumber">
+                                                        Mobile Number <span class="required-star">*</span>
                                                     </label>
-
-                                                    <input type="text"
-                                                           class="form-control"
-                                                           id="employeeName"
-                                                           name="employee_name"
-                                                           placeholder="Enter employee name"
-                                                           required>
-
-                                                </div>
-
-
-                                                <div class="col-12 col-md-4">
-
-                                                    <label 
-                                                           for="mobileNumber">
-
-                                                        Mobile Number
-
-                                                    </label>
-
                                                     <input type="tel"
                                                            class="form-control"
                                                            id="mobileNumber"
                                                            name="mobile_number"
-                                                           placeholder="Enter mobile number"
+                                                           placeholder="10-digit mobile number"
                                                            maxlength="10"
                                                            required>
-
+                                                    <div class="invalid-feedback" id="mobileNumberFeedback">
+                                                        Please enter a valid 10-digit mobile number starting with 6-9.
+                                                    </div>
                                                 </div>
 
-
                                                 <div class="col-12 col-md-4">
-
-                                                    <label 
-                                                           for="employeePassword">
-
-                                                        Employee Password
-
+                                                    <label for="employeePassword">
+                                                        Employee Password <span class="required-star">*</span>
                                                     </label>
-
-                                                    <input type="password"
-                                                           class="form-control"
-                                                           id="employeePassword"
-                                                           name="employee_password"
-                                                           placeholder="Set login password"
-                                                           required>
-
+                                                    <div class="input-group-password">
+                                                        <input type="password"
+                                                               class="form-control"
+                                                               id="employeePassword"
+                                                               name="employee_password"
+                                                               placeholder="Set login password (min 6 chars)"
+                                                               required>
+                                                        <button type="button" class="password-toggle-btn" id="togglePasswordBtn" title="Show/Hide Password">
+                                                            <i class="mdi mdi-eye-outline" id="togglePasswordIcon"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="invalid-feedback" id="employeePasswordFeedback">
+                                                        Password must be at least 6 characters.
+                                                    </div>
                                                 </div>
 
-
                                                 <div class="col-12 col-md-4">
-
-                                                    <label 
-                                                           for="aadhaarNumber">
-
+                                                    <label for="aadhaarNumber">
                                                         Aadhaar Number
-
                                                     </label>
-
                                                     <input type="text"
                                                            class="form-control"
                                                            id="aadhaarNumber"
                                                            name="aadhaar_number"
-                                                           placeholder="Enter Aadhaar number"
+                                                           placeholder="12-digit Aadhaar number"
                                                            maxlength="14">
-
-                                                </div>
-
-                                            </div>
-
-
-                                            <!-- Address Information -->
-                                            <div class="form-section-title">
-
-                                                
-
-                                                <span>
-                                                    Address Information
-                                                <span>
-
-                                            </div>
-
-
-                                            <div class="row g-3 mb-4">
-
-                                                <div class="col-12 col-md-6">
-
-                                                    <label 
-                                                           for="doorFlatNo">
-
-                                                        Door No / Flat No
-
-                                                    </label>
-
-                                                    <input type="text"
-                                                           class="form-control"
-                                                           id="doorFlatNo"
-                                                           name="door_flat_no"
-                                                           placeholder="Enter door / flat no">
-
-                                                </div>
-
-
-                                                <div class="col-12 col-md-6">
-
-                                                    <label 
-                                                           for="streetRoad">
-
-                                                        Street Name / Road
-
-                                                    </label>
-
-                                                    <input type="text"
-                                                           class="form-control"
-                                                           id="streetRoad"
-                                                           name="street_road"
-                                                           placeholder="Enter street name / road">
-
-                                                </div>
-
-
-                                                <div class="col-12 col-md-6">
-
-                                                    <label 
-                                                           for="areaLocality">
-
-                                                        Area
-
-                                                    </label>
-
-                                                    <input type="text"
-                                                           class="form-control"
-                                                           id="areaLocality"
-                                                           name="area_locality"
-                                                           placeholder="Enter area">
-
-                                                </div>
-
-
-                                                <div class="col-12 col-md-6">
-
-                                                    <label 
-                                                           for="city">
-
-                                                        City
-
-                                                    </label>
-
-                                                    <input type="text"
-                                                           class="form-control"
-                                                           id="city"
-                                                           name="city"
-                                                           placeholder="Enter city">
-
-                                                </div>
-
-                                            </div>
-
-
-                                            <!-- Salary Information -->
-                                            <div class="form-section-title">
-
-                                             
-
-                                                <span>
-                                                    Salary & Pay Details
-                                                </span>
-
-                                            </div>
-
-
-                                            <div class="row g-3 mb-4">
-
-                                                <div class="col-12 col-md-4">
-
-                                                    <label 
-                                                           for="baseSalary">
-
-                                                        Monthly Base Salary
-
-                                                    </label>
-
-                                                    <div class="input-group">
-
-                                                        <span class="input-group-text">
-                                                            ₹
-                                                        </span>
-
-                                                        <input type="number"
-                                                               class="form-control"
-                                                               id="baseSalary"
-                                                               name="base_salary"
-                                                               placeholder="Enter base salary">
-
+                                                    <div class="invalid-feedback" id="aadhaarNumberFeedback">
+                                                        Aadhaar number must be exactly 12 digits.
                                                     </div>
-
                                                 </div>
-
-
-                                                <div class="col-12 col-md-4">
-
-                                                    <label 
-                                                           for="siteAllowance">
-
-                                                        Site / Conveyance Allowance
-
-                                                    </label>
-
-                                                    <div class="input-group">
-
-                                                        <span class="input-group-text">
-                                                            ₹
-                                                        </span>
-
-                                                        <input type="number"
-                                                               class="form-control"
-                                                               id="siteAllowance"
-                                                               name="site_allowance"
-                                                               placeholder="Enter allowance">
-
-                                                    </div>
-
-                                                </div>
-
-
-                                                <div class="col-12 col-md-4">
-
-                                                    <label 
-                                                           for="workingDays">
-
-                                                        Monthly Working Days
-
-                                                    </label>
-
-                                                    <input type="number"
-                                                           class="form-control"
-                                                           id="workingDays"
-                                                           name="working_days"
-                                                           value="26"
-                                                           min="1"
-                                                           max="31">
-
-                                                </div>
-
-                                            </div>
-
-                                            <div class="row g-3 mb-4 align-items-end">
 
                                                 <!-- Employee Type -->
                                                 <div class="col-12 col-md-4">
                                                     <label for="employeeType">
-                                                        Select Employee Type
+                                                        Select Employee Type <span class="required-star">*</span>
                                                     </label>
                                                     <select class="form-select"
                                                             id="employeeType"
@@ -547,6 +394,9 @@
                                                             Office Employee
                                                         </option>
                                                     </select>
+                                                    <div class="invalid-feedback" id="employeeTypeFeedback">
+                                                        Please select an employee type.
+                                                    </div>
                                                 </div>
 
                                                 <!-- Employee Image -->
@@ -558,7 +408,137 @@
                                                            class="form-control"
                                                            id="employeeImage"
                                                            name="employee_image"
-                                                           accept="image/*">
+                                                           accept="image/png, image/jpeg, image/jpg, image/webp">
+                                                    <div class="invalid-feedback" id="employeeImageFeedback">
+                                                        Please select a valid image file (JPG, PNG, WebP under 5MB).
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                            <!-- Address Information -->
+                                            <div class="form-section-title">
+                                                <span>Address Information</span>
+                                            </div>
+
+
+                                            <div class="row g-3 mb-4">
+
+                                                <div class="col-12 col-md-6">
+                                                    <label for="doorFlatNo">
+                                                        Door No / Flat No
+                                                    </label>
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           id="doorFlatNo"
+                                                           name="door_flat_no"
+                                                           placeholder="Enter door / flat no">
+                                                </div>
+
+
+                                                <div class="col-12 col-md-6">
+                                                    <label for="streetRoad">
+                                                        Street Name / Road
+                                                    </label>
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           id="streetRoad"
+                                                           name="street_road"
+                                                           placeholder="Enter street name / road">
+                                                </div>
+
+
+                                                <div class="col-12 col-md-6">
+                                                    <label for="areaLocality">
+                                                        Area
+                                                    </label>
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           id="areaLocality"
+                                                           name="area_locality"
+                                                           placeholder="Enter area">
+                                                </div>
+
+
+                                                <div class="col-12 col-md-6">
+                                                    <label for="city">
+                                                        City
+                                                    </label>
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           id="city"
+                                                           name="city"
+                                                           placeholder="Enter city">
+                                                </div>
+
+                                            </div>
+
+
+                                            <!-- Salary Information -->
+                                            <div class="form-section-title">
+                                                <span>Salary & Pay Details</span>
+                                            </div>
+
+
+                                            <div class="row g-3 mb-4">
+
+                                                <div class="col-12 col-md-4">
+                                                    <label for="baseSalary">
+                                                        Monthly Base Salary
+                                                    </label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">
+                                                            ₹
+                                                        </span>
+                                                        <input type="number"
+                                                               class="form-control"
+                                                               id="baseSalary"
+                                                               name="base_salary"
+                                                               min="0"
+                                                               placeholder="Enter base salary">
+                                                        <div class="invalid-feedback" id="baseSalaryFeedback">
+                                                            Salary cannot be negative.
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-12 col-md-4">
+                                                    <label for="siteAllowance">
+                                                        Site / Conveyance Allowance
+                                                    </label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text">
+                                                            ₹
+                                                        </span>
+                                                        <input type="number"
+                                                               class="form-control"
+                                                               id="siteAllowance"
+                                                               name="site_allowance"
+                                                               min="0"
+                                                               placeholder="Enter allowance">
+                                                        <div class="invalid-feedback" id="siteAllowanceFeedback">
+                                                            Allowance cannot be negative.
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-12 col-md-4">
+                                                    <label for="workingDays">
+                                                        Monthly Working Days
+                                                    </label>
+                                                    <input type="number"
+                                                           class="form-control"
+                                                           id="workingDays"
+                                                           name="working_days"
+                                                           value="26"
+                                                           min="1"
+                                                           max="31">
+                                                    <div class="invalid-feedback" id="workingDaysFeedback">
+                                                        Working days must be between 1 and 31.
+                                                    </div>
                                                 </div>
 
                                             </div>
@@ -659,8 +639,8 @@
 
     <script src="assets/libs/node-waves/waves.min.js"></script>
 
-    <!-- Dropzone -->
-    <script src="assets/libs/dropzone/min/dropzone.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
 
     <!-- IMPORTANT: Header and Sidebar Loader -->
     <script src="assets/js/component-loader.js"></script>
@@ -673,116 +653,355 @@
 
         $(document).ready(function () {
 
-            /* Mobile Number - Allow only 10 digits */
-
-            $("#mobileNumber").on("input", function () {
-
-                let value = $(this)
-                    .val()
-                    .replace(/\D/g, "")
-                    .substring(0, 10);
-
-                $(this).val(value);
-
+            /* =========================================
+               PASSWORD VISIBILITY TOGGLE
+            ========================================= */
+            $('#togglePasswordBtn').on('click', function () {
+                const $pwd = $('#employeePassword');
+                const $icon = $('#togglePasswordIcon');
+                if ($pwd.attr('type') === 'password') {
+                    $pwd.attr('type', 'text');
+                    $icon.removeClass('mdi-eye-outline').addClass('mdi-eye-off-outline');
+                } else {
+                    $pwd.attr('type', 'password');
+                    $icon.removeClass('mdi-eye-off-outline').addClass('mdi-eye-outline');
+                }
             });
 
 
-            /* Aadhaar Number - Allow only digits */
+            /* =========================================
+               INPUT FORMATTERS
+            ========================================= */
 
-            $("#aadhaarNumber").on("input", function () {
+            // Employee ID - auto uppercase
+            $('#employeeId').on('input', function () {
+                $(this).val($(this).val().toUpperCase());
+                validateField('employeeId');
+            });
 
-                let value = $(this)
-                    .val()
-                    .replace(/\D/g, "")
-                    .substring(0, 12);
-
+            // Mobile Number - Allow only 10 digits
+            $('#mobileNumber').on('input', function () {
+                let value = $(this).val().replace(/\D/g, '').substring(0, 10);
                 $(this).val(value);
+                validateField('mobileNumber');
+            });
 
+            // Aadhaar Number - 12 digits with auto spacing (xxxx xxxx xxxx)
+            $('#aadhaarNumber').on('input', function () {
+                let val = $(this).val().replace(/\D/g, '').substring(0, 12);
+                let formatted = val.match(/.{1,4}/g)?.join(' ') || val;
+                $(this).val(formatted);
+                validateField('aadhaarNumber');
+            });
+
+            // Employee Name
+            $('#employeeName').on('input', function () {
+                validateField('employeeName');
+            });
+
+            // Password
+            $('#employeePassword').on('input', function () {
+                validateField('employeePassword');
+            });
+
+            // Employee Type
+            $('#employeeType').on('change', function () {
+                validateField('employeeType');
+            });
+
+            // Image File
+            $('#employeeImage').on('change', function () {
+                validateField('employeeImage');
+            });
+
+            // Working Days
+            $('#workingDays').on('input', function () {
+                validateField('workingDays');
+            });
+
+            // Base Salary & Allowance
+            $('#baseSalary, #siteAllowance').on('input', function () {
+                validateField($(this).attr('id'));
             });
 
 
-            /* Dropzone Configuration */
+            /* =========================================
+               VALIDATION ENGINE
+            ========================================= */
 
-            if (typeof Dropzone !== "undefined") {
+            function setFieldValid($el) {
+                $el.removeClass('is-invalid').addClass('is-valid');
+            }
 
-                Dropzone.autoDiscover = false;
+            function setFieldInvalid($el, message) {
+                $el.removeClass('is-valid').addClass('is-invalid');
+                const feedbackId = '#' + $el.attr('id') + 'Feedback';
+                if ($(feedbackId).length && message) {
+                    $(feedbackId).text(message);
+                }
+            }
 
-                new Dropzone("#employeeImageDropzone", {
+            function clearFieldStatus($el) {
+                $el.removeClass('is-valid is-invalid');
+            }
 
-                    url: "#",
+            function validateField(fieldId) {
+                let isValid = true;
 
-                    autoProcessQueue: false,
+                switch (fieldId) {
+                    case 'employeeId': {
+                        const $el = $('#employeeId');
+                        const val = $el.val().trim();
+                        if (!val) {
+                            setFieldInvalid($el, 'Employee ID is required.');
+                            isValid = false;
+                        } else if (val.length < 3) {
+                            setFieldInvalid($el, 'Employee ID must be at least 3 characters.');
+                            isValid = false;
+                        } else if (!/^[A-Z0-9_-]+$/.test(val)) {
+                            setFieldInvalid($el, 'Employee ID can only contain uppercase letters, numbers, hyphens, or underscores.');
+                            isValid = false;
+                        } else {
+                            setFieldValid($el);
+                        }
+                        break;
+                    }
 
-                    maxFiles: 1,
+                    case 'employeeName': {
+                        const $el = $('#employeeName');
+                        const val = $el.val().trim();
+                        if (!val) {
+                            setFieldInvalid($el, 'Employee Name is required.');
+                            isValid = false;
+                        } else if (val.length < 3) {
+                            setFieldInvalid($el, 'Employee Name must be at least 3 characters.');
+                            isValid = false;
+                        } else if (!/^[a-zA-Z\s.'-]+$/.test(val)) {
+                            setFieldInvalid($el, 'Employee Name should only contain letters and spaces.');
+                            isValid = false;
+                        } else {
+                            setFieldValid($el);
+                        }
+                        break;
+                    }
 
-                    acceptedFiles: "image/*",
+                    case 'mobileNumber': {
+                        const $el = $('#mobileNumber');
+                        const val = $el.val().trim();
+                        if (!val) {
+                            setFieldInvalid($el, 'Mobile Number is required.');
+                            isValid = false;
+                        } else if (val.length !== 10) {
+                            setFieldInvalid($el, 'Mobile Number must be exactly 10 digits.');
+                            isValid = false;
+                        } else if (!/^[6-9]\d{9}$/.test(val)) {
+                            setFieldInvalid($el, 'Please enter a valid 10-digit Indian mobile number (starts with 6-9).');
+                            isValid = false;
+                        } else {
+                            setFieldValid($el);
+                        }
+                        break;
+                    }
 
-                    addRemoveLinks: true
+                    case 'employeePassword': {
+                        const $el = $('#employeePassword');
+                        const val = $el.val();
+                        if (!val) {
+                            setFieldInvalid($el, 'Password is required.');
+                            isValid = false;
+                        } else if (val.length < 6) {
+                            setFieldInvalid($el, 'Password must be at least 6 characters.');
+                            isValid = false;
+                        } else {
+                            setFieldValid($el);
+                        }
+                        break;
+                    }
 
+                    case 'employeeType': {
+                        const $el = $('#employeeType');
+                        const val = $el.val();
+                        if (!val) {
+                            setFieldInvalid($el, 'Please select an employee type.');
+                            isValid = false;
+                        } else {
+                            setFieldValid($el);
+                        }
+                        break;
+                    }
+
+                    case 'aadhaarNumber': {
+                        const $el = $('#aadhaarNumber');
+                        const raw = $el.val().replace(/\s/g, '');
+                        if (raw.length > 0) {
+                            if (raw.length !== 12 || !/^\d{12}$/.test(raw)) {
+                                setFieldInvalid($el, 'Aadhaar number must be exactly 12 digits.');
+                                isValid = false;
+                            } else {
+                                setFieldValid($el);
+                            }
+                        } else {
+                            clearFieldStatus($el);
+                        }
+                        break;
+                    }
+
+                    case 'employeeImage': {
+                        const $el = $('#employeeImage');
+                        const file = $el[0].files[0];
+                        if (file) {
+                            const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+                            const maxSize = 5 * 1024 * 1024; // 5MB
+                            if (!validTypes.includes(file.type)) {
+                                setFieldInvalid($el, 'Only JPG, JPEG, PNG, or WebP images are allowed.');
+                                isValid = false;
+                            } else if (file.size > maxSize) {
+                                setFieldInvalid($el, 'Image file size must be less than 5MB.');
+                                isValid = false;
+                            } else {
+                                setFieldValid($el);
+                            }
+                        } else {
+                            clearFieldStatus($el);
+                        }
+                        break;
+                    }
+
+                    case 'workingDays': {
+                        const $el = $('#workingDays');
+                        const val = parseInt($el.val(), 10);
+                        if ($el.val() !== '' && (isNaN(val) || val < 1 || val > 31)) {
+                            setFieldInvalid($el, 'Working days must be between 1 and 31.');
+                            isValid = false;
+                        } else if ($el.val() !== '') {
+                            setFieldValid($el);
+                        } else {
+                            clearFieldStatus($el);
+                        }
+                        break;
+                    }
+
+                    case 'baseSalary': {
+                        const $el = $('#baseSalary');
+                        const val = parseFloat($el.val());
+                        if ($el.val() !== '' && (isNaN(val) || val < 0)) {
+                            setFieldInvalid($el, 'Salary cannot be negative.');
+                            isValid = false;
+                        } else if ($el.val() !== '') {
+                            setFieldValid($el);
+                        } else {
+                            clearFieldStatus($el);
+                        }
+                        break;
+                    }
+
+                    case 'siteAllowance': {
+                        const $el = $('#siteAllowance');
+                        const val = parseFloat($el.val());
+                        if ($el.val() !== '' && (isNaN(val) || val < 0)) {
+                            setFieldInvalid($el, 'Allowance cannot be negative.');
+                            isValid = false;
+                        } else if ($el.val() !== '') {
+                            setFieldValid($el);
+                        } else {
+                            clearFieldStatus($el);
+                        }
+                        break;
+                    }
+                }
+
+                return isValid;
+            }
+
+            function validateAllFields() {
+                const requiredFields = [
+                    'employeeId',
+                    'employeeName',
+                    'mobileNumber',
+                    'employeePassword',
+                    'employeeType'
+                ];
+
+                const optionalFields = [
+                    'aadhaarNumber',
+                    'employeeImage',
+                    'workingDays',
+                    'baseSalary',
+                    'siteAllowance'
+                ];
+
+                let allValid = true;
+                let firstInvalidEl = null;
+
+                [...requiredFields, ...optionalFields].forEach(function (fieldId) {
+                    const isFieldValid = validateField(fieldId);
+                    if (!isFieldValid) {
+                        allValid = false;
+                        if (!firstInvalidEl) {
+                            firstInvalidEl = $('#' + fieldId);
+                        }
+                    }
                 });
 
+                return { allValid, firstInvalidEl };
             }
 
 
-            /* Form Submit */
+            /* =========================================
+               FORM SUBMIT WITH SWEETALERT
+            ========================================= */
 
-            $("#addEmployeeForm").on("submit", function (e) {
-
+            $('#addEmployeeForm').on('submit', function (e) {
                 e.preventDefault();
 
+                const { allValid, firstInvalidEl } = validateAllFields();
 
-                const mobile = $("#mobileNumber").val();
+                if (!allValid) {
+                    if (firstInvalidEl) {
+                        $('html, body').animate({
+                            scrollTop: firstInvalidEl.offset().top - 120
+                        }, 300);
+                        firstInvalidEl.focus();
+                    }
 
-
-                if (mobile.length !== 10) {
-
-                    alert("Please enter a valid 10-digit mobile number.");
-
-                    $("#mobileNumber").focus();
-
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Validation Error',
+                        text: 'Please correct the highlighted fields before submitting.',
+                        confirmButtonColor: '#009ef7'
+                    });
                     return;
-
                 }
 
+                const employeeId = $('#employeeId').val().trim();
+                const employeeName = $('#employeeName').val().trim();
+                const mobile = $('#mobileNumber').val().trim();
+                const employeeType = $('#employeeType').val();
 
-                const employee = {
-
-                    name: $("#employeeName").val(),
-
-                    mobile: mobile,
-
-                    password: $("#employeePassword").val(),
-
-                    aadhaar: $("#aadhaarNumber").val(),
-
-                    doorNo: $("#doorFlatNo").val(),
-
-                    street: $("#streetRoad").val(),
-
-                    area: $("#areaLocality").val(),
-
-                    city: $("#city").val(),
-
-                    baseSalary: $("#baseSalary").val(),
-
-                    siteAllowance: $("#siteAllowance").val(),
-
-                    workingDays: $("#workingDays").val(),
-
-                    employeeType: $("#employeeType").val()
-
-                };
-
-
-                console.log(
-                    "New employee submitted:",
-                    employee
-                );
-
-
-                window.location.href =
-                    "employee-list.html";
-
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Employee Added Successfully!',
+                    html: `
+                        <div class="text-start mt-2 p-3 bg-light rounded font-size-13">
+                            <p class="mb-1"><strong>ID:</strong> ${employeeId}</p>
+                            <p class="mb-1"><strong>Name:</strong> ${employeeName}</p>
+                            <p class="mb-1"><strong>Mobile:</strong> ${mobile}</p>
+                            <p class="mb-0"><strong>Type:</strong> ${employeeType}</p>
+                        </div>
+                    `,
+                    confirmButtonColor: '#009ef7',
+                    confirmButtonText: 'Go to Employee List',
+                    showCancelButton: true,
+                    cancelButtonText: 'Add Another'
+                }).then(function (result) {
+                    if (result.isConfirmed) {
+                        window.location.href = 'employee-list.html';
+                    } else {
+                        $('#addEmployeeForm')[0].reset();
+                        $('#addEmployeeForm').find('.is-valid, .is-invalid').removeClass('is-valid is-invalid');
+                        $('#workingDays').val('26');
+                    }
+                });
             });
 
         });

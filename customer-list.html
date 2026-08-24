@@ -66,88 +66,73 @@
     <style>
 
         /* =========================================
-           CUSTOMER TABLE
+           CUSTOMER TABLE & RESPONSIVE SCROLLING
         ========================================= */
 
         .customer-table-wrapper {
             width: 100%;
-            overflow-x: hidden;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
-
 
         .customer-table {
             width: 100% !important;
             table-layout: auto;
+            min-width: 680px;
         }
-
 
         .customer-table th,
         .customer-table td {
-            white-space: normal !important;
+            white-space: normal;
             vertical-align: middle;
             word-break: break-word;
         }
 
-
         /* Keep action buttons in same line */
-
         .customer-table th:last-child,
         .customer-table td:last-child {
             white-space: nowrap !important;
         }
 
-
-        /* =========================================
-           COLUMN WIDTHS
-        ========================================= */
-
+        /* COLUMN WIDTHS */
         .customer-table th:nth-child(1),
         .customer-table td:nth-child(1) {
-            width: 70px;
+            width: 65px;
+            text-align: center;
         }
-
 
         .customer-table th:nth-child(2),
         .customer-table td:nth-child(2) {
-            min-width: 150px;
-        }
-
-
-        .customer-table th:nth-child(3),
-        .customer-table td:nth-child(3) {
-            min-width: 140px;
-        }
-
-
-        .customer-table th:nth-child(4),
-        .customer-table td:nth-child(4) {
             min-width: 170px;
         }
 
-
-        .customer-table th:nth-child(5),
-        .customer-table td:nth-child(5) {
+        .customer-table th:nth-child(3),
+        .customer-table td:nth-child(3) {
             min-width: 130px;
         }
 
+        .customer-table th:nth-child(4),
+        .customer-table td:nth-child(4) {
+            min-width: 160px;
+        }
+
+        .customer-table th:nth-child(5),
+        .customer-table td:nth-child(5) {
+            min-width: 140px;
+        }
 
         .customer-table th:nth-child(6),
         .customer-table td:nth-child(6) {
-            width: 125px;
+            width: 120px;
         }
 
-
-        /* =========================================
-           ACTION BUTTONS
-        ========================================= */
-
+        /* ACTION BUTTONS */
         .action-buttons {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 5px;
         }
-
 
         .action-buttons .btn {
             width: 32px;
@@ -158,28 +143,34 @@
             align-items: center;
         }
 
-
-        /* =========================================
-           MOBILE
-        ========================================= */
-
+        /* MOBILE */
         @media (max-width: 768px) {
 
             .customer-table {
                 font-size: 13px;
             }
 
-
             .customer-table th,
             .customer-table td {
-                padding: 10px 6px !important;
+                padding: 10px 8px !important;
             }
 
+            .card-body {
+                padding: 15px !important;
+            }
+
+            .page-title-box {
+                align-items: flex-start !important;
+                gap: 12px;
+            }
+
+            .page-title h4 {
+                font-size: 16px;
+            }
 
             .action-buttons {
                 gap: 3px;
             }
-
 
             .action-buttons .btn {
                 width: 29px;
@@ -305,14 +296,40 @@
 
                                     <div class="card-body p-4">
 
+                                        <!-- SEARCH BAR -->
+                                        <div class="row align-items-center mb-4">
+                                            <div class="col-12 col-md-7 col-lg-5">
+                                                <div class="input-group shadow-sm" style="border-radius: 10px; overflow: hidden;">
+                                                    
+                                                    <input type="text"
+                                                           id="customerSearchInput"
+                                                           class="form-control border-end-0 ps-3"
+                                                           placeholder="Search by Number, Name or Customer ID..."
+                                                           style="font-size: 14px; height: 44px;">
+                                                    <button class="btn btn-outline-secondary border-start-0 border-end-0 bg-white d-none text-muted"
+                                                            type="button"
+                                                            id="clearSearchBtn"
+                                                            title="Clear Search">
+                                                        <i class="mdi mdi-close font-size-16"></i>
+                                                    </button>
+                                                    <button class="btn btn-primary px-3 fw-medium d-flex align-items-center"
+                                                            type="button"
+                                                            id="customerSearchBtn"
+                                                            style="height: 44px;">
+                                                        <i class="mdi mdi-magnify me-1"></i> Search
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-5 col-lg-7 text-md-end mt-2 mt-md-0">
+                                                <span class="text-muted font-size-13" id="searchResultCount"></span>
+                                            </div>
+                                        </div>
 
                                         <!-- TABLE WRAPPER -->
-
-                                        <div class="customer-table-wrapper">
-
+                                        <div class="customer-table-wrapper table-responsive">
 
                                             <table id="datatable-customers"
-                                                   class="table table-bordered dt-responsive nowrap customer-table"
+                                                   class="table table-bordered customer-table"
                                                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 
 
@@ -1258,11 +1275,12 @@
             const dataTable = $('#datatable-customers').DataTable({
 
                 paging: false,
-                searching: false,
+                searching: true,
                 info: false,
                 lengthChange: false,
-
                 autoWidth: false,
+                responsive: false,
+                dom: 't',
 
                 order: [],
 
@@ -1276,6 +1294,61 @@
                 ]
 
             });
+
+
+            /* =========================================
+               CUSTOMER SEARCH (NUMBER, NAME, ID)
+            ========================================= */
+
+            function performCustomerSearch() {
+                const query = $('#customerSearchInput').val().trim();
+                dataTable.search(query).draw();
+
+                if (query.length > 0) {
+                    $('#clearSearchBtn').removeClass('d-none');
+                } else {
+                    $('#clearSearchBtn').addClass('d-none');
+                }
+
+                const filteredCount = dataTable.rows({ search: 'applied' }).count();
+                const totalCount = dataTable.rows().count();
+
+                if (query.length > 0) {
+                    if (filteredCount === 0) {
+                        $('#searchResultCount').html(`<span class="text-danger"><i class="mdi mdi-alert-circle-outline me-1"></i>No customers found matching "${query}"</span>`);
+                    } else {
+                        $('#searchResultCount').html(`Found <b>${filteredCount}</b> of <b>${totalCount}</b> customers`);
+                    }
+                } else {
+                    $('#searchResultCount').text(`Total: ${totalCount} customers`);
+                }
+            }
+
+            $('#customerSearchBtn').on('click', function () {
+                performCustomerSearch();
+            });
+
+            $('#customerSearchInput').on('keyup', function (e) {
+                if (e.key === 'Enter' || e.keyCode === 13) {
+                    performCustomerSearch();
+                } else {
+                    const val = $(this).val().trim();
+                    if (val.length > 0) {
+                        $('#clearSearchBtn').removeClass('d-none');
+                    } else {
+                        $('#clearSearchBtn').addClass('d-none');
+                        performCustomerSearch();
+                    }
+                }
+            });
+
+            $('#clearSearchBtn').on('click', function () {
+                $('#customerSearchInput').val('').focus();
+                performCustomerSearch();
+            });
+
+            // Initial counter
+            $('#searchResultCount').text(`Total: ${dataTable.rows().count()} customers`);
 
 
 

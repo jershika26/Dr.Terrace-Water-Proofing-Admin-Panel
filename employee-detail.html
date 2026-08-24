@@ -95,10 +95,9 @@
                                 </div>
 
                                 <div class="state-information d-flex gap-2">
-                                    <a href="employee-list.html" class="btn btn-outline-light shadow-sm" id="backToListTopBtn">
-                                        <i class="mdi mdi-arrow-left me-1"></i> Back to Employee List
-                                    </a>
-                                    
+                                    <button type="button" class="btn btn-primary shadow-sm" id="editEmployeeBtn">
+                                        <i class="mdi mdi-pencil me-1"></i> Edit Employee List
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -117,6 +116,31 @@
 
                                         <form id="employeeDetailForm">
 
+                                            <!-- Employee Profile Header with Photo Change Action -->
+                                            <div class="d-flex align-items-center gap-3 mb-4 pb-3 border-bottom flex-wrap">
+                                                <div class="position-relative">
+                                                    <img id="employeeAvatarPreview"
+                                                         src="assets/images/users/avatar-2.jpg"
+                                                         alt="Employee Photo"
+                                                         class="rounded-circle shadow-sm"
+                                                         style="width: 90px; height: 90px; object-fit: cover; border: 3px solid #eef2f6;">
+                                                    <label for="employeeImage"
+                                                           class="btn btn-primary btn-sm rounded-circle position-absolute bottom-0 end-0 p-0 d-flex align-items-center justify-content-center shadow-sm"
+                                                           id="avatarUploadBadge"
+                                                           style="width: 30px; height: 30px; cursor: pointer; transform: translate(5%, 5%);"
+                                                           title="Change Employee Photo">
+                                                        <i class="mdi mdi-camera font-size-14"></i>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <h5 class="mb-1 font-size-18 text-dark" id="employeeProfileHeaderName">Donald Johnson</h5>
+                                                    
+                                                    <!-- <label for="employeeImage" class="btn btn-outline-primary btn-sm mb-0" style="cursor: pointer;">
+                                                        <i class="mdi mdi-upload me-1"></i> Change Photo
+                                                    </label> -->
+                                                </div>
+                                            </div>
+
                                             <!-- SECTION 1: Personal & Contact Information -->
                                             <div class="form-section-title">
                                                 <i class="mdi mdi-account-outline font-size-20"></i>
@@ -125,22 +149,22 @@
 
                                             <div class="row g-3 mb-4">
                                                 <div class="col-12 col-md-4">
-                                                    <label  for="employeeId">Employee ID</label>
+                                                    <label for="employeeId">Employee ID</label>
                                                     <input type="text" class="form-control" id="employeeId" name="employee_id" value="EMP-001" readonly>
                                                 </div>
 
                                                 <div class="col-12 col-md-4">
-                                                    <label  for="employeeName">Employee Name</label>
+                                                    <label for="employeeName">Employee Name</label>
                                                     <input type="text" class="form-control" id="employeeName" name="employee_name" value="Donald Johnson" readonly>
                                                 </div>
 
                                                 <div class="col-12 col-md-4">
-                                                    <label  for="mobileNumber"> Mobile Number</label>
+                                                    <label for="mobileNumber">Mobile Number</label>
                                                     <input type="text" class="form-control" id="mobileNumber" name="mobile_number" value="+91 98765 43210" readonly>
                                                 </div>
 
                                                 <div class="col-12 col-md-4">
-                                                    <label  for="employeeRole">Role / Designation</label>
+                                                    <label for="employeeRole">Role / Designation</label>
                                                     <input type="text" class="form-control" id="employeeRole" name="employee_role" value="Field Employee" readonly>
                                                 </div>
 
@@ -148,6 +172,7 @@
                                                     <label for="aadhaarNumber">Aadhaar Number</label>
                                                     <input type="text" class="form-control" id="aadhaarNumber" name="aadhaar_number" value="9678 8765 4589" readonly>
                                                 </div>
+
                                             </div>
 
 
@@ -253,7 +278,8 @@
                 city: "Chennai",
                 salary: "₹25,000",
                 allowance: "₹2,000",
-                workingDays: "26 Days"
+                workingDays: "26 Days",
+                image: "assets/images/users/avatar-2.jpg"
             },
             "EMP-002": {
                 id: "EMP-002",
@@ -265,7 +291,8 @@
                 city: "Chennai",
                 salary: "₹32,000",
                 allowance: "₹3,500",
-                workingDays: "26 Days"
+                workingDays: "26 Days",
+                image: "assets/images/users/avatar-3.jpg"
             },
             "EMP-003": {
                 id: "EMP-003",
@@ -277,7 +304,8 @@
                 city: "Chennai",
                 salary: "₹22,000",
                 allowance: "₹1,500",
-                workingDays: "24 Days"
+                workingDays: "24 Days",
+                image: "assets/images/users/avatar-5.jpg"
             },
             "EMP-004": {
                 id: "EMP-004",
@@ -289,7 +317,8 @@
                 city: "Chennai",
                 salary: "₹25,000",
                 allowance: "₹2,000",
-                workingDays: "26 Days"
+                workingDays: "26 Days",
+                image: "assets/images/users/avatar-4.jpg"
             }
         };
 
@@ -300,33 +329,41 @@
 
             const data = employeesDB[empIdParam] || employeesDB["EMP-001"];
 
-            // Section 1: Personal & Contact Information
-            $('#employeeId').val(data.id);
-            $('#employeeName').val(data.name);
-            $('#mobileNumber').val(data.mobile);
-            $('#employeeRole').val(data.role);
-            $('#aadhaarNumber').val(data.aadhaar);
+            function populateData() {
+                // Header profile card
+                $('#employeeProfileHeaderName').text(data.name);
+                $('#employeeProfileHeaderId').text(data.id);
+                $('#employeeProfileHeaderRole').text(data.role);
+                $('#employeeAvatarPreview').attr('src', data.image || "assets/images/users/avatar-2.jpg");
 
-            // Section 2: Location Information
-            $('#areaLocality').val(data.area);
-            $('#city').val(data.city);
+                // Section 1: Personal & Contact Information
+                $('#employeeId').val(data.id);
+                $('#employeeName').val(data.name);
+                $('#mobileNumber').val(data.mobile);
+                $('#employeeRole').val(data.role);
+                $('#aadhaarNumber').val(data.aadhaar);
+                $('#employeeImage').val('');
 
-            // Section 3: Salary & Work Details
-            $('#baseSalary').val(data.salary);
-            $('#siteAllowance').val(data.allowance);
-            $('#workingDays').val(data.workingDays);
+                // Section 2: Location Information
+                $('#areaLocality').val(data.area);
+                $('#city').val(data.city);
 
-            // =========================
-            // VIEW / EDIT MODE
-            // =========================
-            const isEditMode = urlParams.get('mode') === 'edit';
+                // Section 3: Salary & Work Details
+                $('#baseSalary').val(data.salary);
+                $('#siteAllowance').val(data.allowance);
+                $('#workingDays').val(data.workingDays);
+            }
 
-            if (isEditMode) {
+            populateData();
 
-                // Unlock every field except the ID, which stays a fixed identifier
+            let isEditMode = false;
+
+            function enableEditMode() {
+                isEditMode = true;
+
+                // Unlock every field including the ID
                 $('#employeeDetailForm')
                     .find('.form-control, .form-select')
-                    .not('#employeeId')
                     .prop('readonly', false)
                     .prop('disabled', false);
 
@@ -334,16 +371,87 @@
                 $('#pageTitle').text('Edit Employee Details');
                 $('#breadcrumbActive').text('Edit Employee');
 
-                // Top & bottom action bars
-                $('#backToListTopBtn')
+                // Top button switches to Cancel
+                $('#editEmployeeBtn')
                     .html('<i class="mdi mdi-close me-1"></i> Cancel')
-                    .attr('href', 'employee-detail.html?id=' + empIdParam);
+                    .removeClass('btn-primary')
+                    .addClass('btn-outline-light');
 
+                // Bottom action bar
                 $('#backToListBtn')
                     .html('<i class="mdi mdi-close me-1"></i> Cancel')
-                    .attr('href', 'employee-detail.html?id=' + empIdParam);
+                    .attr('href', 'javascript:void(0);');
 
                 $('#saveChangesBtn').removeClass('d-none');
+                $('#employeeId').focus();
+            }
+
+            function disableEditMode() {
+                isEditMode = false;
+
+                // Reset fields with current data
+                populateData();
+
+                // Lock all fields
+                $('#employeeDetailForm')
+                    .find('.form-control, .form-select')
+                    .prop('readonly', true)
+                    .prop('disabled', true);
+
+                // Page title & breadcrumb
+                $('#pageTitle').text('Employee Details');
+                $('#breadcrumbActive').text('Employee Details');
+
+                // Top button switches back
+                $('#editEmployeeBtn')
+                    .html('<i class="mdi mdi-pencil me-1"></i> Edit Employee List')
+                    .removeClass('btn-outline-light')
+                    .addClass('btn-primary');
+
+                // Bottom action bar
+                $('#backToListBtn')
+                    .html('<i class="mdi mdi-arrow-left me-1"></i> Back to List')
+                    .attr('href', 'employee-list.html');
+
+                $('#saveChangesBtn').addClass('d-none');
+            }
+
+            // Employee Image File Change (Preview)
+            $('#employeeImage').on('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(evt) {
+                        $('#employeeAvatarPreview').attr('src', evt.target.result);
+                    };
+                    reader.readAsDataURL(file);
+
+                    if (!isEditMode) {
+                        enableEditMode();
+                    }
+                }
+            });
+
+            // Top Edit / Cancel Button Click Handler
+            $('#editEmployeeBtn').on('click', function() {
+                if (isEditMode) {
+                    disableEditMode();
+                } else {
+                    enableEditMode();
+                }
+            });
+
+            // Bottom Cancel Button Click Handler in Edit Mode
+            $('#backToListBtn').on('click', function(e) {
+                if (isEditMode) {
+                    e.preventDefault();
+                    disableEditMode();
+                }
+            });
+
+            // Initial check if mode=edit is in URL
+            if (urlParams.get('mode') === 'edit') {
+                enableEditMode();
             }
 
             // =========================
@@ -356,7 +464,19 @@
                     return;
                 }
 
-                // TODO: wire this up to your backend / API to persist the changes.
+                // Update data in-memory
+                data.id = $('#employeeId').val();
+                data.name = $('#employeeName').val();
+                data.mobile = $('#mobileNumber').val();
+                data.role = $('#employeeRole').val();
+                data.aadhaar = $('#aadhaarNumber').val();
+                data.area = $('#areaLocality').val();
+                data.city = $('#city').val();
+                data.salary = $('#baseSalary').val();
+                data.allowance = $('#siteAllowance').val();
+                data.workingDays = $('#workingDays').val();
+                data.image = $('#employeeAvatarPreview').attr('src');
+
                 Swal.fire({
                     title: 'Saved!',
                     text: 'Employee details have been updated successfully.',
@@ -364,7 +484,7 @@
                     timer: 1800,
                     showConfirmButton: false
                 }).then(function() {
-                    window.location.href = 'employee-detail.html?id=' + empIdParam;
+                    disableEditMode();
                 });
             });
         });

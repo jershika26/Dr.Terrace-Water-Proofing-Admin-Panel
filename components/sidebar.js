@@ -2,6 +2,14 @@
 const SidebarTemplate = `
 <div class="vertical-menu">
     <div data-simplebar class="h-100">
+        <!-- Brand Box on Mobile Sidebar Open -->
+        <div class="sidebar-brand-box">
+            <div class="d-flex align-items-center justify-content-between w-100">
+                <span class="welcome-brand-text font-size-14 text-dark text-nowrap me-2" style="font-weight: 600;">Welcome Dr.Terrace</span>
+                <img src="assets/images/favicon.png" alt="Dr. Terrace" height="34" style="max-height: 38px; object-fit: contain;">
+            </div>
+        </div>
+
         <div class="user-details">
             <div class="d-flex">
                 <div class="me-2">
@@ -74,7 +82,6 @@ const SidebarTemplate = `
                         <span>Appointment</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="all-appointments.html">All Appointments</a></li>
                         <li><a href="new-appointment.html">New Appointment</a></li>
                     </ul>
                 </li>
@@ -86,9 +93,9 @@ const SidebarTemplate = `
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="master-appointment.html">Appointment</a></li>
-                        <li><a href="master-quote.html">Quote</a></li>
                         <li><a href="master-service.html">Service</a></li>
                         <li><a href="master-packages.html">Packages</a></li>
+                        <li><a href="house-type.html">House Type</a></li>
                     </ul>
                 </li>    
 
@@ -104,6 +111,13 @@ const SidebarTemplate = `
                     <a href="privacy-policy.html" class="waves-effect">
                         <i class="mdi mdi-shield-account-outline"></i>
                         <span>Privacy Policy</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="contact-information.html" class="waves-effect">
+                        <i class="mdi mdi-card-account-phone-outline"></i>
+                        <span>Contact Information</span>
                     </a>
                 </li>
                

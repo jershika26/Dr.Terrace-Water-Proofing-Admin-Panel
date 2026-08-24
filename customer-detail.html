@@ -241,15 +241,15 @@
                                     </a>
 
 
-                                    <a href="new-appointment.html"
+                                    <button type="button"
                                         class="btn btn-primary shadow-sm"
-                                        id="newAppointmentBtn">
+                                        id="editCustomerBtn">
 
-                                        <i class="mdi mdi-calendar-plus me-1"></i>
+                                        <i class="mdi mdi-pencil me-1"></i>
 
-                                        New Appointment
+                                        Edit Customer
 
-                                    </a>
+                                    </button>
 
                                 </div>
 
@@ -280,456 +280,144 @@
                                             <!-- =========================
                                                  PERSONAL INFORMATION
                                             ========================== -->
-
                                             <div class="form-section-title">
-
                                                 <i class="mdi mdi-account-outline font-size-20"></i>
-
-                                                <span>
-
-                                                    Personal & Contact Information
-
-                                                </span>
-
+                                                <span>Personal & Contact Information</span>
                                             </div>
 
-
                                             <div class="row g-3 mb-4">
-
-
                                                 <!-- Customer ID -->
-
                                                 <div class="col-12 col-md-4">
-
-                                                    <label for="customerId">
-
-                                                        Customer ID
-
-                                                    </label>
-
-                                                    <input type="text"
-                                                        class="form-control"
-                                                        id="customerId"
-                                                        readonly>
-
+                                                    <label for="customerId">Customer ID</label>
+                                                    <input type="text" class="form-control" id="customerId" readonly>
                                                 </div>
-
 
                                                 <!-- Customer Name -->
-
                                                 <div class="col-12 col-md-4">
-
-                                                    <label for="customerName">
-
-                                                        Customer Name
-
-                                                    </label>
-
-                                                    <input type="text"
-                                                        class="form-control"
-                                                        id="customerName"
-                                                        readonly>
-
+                                                    <label for="customerName">Customer Name</label>
+                                                    <input type="text" class="form-control" id="customerName" readonly>
                                                 </div>
-
 
                                                 <!-- Mobile -->
-
                                                 <div class="col-12 col-md-4">
-
-                                                    <label for="mobileNumber">
-
-                                                        Primary Mobile Number
-
-                                                    </label>
-
-                                                    <input type="text"
-                                                        class="form-control"
-                                                        id="mobileNumber"
-                                                        readonly>
-
+                                                    <label for="mobileNumber">Mobile Number</label>
+                                                    <input type="text" class="form-control" id="mobileNumber" readonly>
                                                 </div>
-
-
-                                                <!-- Alternate Mobile -->
-
-                                                <div class="col-12 col-md-4">
-
-                                                    <label for="altMobileNumber">
-
-                                                        Alternate Mobile Number
-
-                                                    </label>
-
-                                                    <input type="text"
-                                                        class="form-control"
-                                                        id="altMobileNumber"
-                                                        readonly>
-
-                                                </div>
-
-
-                                                <!-- Email -->
-
-                                                <div class="col-12 col-md-4">
-
-                                                    <label for="emailAddress">
-
-                                                        Email Address
-
-                                                    </label>
-
-                                                    <input type="text"
-                                                        class="form-control"
-                                                        id="emailAddress"
-                                                        readonly>
-
-                                                </div>
-
-
-                                                <!-- Customer Type -->
-
-                                                <div class="col-12 col-md-4">
-
-                                                    <label for="customerType">
-
-                                                        Customer Type
-
-                                                    </label>
-
-                                                    <input type="text"
-                                                        class="form-control"
-                                                        id="customerType"
-                                                        readonly>
-
-                                                </div>
-
-
                                             </div>
 
 
                                             <!-- =========================
                                                  LOCATION INFORMATION
                                             ========================== -->
-
                                             <div class="form-section-title">
-
                                                 <i class="mdi mdi-map-marker-outline font-size-20"></i>
-
-                                                <span>
-
-                                                    Location & Address Information
-
-                                                </span>
-
+                                                <span>Location & Address Information</span>
                                             </div>
 
-
                                             <div class="row g-3 mb-4">
-
-
                                                 <!-- Door No -->
-
                                                 <div class="col-12 col-md-4">
-
-                                                    <label for="doorFlatNo">
-
-                                                        Door No / Flat No
-
-                                                    </label>
-
-                                                    <input type="text"
-                                                        class="form-control"
-                                                        id="doorFlatNo"
-                                                        readonly>
-
+                                                    <label for="doorFlatNo">Door No / Flat No</label>
+                                                    <input type="text" class="form-control" id="doorFlatNo" readonly>
                                                 </div>
-
-
-                                                <!-- Building -->
-
-                                                <div class="col-12 col-md-4">
-
-                                                    <label for="buildingName">
-
-                                                        Apartment / Building Name
-
-                                                    </label>
-
-                                                    <input type="text"
-                                                        class="form-control"
-                                                        id="buildingName"
-                                                        readonly>
-
-                                                </div>
-
 
                                                 <!-- Street -->
-
                                                 <div class="col-12 col-md-4">
-
-                                                    <label for="streetRoad">
-
-                                                        Street Name / Road
-
-                                                    </label>
-
-                                                    <input type="text"
-                                                        class="form-control"
-                                                        id="streetRoad"
-                                                        readonly>
-
+                                                    <label for="streetRoad">Street Name / Road</label>
+                                                    <input type="text" class="form-control" id="streetRoad" readonly>
                                                 </div>
-
-
-                                                <!-- Area -->
-
-                                                <div class="col-12 col-md-4">
-
-                                                    <label for="areaLocality">
-
-                                                        Area / Locality
-
-                                                    </label>
-
-                                                    <input type="text"
-                                                        class="form-control"
-                                                        id="areaLocality"
-                                                        readonly>
-
-                                                </div>
-
-
-                                                <!-- City -->
-
-                                                <div class="col-12 col-md-4">
-
-                                                    <label for="city">
-
-                                                        City
-
-                                                    </label>
-
-                                                    <input type="text"
-                                                        class="form-control"
-                                                        id="city"
-                                                        readonly>
-
-                                                </div>
-
 
                                                 <!-- Pincode -->
-
                                                 <div class="col-12 col-md-4">
-
-                                                    <label for="pincode">
-
-                                                        Pincode
-
-                                                    </label>
-
-                                                    <input type="text"
-                                                        class="form-control"
-                                                        id="pincode"
-                                                        readonly>
-
+                                                    <label for="pincode">Pincode</label>
+                                                    <input type="text" class="form-control" id="pincode" readonly>
                                                 </div>
 
+                                                <!-- Area -->
+                                                <div class="col-12 col-md-6">
+                                                    <label for="areaLocality">Area / Locality</label>
+                                                    <input type="text" class="form-control" id="areaLocality" readonly>
+                                                </div>
 
-
+                                                <!-- City -->
+                                                <div class="col-12 col-md-6">
+                                                    <label for="city">City</label>
+                                                    <input type="text" class="form-control" id="city" readonly>
+                                                </div>
 
                                                 <!-- Google Location -->
-
-                                                <div class="col-12 col-md-6">
-
-                                                    <label for="googleLocation">
-
-                                                        Google Location
-
-                                                    </label>
-
-
+                                                <div class="col-12">
+                                                    <label for="googleLocation">Google Location</label>
                                                     <div class="input-icon-wrapper">
-
-                                                        <input type="text"
-                                                            class="form-control"
-                                                            id="googleLocation"
-                                                            readonly>
-
+                                                        <input type="text" class="form-control" id="googleLocation" readonly>
                                                         <i class="mdi mdi-map-marker input-trailing-icon"></i>
-
                                                     </div>
-
                                                 </div>
-
-
                                             </div>
 
 
                                             <!-- =========================
                                                  SERVICE INFORMATION
                                             ========================== -->
-
                                             <div class="form-section-title">
-
                                                 <i class="mdi mdi-wrench-outline font-size-20"></i>
-
-                                                <span>
-
-                                                    Service & Assignment Information
-
-                                                </span>
-
+                                                <span>Service & Assignment Information</span>
                                             </div>
 
-
                                             <div class="row g-3 mb-4">
-
-
                                                 <!-- Services -->
-
                                                 <div class="col-12 col-md-6">
-
-                                                    <label for="serviceRequired">
-
-                                                        Service(s) Requested
-
-                                                    </label>
-
-                                                    <input type="text"
-                                                        class="form-control"
-                                                        id="serviceRequired"
-                                                        readonly>
-
+                                                    <label for="serviceRequired">Service(s) Requested</label>
+                                                    <input type="text" class="form-control" id="serviceRequired" readonly>
                                                 </div>
-
 
                                                 <!-- Employee -->
-
                                                 <div class="col-12 col-md-6">
-
-                                                    <label for="assignedTo">
-
-                                                        Assigned Specialist / Employee
-
-                                                    </label>
-
-                                                    <input type="text"
-                                                        class="form-control"
-                                                        id="assignedTo"
-                                                        readonly>
-
+                                                    <label for="assignedTo">Assigned Specialist / Employee</label>
+                                                    <input type="text" class="form-control" id="assignedTo" readonly>
                                                 </div>
-
 
                                                 <!-- Appointment Date -->
-
                                                 <div class="col-12 col-md-4">
-
-                                                    <label for="appointmentDate">
-
-                                                        Appointment Date
-
-                                                    </label>
-
-                                                    <input type="text"
-                                                        class="form-control"
-                                                        id="appointmentDate"
-                                                        readonly>
-
+                                                    <label for="appointmentDate">Appointment Date</label>
+                                                    <input type="text" class="form-control" id="appointmentDate" readonly>
                                                 </div>
 
+                                                <!-- Appointment Fix Date -->
+                                                <div class="col-12 col-md-4">
+                                                    <label for="appointmentFixDate">Appointment Fix Date</label>
+                                                    <input type="text" class="form-control" id="appointmentFixDate" readonly>
+                                                </div>
 
                                                 <!-- Appointment Time -->
-
                                                 <div class="col-12 col-md-4">
-
-                                                    <label for="appointmentTime">
-
-                                                        Appointment Time
-
-                                                    </label>
-
-                                                    <input type="text"
-                                                        class="form-control"
-                                                        id="appointmentTime"
-                                                        readonly>
-
+                                                    <label for="appointmentTime">Appointment Time</label>
+                                                    <input type="text" class="form-control" id="appointmentTime" readonly>
                                                 </div>
-
 
                                                 <!-- Property Type -->
-
-                                                <div class="col-12 col-md-4">
-
-                                                    <label for="propertyType">
-
-                                                        Property / Structure Type
-
-                                                    </label>
-
-                                                    <input type="text"
-                                                        class="form-control"
-                                                        id="propertyType"
-                                                        readonly>
-
+                                                <div class="col-12 col-md-3">
+                                                    <label for="propertyType">Property / Structure Type</label>
+                                                    <input type="text" class="form-control" id="propertyType" readonly>
                                                 </div>
-
 
                                                 <!-- Estimated Area -->
-
-                                                <div class="col-12 col-md-4">
-
-                                                    <label for="estimatedArea">
-
-                                                        Estimated Area
-
-                                                    </label>
-
-                                                    <input type="text"
-                                                        class="form-control"
-                                                        id="estimatedArea"
-                                                        readonly>
-
+                                                <div class="col-12 col-md-3">
+                                                    <label for="estimatedArea">Estimated Area</label>
+                                                    <input type="text" class="form-control" id="estimatedArea" readonly>
                                                 </div>
-
 
                                                 <!-- Quotation Status -->
-
-                                                <div class="col-12 col-md-4">
-
-                                                    <label for="quotationStatus">
-
-                                                        Quotation Status
-
-                                                    </label>
-
-                                                    <input type="text"
-                                                        class="form-control"
-                                                        id="quotationStatus"
-                                                        readonly>
-
+                                                <div class="col-12 col-md-3">
+                                                    <label for="quotationStatus">Quotation Status</label>
+                                                    <input type="text" class="form-control" id="quotationStatus" readonly>
                                                 </div>
-
 
                                                 <!-- Current Status -->
-
-                                                <div class="col-12 col-md-4">
-
-                                                    <label for="currentStatus">
-
-                                                        Current Status
-
-                                                    </label>
-
-                                                    <input type="text"
-                                                        class="form-control"
-                                                        id="currentStatus"
-                                                        readonly>
-
+                                                <div class="col-12 col-md-3">
+                                                    <label for="currentStatus">Current Status</label>
+                                                    <input type="text" class="form-control" id="currentStatus" readonly>
                                                 </div>
-
-
                                             </div>
 
 
@@ -848,216 +536,100 @@
 
         const customersDB = {
 
-
             "CUST-1001": {
-
                 id: "CUST-1001",
-
                 name: "Kavitha Narayanan",
-
                 mobile: "+91 98401 23456",
-
-                altMobile: "+91 94440 12890",
-
-                email: "kavitha.narayanan@gmail.com",
-
                 type: "Individual Homeowner",
-
                 doorNo: "Flat 3A",
-
-                building: "Green Valley Apartments",
-
                 street: "MTH Road",
-
                 area: "Ambattur",
-
                 city: "Chennai",
-
                 pincode: "600053",
-
-                landmark: "Near Ambattur OT Bus Terminus",
-
                 googleLocation: "https://maps.google.com/",
-
                 services: "Outer Wall Proofing, Terrace Waterproofing",
-
                 assigned: "Santhosh Kumar (Field Specialist)",
-
                 date: "19-08-2026",
-
+                fixDate: "20-08-2026",
                 time: "05:30 PM",
-
                 propertyType: "Residential Apartment Building",
-
                 estimatedArea: "1,450 Sq. Ft.",
-
                 quoteStatus: "Inspection Pending",
-
                 status: "Scheduled",
-
                 notes: "Severe terrace leakage observed near the overhead water tank area during heavy rains. Also external wall dampness and paint peeling on the second-floor northern wall.",
-
                 specialistNotes: "Initial visit scheduled. Need moisture meter inspection for parapet wall joints and elastomeric coating quotation preparation."
-
             },
-
 
             "CUST-1002": {
-
                 id: "CUST-1002",
-
                 name: "Murugan Selvam",
-
                 mobile: "+91 97892 34567",
-
-                altMobile: "+91 98840 55432",
-
-                email: "murugan.selvam@yahoo.com",
-
                 type: "Residential Owner",
-
                 doorNo: "No 45",
-
-                building: "Selvam Illam",
-
                 street: "2nd Main Road",
-
                 area: "Anna Nagar",
-
                 city: "Chennai",
-
                 pincode: "600040",
-
-                landmark: "Near Tower Park",
-
                 googleLocation: "https://maps.google.com/",
-
                 services: "Bathroom Proofing, Sump Proofing",
-
                 assigned: "Alex (Site Engineer)",
-
                 date: "20-08-2026",
-
+                fixDate: "21-08-2026",
                 time: "10:00 AM",
-
                 propertyType: "Independent Villa",
-
                 estimatedArea: "850 Sq. Ft.",
-
                 quoteStatus: "Quotation Generated (₹38,000)",
-
                 status: "In Progress",
-
                 notes: "Underground water sump leakage and seepage into neighboring foundation. Master bathroom tile joints damaged causing water stains on ceiling below.",
-
                 specialistNotes: "Sump pressure grouting in progress. Bathroom floor epoxy coating to commence on Saturday."
-
             },
-
 
             "CUST-1003": {
-
                 id: "CUST-1003",
-
                 name: "Rajesh Varma",
-
                 mobile: "+91 99403 45678",
-
-                altMobile: "+91 99400 11223",
-
-                email: "rajesh.varma@varmagroup.in",
-
                 type: "Commercial Property",
-
                 doorNo: "Plot 12",
-
-                building: "Varma Tech Plaza",
-
                 street: "GST Road, Industrial Estate",
-
                 area: "Guindy",
-
                 city: "Chennai",
-
                 pincode: "600032",
-
-                landmark: "Near Guindy Metro Station",
-
                 googleLocation: "https://maps.google.com/",
-
                 services: "Outer Wall Proofing",
-
                 assigned: "Donald Johnson (Field Lead)",
-
                 date: "18-08-2026",
-
+                fixDate: "19-08-2026",
                 time: "02:15 PM",
-
                 propertyType: "Commercial Complex (G+4)",
-
                 estimatedArea: "6,200 Sq. Ft.",
-
                 quoteStatus: "Completed (₹1,45,000)",
-
                 status: "Completed",
-
                 notes: "External glass and concrete facade silicone seal restoration and 3-coat waterproof exterior painting.",
-
                 specialistNotes: "Job completed with 5-year warranty card issued to facility management."
-
             },
 
-
             "CUST-1004": {
-
                 id: "CUST-1004",
-
                 name: "Ananya Srinivasan",
-
                 mobile: "+91 98415 67890",
-
-                altMobile: "+91 98410 99887",
-
-                email: "ananya.srinivasan@outlook.com",
-
                 type: "Individual Homeowner",
-
                 doorNo: "7B",
-
-                building: "Srinivasa Nilayam",
-
                 street: "North Usman Road",
-
                 area: "T. Nagar",
-
                 city: "Chennai",
-
                 pincode: "600017",
-
-                landmark: "Near Panagal Park",
-
                 googleLocation: "https://maps.google.com/",
-
                 services: "Terrace Waterproofing, Sump Proofing",
-
                 assigned: "Ravi Kumar (Site Engineer)",
-
                 date: "21-08-2026",
-
+                fixDate: "22-08-2026",
                 time: "11:30 AM",
-
                 propertyType: "Residential Independent House",
-
                 estimatedArea: "1,800 Sq. Ft.",
-
                 quoteStatus: "Pending Approval",
-
                 status: "Scheduled",
-
                 notes: "Old building flat roof waterproofing with heat insulation and sump inner waterproof plastering.",
-
                 specialistNotes: "Roof surface preparation checklist submitted. Awaiting client quote confirmation."
-
             }
 
         };
@@ -1069,166 +641,175 @@
 
         $(document).ready(function () {
 
-
             const urlParams = new URLSearchParams(
                 window.location.search
             );
 
-
             const customerIdParam =
                 urlParams.get('id') || "CUST-1001";
-
 
             const data =
                 customersDB[customerIdParam]
                 || customersDB["CUST-1001"];
 
+            function populateData() {
+                /* PERSONAL INFORMATION */
+                $('#customerId').val(data.id);
+                $('#customerName').val(data.name);
+                $('#mobileNumber').val(data.mobile);
 
-            /* PERSONAL INFORMATION */
+                /* LOCATION */
+                $('#doorFlatNo').val(data.doorNo);
+                $('#streetRoad').val(data.street);
+                $('#areaLocality').val(data.area);
+                $('#city').val(data.city);
+                $('#pincode').val(data.pincode);
+                $('#googleLocation').val(data.googleLocation);
 
-            $('#customerId').val(data.id);
+                /* SERVICE */
+                $('#serviceRequired').val(data.services);
+                $('#assignedTo').val(data.assigned);
+                $('#appointmentDate').val(data.date);
+                $('#appointmentFixDate').val(data.fixDate || data.date);
+                $('#appointmentTime').val(data.time);
+                $('#propertyType').val(data.propertyType);
+                $('#estimatedArea').val(data.estimatedArea);
+                $('#quotationStatus').val(data.quoteStatus);
+                $('#currentStatus').val(data.status);
 
-            $('#customerName').val(data.name);
+                /* NOTES */
+                $('#customerNotes').val(data.notes);
+                $('#siteEngineerNotes').val(data.specialistNotes);
+            }
 
-            $('#mobileNumber').val(data.mobile);
+            populateData();
 
-            $('#altMobileNumber').val(data.altMobile);
+            let isEditMode = false;
 
-            $('#emailAddress').val(data.email);
+            function enableEditMode() {
+                isEditMode = true;
 
-            $('#customerType').val(data.type);
-
-
-            /* LOCATION */
-
-            $('#doorFlatNo').val(data.doorNo);
-
-            $('#buildingName').val(data.building);
-
-            $('#streetRoad').val(data.street);
-
-            $('#areaLocality').val(data.area);
-
-            $('#city').val(data.city);
-
-            $('#pincode').val(data.pincode);
-
-            $('#landmark').val(data.landmark);
-
-            $('#googleLocation').val(data.googleLocation);
-
-
-            /* SERVICE */
-
-            $('#serviceRequired').val(data.services);
-
-            $('#assignedTo').val(data.assigned);
-
-            $('#appointmentDate').val(data.date);
-
-            $('#appointmentTime').val(data.time);
-
-            $('#propertyType').val(data.propertyType);
-
-            $('#estimatedArea').val(data.estimatedArea);
-
-            $('#quotationStatus').val(data.quoteStatus);
-
-            $('#currentStatus').val(data.status);
-
-
-            /* NOTES */
-
-            $('#customerNotes').val(data.notes);
-
-            $('#siteEngineerNotes').val(
-                data.specialistNotes
-            );
-
-
-            /* =========================
-               VIEW / EDIT MODE
-            ========================== */
-
-            const isEditMode =
-                urlParams.get('mode') === 'edit';
-
-
-            if (isEditMode) {
-
-                /* Unlock every field except the ID,
-                   which stays a fixed identifier */
-
+                /* Unlock every field including the ID */
                 $('#customerDetailForm')
                     .find('.form-control, .form-select')
-                    .not('#customerId')
                     .prop('readonly', false)
                     .prop('disabled', false);
 
-
                 /* Page title & breadcrumb */
-
                 $('#pageTitle').text('Edit Customer Details');
-
                 $('#breadcrumbActive').text('Edit Customer');
 
-
-                /* Top action bar */
-
-                $('#newAppointmentBtn').addClass('d-none');
-
-                // $('#backToListTopBtn')
-                //     .html('<i class="mdi mdi-close me-1"></i> Cancel')
-                //     .attr('href', 'customer-detail.html?id=' + customerIdParam);
-
+                /* Top action button switches to Cancel */
+                $('#editCustomerBtn')
+                    .html('<i class="mdi mdi-close me-1"></i> Cancel')
+                    .removeClass('btn-primary')
+                    .addClass('btn-outline-light');
 
                 /* Bottom action bar */
-
                 $('#bookRescheduleBtn').addClass('d-none');
-
                 $('#backToListBtn')
                     .html('<i class="mdi mdi-close me-1"></i> Cancel')
-                    .attr('href', 'customer-detail.html?id=' + customerIdParam);
+                    .attr('href', 'javascript:void(0);');
 
                 $('#saveChangesBtn').removeClass('d-none');
-
+                $('#customerId').focus();
             }
 
+            function disableEditMode() {
+                isEditMode = false;
+
+                /* Reset form fields */
+                populateData();
+
+                /* Lock all fields */
+                $('#customerDetailForm')
+                    .find('.form-control, .form-select')
+                    .prop('readonly', true)
+                    .prop('disabled', true);
+
+                /* Page title & breadcrumb */
+                $('#pageTitle').text('Customer Details');
+                $('#breadcrumbActive').text('Customer Details');
+
+                /* Top action button switches back */
+                $('#editCustomerBtn')
+                    .html('<i class="mdi mdi-pencil me-1"></i> Edit Customer')
+                    .removeClass('btn-outline-light')
+                    .addClass('btn-primary');
+
+                /* Bottom action bar */
+                $('#bookRescheduleBtn').removeClass('d-none');
+                $('#backToListBtn')
+                    .html('<i class="mdi mdi-arrow-left me-1"></i> Back to List')
+                    .attr('href', 'customer-list.html');
+
+                $('#saveChangesBtn').addClass('d-none');
+            }
+
+            /* Top Edit / Cancel Button Click Handler */
+            $('#editCustomerBtn').on('click', function () {
+                if (isEditMode) {
+                    disableEditMode();
+                } else {
+                    enableEditMode();
+                }
+            });
+
+            /* Bottom Cancel Button Click Handler in Edit Mode */
+            $('#backToListBtn').on('click', function (e) {
+                if (isEditMode) {
+                    e.preventDefault();
+                    disableEditMode();
+                }
+            });
+
+            /* Initial check if mode=edit is in URL */
+            if (urlParams.get('mode') === 'edit') {
+                enableEditMode();
+            }
 
             /* =========================
                SAVE CHANGES (EDIT MODE)
             ========================== */
-
             $('#customerDetailForm').on('submit', function (e) {
-
                 e.preventDefault();
 
                 if (!isEditMode) {
                     return;
                 }
 
-                // TODO: wire this up to your backend / API to persist the changes.
+                // Update data in-memory
+                data.id = $('#customerId').val();
+                data.name = $('#customerName').val();
+                data.mobile = $('#mobileNumber').val();
+                data.doorNo = $('#doorFlatNo').val();
+                data.street = $('#streetRoad').val();
+                data.area = $('#areaLocality').val();
+                data.city = $('#city').val();
+                data.pincode = $('#pincode').val();
+                data.googleLocation = $('#googleLocation').val();
+                data.services = $('#serviceRequired').val();
+                data.assigned = $('#assignedTo').val();
+                data.date = $('#appointmentDate').val();
+                data.fixDate = $('#appointmentFixDate').val();
+                data.time = $('#appointmentTime').val();
+                data.propertyType = $('#propertyType').val();
+                data.estimatedArea = $('#estimatedArea').val();
+                data.quoteStatus = $('#quotationStatus').val();
+                data.status = $('#currentStatus').val();
+                data.notes = $('#customerNotes').val();
+                data.specialistNotes = $('#siteEngineerNotes').val();
+
                 Swal.fire({
-
                     title: 'Saved!',
-
                     text: 'Customer details have been updated successfully.',
-
                     icon: 'success',
-
                     timer: 1800,
-
                     showConfirmButton: false
-
                 }).then(function () {
-
-                    window.location.href =
-                        'customer-detail.html?id=' + customerIdParam;
-
+                    disableEditMode();
                 });
-
             });
-
 
         });
 

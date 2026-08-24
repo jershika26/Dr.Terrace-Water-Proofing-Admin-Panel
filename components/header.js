@@ -11,7 +11,7 @@ const HeaderTemplate = `
                     </span>
                     <span class="logo-lg">
                         <div class="d-flex align-items-center justify-content-between w-100 h-100 px-3">
-                            <span class="font-size-14 text-dark text-nowrap me-2" style="font-weight: 500;">Welcome Dr.Terrace</span>
+                            <span class="welcome-brand-text font-size-14 text-dark text-nowrap me-2" style="font-weight: 500;">Welcome Dr.Terrace</span>
                             <img src="assets/images/favicon.png" alt="Dr. Terrace" height="38" style="max-height: 42px; object-fit: contain;">
                         </div>
                     </span>

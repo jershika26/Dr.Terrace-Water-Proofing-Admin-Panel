@@ -278,6 +278,48 @@
         }
 
         /* =========================
+           DROPDOWN CHECKLIST
+        ========================= */
+
+        .custom-dropdown-checklist .dropdown-menu {
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+            border: 1px solid #e2e8f0 !important;
+            z-index: 1050;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 7px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.15s ease;
+            user-select: none;
+            margin-bottom: 0;
+            font-size: 14px;
+            color: #334155;
+        }
+
+        .checklist-item:hover {
+            background-color: #f1f5f9;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 17px;
+            height: 17px;
+            border-radius: 4px;
+            border: 1.5px solid #94a3b8;
+            margin-right: 10px;
+            cursor: pointer;
+            accent-color: var(--dr-primary);
+        }
+
+        .checklist-item span {
+            flex-grow: 1;
+        }
+
+        /* =========================
            BUTTONS
         ========================= */
 
@@ -375,11 +417,11 @@
                                     <ol class="breadcrumb">
 
                                         <li class="breadcrumb-item">
-                                            <a href="all-appointments.html">Drterrace</a>
+                                            <a href="dashboard.html">Drterrace</a>
                                         </li>
 
                                         <li class="breadcrumb-item">
-                                            <a href="all-appointments.html">
+                                            <a href="new-appointment.html">
                                                 Appointment
                                             </a>
                                         </li>
@@ -394,12 +436,12 @@
 
                                 <div class="state-information">
 
-                                    <a href="all-appointments.html"
+                                    <a href="dashboard.html"
                                         class="btn btn-outline-primary btn-sm">
 
                                         <i class="mdi mdi-arrow-left me-1"></i>
 
-                                        View All Appointments
+                                        Back to Dashboard
 
                                     </a>
 
@@ -427,104 +469,88 @@
                                         <form id="newAppointmentForm">
 
                                             <!-- Customer Details -->
-
                                             <div class="row g-3 mb-4">
-
-                                                <div class="col-12 col-md-6">
-
-                                                    <label 
-                                                        for="customerName">
-
-                                                        Customer Name
-
-                                                        
-
+                                                <div class="col-12 col-md-4">
+                                                    <label for="customerId">
+                                                        Customer ID
                                                     </label>
+                                                    <input type="text"
+                                                        class="form-control form-control-custom"
+                                                        id="customerId"
+                                                        name="customer_id"
+                                                        placeholder="Enter Customer ID"
+                                                       
+                                                        required>
+                                                </div>
 
+                                                <div class="col-12 col-md-4">
+                                                    <label for="customerName">
+                                                        Customer Name
+                                                    </label>
                                                     <input type="text"
                                                         class="form-control form-control-custom"
                                                         id="customerName"
+                                                        name="customer_name"
                                                         placeholder="Enter Customer Name"
                                                         required>
-
                                                 </div>
 
-
-                                                <div class="col-12 col-md-6">
-
-                                                    <label 
-                                                        for="customerMobile">
-
+                                                <div class="col-12 col-md-4">
+                                                    <label for="customerMobile">
                                                         Mobile Number
-
-                                                        
-
                                                     </label>
-
                                                     <input type="tel"
                                                         class="form-control form-control-custom"
                                                         id="customerMobile"
+                                                        name="customer_mobile"
                                                         placeholder="Enter Mobile Number"
                                                         maxlength="10"
                                                         required>
-
                                                 </div>
-
                                             </div>
 
 
                                             <!-- Address -->
-
                                             <div class="mb-4">
-
-                                                <label >
-
+                                                <label>
                                                     Address
-
-                                                   
-
                                                 </label>
 
                                                 <div class="row g-3">
-
-                                                    <div class="col-12 col-md-6">
-
+                                                    <div class="col-12 col-md-4">
                                                         <input type="text"
                                                             class="form-control form-control-custom"
                                                             id="doorFlatNo"
+                                                            name="door_flat_no"
                                                             placeholder="Door No / Flat No"
                                                             required>
-
                                                     </div>
 
-
-                                                    <div class="col-12 col-md-6">
-
+                                                    <div class="col-12 col-md-4">
                                                         <input type="text"
                                                             class="form-control form-control-custom"
                                                             id="streetRoad"
+                                                            name="street_road"
                                                             placeholder="Street Name / Road"
                                                             required>
-
                                                     </div>
 
+                                                    <div class="col-12 col-md-4">
+                                                        <input type="text"
+                                                            class="form-control form-control-custom"
+                                                            id="pincode"
+                                                            name="pincode"
+                                                            placeholder="Pincode (e.g. 600034)"
+                                                            maxlength="6"
+                                                            required>
+                                                    </div>
 
                                                     <!-- CITY -->
-
                                                     <div class="col-12 col-md-6">
-
-                                                        <label 
-                                                            for="cityInput">
-
+                                                        <label for="cityInput">
                                                             City
-
-                                                           
-
                                                         </label>
-
-                                                        <div class="search-select-wrapper"
-                                                            id="cityWrapper">
-
+                                                        <div class="search-select-wrapper" id="cityWrapper">
                                                             <input type="text"
                                                                 class="form-control form-control-custom"
                                                                 id="cityInput"
@@ -532,33 +558,17 @@
                                                                 placeholder="Select or type City"
                                                                 autocomplete="off"
                                                                 required>
-
                                                             <i class="mdi mdi-chevron-down search-select-icon"></i>
-
-                                                            <div class="search-suggestions"
-                                                                id="citySuggestions">
-                                                            </div>
-
+                                                            <div class="search-suggestions" id="citySuggestions"></div>
                                                         </div>
-
                                                     </div>
 
-
                                                     <!-- AREA -->
-
                                                     <div class="col-12 col-md-6">
-
-                                                        <label 
-                                                            for="areaInput">
-
+                                                        <label for="areaInput">
                                                             Area
-
-
                                                         </label>
-
-                                                        <div class="search-select-wrapper"
-                                                            id="areaWrapper">
-
+                                                        <div class="search-select-wrapper" id="areaWrapper">
                                                             <input type="text"
                                                                 class="form-control form-control-custom"
                                                                 id="areaInput"
@@ -566,174 +576,118 @@
                                                                 placeholder="Select or type Area"
                                                                 autocomplete="off"
                                                                 required>
-
                                                             <i class="mdi mdi-chevron-down search-select-icon"></i>
-
-                                                            <div class="search-suggestions"
-                                                                id="areaSuggestions">
-                                                            </div>
-
+                                                            <div class="search-suggestions" id="areaSuggestions"></div>
                                                         </div>
-
                                                     </div>
-
                                                 </div>
-
                                             </div>
 
 
                                             <!-- Google Location -->
-
                                             <div class="mb-4">
-
-                                                <label 
-                                                    for="googleLocation">
-
+                                                <label for="googleLocation">
                                                     Google Location
-
                                                 </label>
-
                                                 <div class="input-icon-wrapper">
-
                                                     <input type="text"
                                                         class="form-control form-control-custom"
                                                         id="googleLocation"
                                                         placeholder="Paste URL here">
-
                                                     <i class="mdi mdi-map-marker input-trailing-icon"></i>
-
                                                 </div>
-
                                             </div>
 
 
                                             <!-- Date & Time -->
-
                                             <div class="row g-3 mb-4">
-
                                                 <!-- Appointment Date -->
-
                                                 <div class="col-12 col-md-6 col-lg-4">
-                                                    <label 
-                                                        for="appointmentDate">
-
+                                                    <label for="appointmentDate">
                                                         Appointment Date
-
                                                     </label>
-
                                                     <input type="date"
                                                         class="form-control form-control-custom"
                                                         id="appointmentDate"
                                                         value="2026-08-20">
-
                                                 </div>
 
-
                                                 <!-- Appointment Fix Date -->
-
                                                 <div class="col-12 col-md-6 col-lg-4">
-
-                                                    <label 
-                                                        for="appointmentFixDate">
-
+                                                    <label for="appointmentFixDate">
                                                         Appointment Fix Date
-
                                                     </label>
-
                                                     <input type="date"
                                                         class="form-control form-control-custom"
                                                         id="appointmentFixDate"
                                                         value="2026-08-20">
-
                                                 </div>
 
-
                                                 <!-- Appointment Time -->
-
                                                 <div class="col-12 col-md-6 col-lg-4">
-
-                                                    <label 
-                                                        for="appointmentTime">
-
+                                                    <label for="appointmentTime">
                                                         Appointment Time
-
                                                     </label>
-
                                                     <input type="time"
                                                         class="form-control form-control-custom"
                                                         id="appointmentTime"
                                                         value="17:30">
-
                                                 </div>
-
                                             </div>
 
 
-                                            <!-- Waterproof Services -->
-
-                                            <div class="mb-4">
-
-                                                <div class="section-header-title">
-
-                                                    Where to Waterproof
-
+                                            <!-- Service & Property Details -->
+                                            <div class="row g-3 mb-4">
+                                                <!-- Where to Waterproof Dropdown Checklist -->
+                                                <div class="col-12 col-md-4">
+                                                    <label for="whereToWaterproofBtn">
+                                                        Where to Waterproof
+                                                    </label>
+                                                    <div class="dropdown custom-dropdown-checklist w-100" id="waterproofDropdownWrapper">
+                                                        <button class="form-select form-select-custom text-start d-flex justify-content-between align-items-center w-100"
+                                                                type="button"
+                                                                id="whereToWaterproofBtn"
+                                                                data-bs-toggle="dropdown"
+                                                                data-bs-auto-close="outside"
+                                                                aria-expanded="false">
+                                                            <span class="dropdown-selected-text text-truncate" id="waterproofSelectedText">Choose waterproof types</span>
+                                                        </button>
+                                                        <div class="dropdown-menu p-3 shadow-lg border-0 w-100" aria-labelledby="whereToWaterproofBtn" style="max-height: 280px; overflow-y: auto;">
+                                                            <div class="d-flex align-items-center justify-content-between pb-2 mb-2 border-bottom">
+                                                                <span class="text-muted font-size-12 fw-medium">Select options:</span>
+                                                                <a href="javascript:void(0);" class="font-size-12 text-primary text-decoration-none fw-semibold" id="selectAllWaterproof">Select All</a>
+                                                            </div>
+                                                            <div id="waterproofChecklistOptions" class="d-flex flex-column gap-1">
+                                                                <!-- Checkboxes rendered dynamically -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
 
-                                                <div class="waterproof-options-list">
-
-                                                    <label class="custom-check-item">
-
-                                                        <input type="checkbox"
-                                                            name="waterproof_services"
-                                                            value="Terrace">
-
-                                                        <span class="custom-checkmark"></span>
-
-                                                        Terrace
-
+                                                <!-- Property / Structure Type -->
+                                                <div class="col-12 col-md-4">
+                                                    <label for="propertyStructureType">
+                                                        Property Type / Structure Type
                                                     </label>
-
-
-                                                    <label class="custom-check-item">
-
-                                                        <input type="checkbox"
-                                                            name="waterproof_services"
-                                                            value="Outer Wall">
-
-                                                        <span class="custom-checkmark"></span>
-
-                                                        Outer Wall
-
-                                                    </label>
-
-
-                                                    <label class="custom-check-item">
-
-                                                        <input type="checkbox"
-                                                            name="waterproof_services"
-                                                            value="Bathroom">
-
-                                                        <span class="custom-checkmark"></span>
-
-                                                        Bathroom
-
-                                                    </label>
-
-
-                                                    <label class="custom-check-item">
-
-                                                        <input type="checkbox"
-                                                            name="waterproof_services"
-                                                            value="Sump">
-
-                                                        <span class="custom-checkmark"></span>
-
-                                                        Sump
-
-                                                    </label>
-
+                                                    <select class="form-select form-select-custom"
+                                                        id="propertyStructureType"
+                                                        name="property_structure_type"
+                                                        required>
+                                                        <option value="" disabled selected>Choose property type</option>
+                                                    </select>
                                                 </div>
 
+                                                <!-- Estimated Area -->
+                                                <div class="col-12 col-md-4">
+                                                    <label for="estimatedArea">
+                                                        Estimated Area
+                                                    </label>
+                                                    <input type="text"
+                                                        class="form-control form-control-custom"
+                                                        id="estimatedArea"
+                                                        name="estimated_area"
+                                                        placeholder="e.g. 1,500 Sq. Ft.">
+                                                </div>
                                             </div>
 
 
@@ -1228,22 +1182,96 @@
 
 
             /* ==========================================
-               WATERPROOF CHECKBOX
+               LOAD DYNAMIC DROPDOWNS FROM LOCALSTORAGE
             ========================================== */
 
-            $('input[name="waterproof_services"]').on(
-                "change",
-                function () {
+            function updateWaterproofSelectedDisplay() {
+                const selected = [];
+                $('.waterproof-checkbox:checked').each(function() {
+                    selected.push($(this).val());
+                });
 
-                    $(this)
-                        .closest(".custom-check-item")
-                        .toggleClass(
-                            "is-checked",
-                            this.checked
-                        );
-
+                if (selected.length === 0) {
+                    $('#waterproofSelectedText').text('Choose waterproof types').removeClass('text-dark').addClass('text-muted');
+                } else if (selected.length === 1) {
+                    $('#waterproofSelectedText').text(selected[0]).removeClass('text-muted').addClass('text-dark');
+                } else if (selected.length === 2) {
+                    $('#waterproofSelectedText').text(selected.join(', ')).removeClass('text-muted').addClass('text-dark');
+                } else {
+                    $('#waterproofSelectedText').text(`${selected.length} Types Selected (${selected.slice(0, 2).join(', ')}...)`).removeClass('text-muted').addClass('text-dark');
                 }
-            );
+            }
+
+            function loadWaterproofTypesDropdown() {
+                const defaultWaterproofTypes = [
+                    "Outer Wall Proofing",
+                    "Terrace Waterproofing",
+                    "Bathroom Waterproofing",
+                    "Sump Waterproofing",
+                    "Basement Waterproofing"
+                ];
+                let types = defaultWaterproofTypes;
+                const stored = localStorage.getItem('drterrace_waterproof_types');
+                if (stored) {
+                    try {
+                        types = JSON.parse(stored);
+                    } catch (e) {
+                        types = defaultWaterproofTypes;
+                    }
+                }
+                const $container = $('#waterproofChecklistOptions');
+                $container.empty();
+                types.forEach(function (type, idx) {
+                    const id = `wt_opt_${idx}`;
+                    $container.append(`
+                        <label class="checklist-item" for="${id}">
+                            <input type="checkbox" id="${id}" name="waterproof_services" value="${type}" class="waterproof-checkbox">
+                            <span>${type}</span>
+                        </label>
+                    `);
+                });
+                updateWaterproofSelectedDisplay();
+            }
+
+            $(document).on('change', '.waterproof-checkbox', function () {
+                updateWaterproofSelectedDisplay();
+            });
+
+            $('#selectAllWaterproof').on('click', function () {
+                const $allCheckboxes = $('.waterproof-checkbox');
+                const allChecked = $allCheckboxes.length > 0 && $allCheckboxes.filter(':checked').length === $allCheckboxes.length;
+                $allCheckboxes.prop('checked', !allChecked);
+                $(this).text(allChecked ? 'Select All' : 'Deselect All');
+                updateWaterproofSelectedDisplay();
+            });
+
+            function loadHouseTypesDropdown() {
+                const defaultHouseTypes = [
+                    "Independent Villa",
+                    "Apartment / Flat",
+                    "Commercial Building",
+                    "Independent House",
+                    "Row House / Duplex",
+                    "Industrial Shed / Factory"
+                ];
+                let types = defaultHouseTypes;
+                const stored = localStorage.getItem('drterrace_house_types');
+                if (stored) {
+                    try {
+                        types = JSON.parse(stored);
+                    } catch (e) {
+                        types = defaultHouseTypes;
+                    }
+                }
+                const $select = $('#propertyStructureType');
+                $select.empty().append('<option value="" disabled selected>Choose property type</option>');
+                types.forEach(function (type) {
+                    $select.append(`<option value="${type}">${type}</option>`);
+                });
+            }
+
+            loadWaterproofTypesDropdown();
+            loadHouseTypesDropdown();
 
 
             /* ==========================================
@@ -1256,87 +1284,75 @@
 
                     e.preventDefault();
 
+                    const customerId = $("#customerId").val();
+                    const customerName = $("#customerName").val();
+                    const mobile = $("#customerMobile").val();
+                    const assigned = $("#assignedTo").val();
+                    const date = $("#appointmentDate").val();
+                    const time = $("#appointmentTime").val();
+                    const propertyType = $("#propertyStructureType").val();
+                    const estimatedArea = $("#estimatedArea").val();
 
-                    const customerName =
-                        $("#customerName").val();
-
-                    const mobile =
-                        $("#customerMobile").val();
-
-                    const assigned =
-                        $("#assignedTo").val();
-
-                    const date =
-                        $("#appointmentDate").val();
-
-                    const time =
-                        $("#appointmentTime").val();
-
+                    const selectedWaterproof = [];
+                    $('.waterproof-checkbox:checked').each(function () {
+                        selectedWaterproof.push($(this).val());
+                    });
 
                     if (mobile.length !== 10) {
-
                         Swal.fire({
-
                             icon: "warning",
-
                             title: "Invalid Mobile Number",
-
                             text: "Please enter a valid 10-digit mobile number.",
-
                             confirmButtonColor: "#1e4db7"
-
                         });
-
                         return;
-
                     }
 
+                    if (selectedWaterproof.length === 0) {
+                        Swal.fire({
+                            icon: "warning",
+                            title: "Select Waterproof Type",
+                            text: "Please choose at least one option under 'Where to Waterproof'.",
+                            confirmButtonColor: "#1e4db7"
+                        });
+                        return;
+                    }
+
+                    const waterproofText = selectedWaterproof.join(', ');
 
                     Swal.fire({
-
                         icon: "success",
-
                         title: "Appointment Booked Successfully!",
-
                         html:
                             "Appointment for <b>" +
-                            customerName +
+                            customerName + " (" + customerId + ")" +
                             "</b> has been scheduled for <b>" +
                             date +
                             " at " +
                             time +
-                            "</b><br><small class='text-muted'>Assigned to: " +
+                            "</b><br><small class='text-muted'>Where to Waterproof: <b>" +
+                            waterproofText +
+                            "</b><br>Property Type: <b>" + (propertyType || 'N/A') + "</b>" +
+                            (estimatedArea ? "<br>Estimated Area: <b>" + estimatedArea + "</b>" : "") +
+                            "<br>Assigned to: <b>" +
                             assigned +
-                            "</small>",
-
+                            "</b></small>",
                         confirmButtonColor: "#1e4db7",
-
                         confirmButtonText:
-                            "View All Appointments",
-
+                            "Go to Dashboard",
                         showCancelButton: true,
-
                         cancelButtonText:
                             "Book Another"
-
                     }).then(function (result) {
-
                         if (result.isConfirmed) {
-
                             window.location.href =
-                                "all-appointments.html";
-
+                                "dashboard.html";
                         } else {
-
                             $("#newAppointmentForm")[0].reset();
-
-                            $(".custom-check-item")
-                                .removeClass("is-checked");
-
+                            loadWaterproofTypesDropdown();
+                            loadHouseTypesDropdown();
                         }
-
                     });
-
                 }
             );
 
@@ -1348,17 +1364,11 @@
             $(".btn-cancel-appointment").on(
                 "click",
                 function () {
-
                     $("#newAppointmentForm")[0].reset();
-
-                    $(".custom-check-item")
-                        .removeClass("is-checked");
-
-
                     cityInput.value = "";
-
                     areaInput.value = "";
-
+                    loadWaterproofTypesDropdown();
+                    loadHouseTypesDropdown();
                 }
             );
 
