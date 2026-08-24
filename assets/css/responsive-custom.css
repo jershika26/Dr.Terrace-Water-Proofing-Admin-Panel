@@ -1009,6 +1009,40 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th.dtr-control {
     .table .text-muted {
         font-size: 0.75rem !important;
     }
+
+    /* Master pages action buttons on mobile */
+    .btn-edit-wt, .btn-delete-wt,
+    .btn-edit-ht, .btn-delete-ht,
+    .btn-edit-pkg, .btn-delete-pkg,
+    .btn-edit-service, .btn-delete-service,
+    .btn-edit-tier, .btn-delete-tier {
+        width: 30px !important;
+        height: 30px !important;
+        padding: 0 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+}
+
+/* Master Pages Table Layout Consistency */
+#datatable-waterproof-types,
+#datatable-house-types,
+#datatable-packages,
+#datatable-service-specs {
+    width: 100% !important;
+}
+
+#datatable-waterproof-types th:last-child,
+#datatable-waterproof-types td:last-child,
+#datatable-house-types th:last-child,
+#datatable-house-types td:last-child,
+#datatable-packages th:last-child,
+#datatable-packages td:last-child,
+#datatable-service-specs th:last-child,
+#datatable-service-specs td:last-child {
+    white-space: nowrap !important;
+    text-align: center;
 }
 
 

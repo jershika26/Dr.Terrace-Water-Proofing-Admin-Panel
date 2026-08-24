@@ -118,7 +118,7 @@
                                         </div>
 
                                         <div class="table-responsive" id="services-table-container">
-                                            <table id="datatable-waterproof-types" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                            <table id="datatable-waterproof-types" class="table table-bordered" style="border-collapse: collapse; border-spacing: 0; width: 100%; min-width: 580px;">
                                                 <thead>
                                                     <tr>
                                                         <th class="sl-no-col text-center" style="width: 80px;">Sl. No.</th>
@@ -346,7 +346,7 @@
                 }
 
                 const tableHtml = `
-                    <table id="datatable-waterproof-types" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <table id="datatable-waterproof-types" class="table table-bordered" style="border-collapse: collapse; border-spacing: 0; width: 100%; min-width: 580px;">
                         <thead>
                             <tr>
                                 <th class="sl-no-col text-center" style="width: 80px;">Sl. No.</th>
@@ -368,6 +368,8 @@
                         searching: false,
                         info: false,
                         lengthChange: false,
+                        autoWidth: false,
+                        responsive: false,
                         order: [],
                         columnDefs: [
                             { orderable: false, targets: [3] },
